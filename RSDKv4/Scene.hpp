@@ -27,6 +27,8 @@ enum StageListNames {
     STAGELIST_REGULAR,
     STAGELIST_BONUS,
     STAGELIST_SPECIAL,
+    STAGELIST_SMS,
+    STAGELIST_SNES,
     STAGELIST_MAX, // StageList size
 };
 

@@ -26,11 +26,11 @@ int jumpTableDataOffset = 0;
 
 #if RETRO_USE_COMPILER
 #if !RETRO_REV00
-#define COMMONALIAS_COUNT (0xF5)
+#define COMMONALIAS_COUNT (0x75)
 #else
-#define COMMONALIAS_COUNT (0xF4)
+#define COMMONALIAS_COUNT (0x74)
 #endif
-#define ALIAS_COUNT_TRIM (0x1F0)
+#define ALIAS_COUNT_TRIM (0xE0)
 #define ALIAS_COUNT      (COMMONALIAS_COUNT + ALIAS_COUNT_TRIM)
 int lineID = 0;
 
@@ -4051,16 +4051,31 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_HAPTICSENABLED: scriptEng.operands[i] = Engine.hapticsEnabled; break;
 #endif
                     case VAR_ENGINETIMER:
-                        time_t initialTimer = time(NULL);
-                        struct tm *actualTimer = localtime(&initialTimer);
+    time_t initialTimer = time(NULL);
+    struct tm *actualTimer = localtime(&initialTimer);
 
-                        scriptEng.operands[i] = (int)(((actualTimer->tm_year + 1900 - 2000) & 0x3F) << 26 | 
-                                     ((actualTimer->tm_mon + 1) & 0xF) << 22 |
-                                     (actualTimer->tm_mday & 0x1F) << 17 |
-                                     (actualTimer->tm_hour & 0x1F) << 12 |
-                                     (actualTimer->tm_min & 0x3F) << 6 |
-                                     (actualTimer->tm_sec & 0x3F));
-                         break;
+    // Adjust the encoding as follows:
+    // Year: 6 bits, range 2000-2060
+    int year = (actualTimer->tm_year + 1900 - 2000) & 0x3F;
+    // Month: 4 bits, range 1-12
+    int month = (actualTimer->tm_mon + 1) & 0xF;
+    // Day: 5 bits, range 1-31
+    int day = actualTimer->tm_mday & 0x1F;
+    // Hour: 5 bits, range 0-23
+    int hour = actualTimer->tm_hour & 0x1F;
+    // Minute: 6 bits, range 0-59
+    int minute = actualTimer->tm_min & 0x3F;
+    // Second: 6 bits, range 0-59
+    int second = actualTimer->tm_sec & 0x3F;
+
+    scriptEng.operands[i] = (int)((year << 26) | 
+                                 (month << 22) |
+                                 (day << 17) |
+                                 (hour << 12) |
+                                 (minute << 6) |
+                                 second);
+
+    break;
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant

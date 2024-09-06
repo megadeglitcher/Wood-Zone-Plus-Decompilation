@@ -755,6 +755,8 @@ void LoadStageFiles(void)
                 case STAGELIST_PRESENTATION:
                 case STAGELIST_REGULAR:
                 case STAGELIST_BONUS:
+                case STAGELIST_SMS:
+                case STAGELIST_SNES:
                 case STAGELIST_SPECIAL:
                     StrCopy(scriptPath, "Bytecode/");
                     StrAdd(scriptPath, stageList[activeStageList][stageListPosition].folder);

@@ -174,7 +174,7 @@ bool processEvents()
                                 activeStageList--;
 
                                 if (activeStageList < 0) {
-                                    activeStageList = 3;
+                                    activeStageList = 5;
                                 }
                                 stageListPosition = stageListCount[activeStageList] - 1;
                             }
@@ -193,7 +193,7 @@ bool processEvents()
 
                                 stageListPosition = 0;
 
-                                if (activeStageList >= 4) {
+                                if (activeStageList >= 6) {
                                     activeStageList = 0;
                                 }
                             }

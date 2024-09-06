@@ -241,11 +241,11 @@ void ProcessStageSelect()
             if (inputPress.up)
                 gameMenu[0].selection2 -= 2;
 
-            if (gameMenu[0].selection2 > 13)
+            if (gameMenu[0].selection2 > 9)
                 gameMenu[0].selection2 = 3;
 
             if (gameMenu[0].selection2 < 3)
-                gameMenu[0].selection2 = 13;
+                gameMenu[0].selection2 = 9;
 
             DrawTextMenu(&gameMenu[0], SCREEN_CENTERX - 80, 72);
             bool nextMenu = false;
@@ -271,12 +271,10 @@ void ProcessStageSelect()
                     activeStageList = 2;
                     break;
                 case 11: // S1SMS
-                    if (stageListCount[4] > 0)
                         nextMenu = true;
                     activeStageList = 4;
                     break;
                 case 13: // S4SNES
-                    if (stageListCount[5] > 0)
                         nextMenu = true;
                     activeStageList = 5;
                     break;
@@ -320,7 +318,7 @@ void ProcessStageSelect()
         {
             if (inputDown.down) {
                 gameMenu[1].timer += 1;
-                if (gameMenu[1].timer > 10) {
+                if (gameMenu[1].timer > 8) {
                     gameMenu[1].timer = 0;
                     inputPress.down   = true;
                 }
@@ -558,9 +556,9 @@ void SetTextMenu(int sm)
             AddTextMenuEntry(&gameMenu[0], " ");
             AddTextMenuEntry(&gameMenu[0], "   BONUS");
             AddTextMenuEntry(&gameMenu[0], " ");
-            AddTextMenuEntry(&gameMenu[0], "   S1SMS");
+            AddTextMenuEntry(&gameMenu[0], "    ");
             AddTextMenuEntry(&gameMenu[0], " ");
-            AddTextMenuEntry(&gameMenu[0], "   S4SNES");
+            AddTextMenuEntry(&gameMenu[0], "    ");
             gameMenu[0].alignment      = 0;
             gameMenu[0].selection2     = 3;
             gameMenu[0].selectionCount = 2;
