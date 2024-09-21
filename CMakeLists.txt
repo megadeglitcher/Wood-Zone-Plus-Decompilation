@@ -32,10 +32,10 @@ set(RETRO_FILES
     RSDKv4/Text.cpp
     RSDKv4/Userdata.cpp
     RSDKv4/Video.cpp
-    RSDKv4/main
-    RSDKv4/NativeObjects/All
-    dependencies/all/theoraplay/theoraplay
-    dependencies/all/tinyxml2/tinyxml2
+    RSDKv4/main.cpp
+    RSDKv4/NativeObjects/All.cpp
+    dependencies/all/theoraplay/theoraplay.c
+    dependencies/all/tinyxml2/tinyxml2.cpp
 )
 
 if(NOT PLATFORM)
@@ -113,8 +113,10 @@ endif()
 target_include_directories(RetroEngine PRIVATE
     RSDKv4/
     RSDKv4/NativeObjects/
+    dependencies/all/asio/asio/include/
     dependencies/all/stb-image/
     dependencies/all/tinyxml2/
+    dependencies/all/theoraplay/
 )
 
 if(DEFINED DEP_PATH)
