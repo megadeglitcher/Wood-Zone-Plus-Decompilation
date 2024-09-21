@@ -53,6 +53,7 @@ cmake/
 ![Dd]ependencies/windows-uwp/dependencies.txt
 ![Dd]ependencies/android/dependencies.txt
 ![Dd]ependencies/android/libogg/include/ogg/config_types.h
+![Dd]ependencies/all/asio/asio/*
 
 # UWP
 **/Generated Files
@@ -283,3 +284,5 @@ flatpak/*.apk
 build-dir
 dependencies/mac/OggAndVorbis.xcodeproj/project.xcworkspace/xcuserdata
 dependencies/mac/SDL2
+/dependencies/all/asio/asio
+/dependencies/all/tinyxml2
