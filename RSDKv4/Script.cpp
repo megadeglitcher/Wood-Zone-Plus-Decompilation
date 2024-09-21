@@ -352,6 +352,10 @@ const char variableNames[][0x20] = {
 // Custom
     "engine.timer",
     "ERM_WHAT_THE_SIGMA",
+    "object.value48",
+    "object.value49",
+    "object.value50",
+    "object.value51",
 };
 #endif
 
@@ -961,6 +965,10 @@ enum ScrVar {
 #endif
     VAR_ENGINETIMER,
     VAR_ERM_WHAT_THE_SIGMA,
+    VAR_OBJECTVALUE48,
+    VAR_OBJECTVALUE49,
+    VAR_OBJECTVALUE50,
+    VAR_OBJECTVALUE51,
     VAR_MAX_CNT
 };
 
@@ -4056,6 +4064,22 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = objectEntityList[arrayVal].values[100];
                         break;
                     }
+                    case VAR_OBJECTVALUE48: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[48];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE49: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[49];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE50: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[50];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE51: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].values[51];
+                        break;
+                    }
                     case VAR_ENGINETIMER:
                         time_t initialTimer = time(NULL);
                         struct tm *actualTimer = localtime(&initialTimer);
@@ -6041,7 +6065,26 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_HAPTICSENABLED: Engine.hapticsEnabled = scriptEng.operands[i]; break;
 #endif
                     case VAR_ENGINETIMER: break;
-                    case VAR_ERM_WHAT_THE_SIGMA: break;
+                    case VAR_ERM_WHAT_THE_SIGMA: {
+                        objectEntityList[arrayVal].values[100] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE48: {
+                        objectEntityList[arrayVal].values[48] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE49: {
+                        objectEntityList[arrayVal].values[49] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE50: {
+                        objectEntityList[arrayVal].values[50] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTVALUE51: {
+                        objectEntityList[arrayVal].values[51] = scriptEng.operands[i];
+                        break;
+                    }
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
