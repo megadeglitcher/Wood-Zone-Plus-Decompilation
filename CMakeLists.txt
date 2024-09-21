@@ -4,7 +4,7 @@ project(RetroEngine)
 
 set(RETRO_SDL_VERSION 2 CACHE STRING "Select between SDL2 and SDL1, defaults to SDL2")
 
-set(RETRO_NAME "would zon")
+set(RETRO_NAME "WZ+")
 
 set(RETRO_OUTPUT_NAME ${RETRO_NAME} CACHE STRING "The exported name of the executable.")
 
@@ -19,6 +19,7 @@ set(RETRO_FILES
     RSDKv4/Input.cpp
     RSDKv4/Math.cpp
     RSDKv4/ModAPI.cpp
+    RSDKv4/Networking.cpp
     RSDKv4/Object.cpp
     RSDKv4/Palette.cpp
     RSDKv4/Reader.cpp

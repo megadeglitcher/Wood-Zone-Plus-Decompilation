@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := all
 
-NAME		=  s1fs2a
+NAME		=  WZ+
 SUFFIX		=
 PKGCONFIG	=  pkg-config
 DEBUG		?= 0
@@ -98,6 +98,7 @@ SOURCES = \
     RSDKv4/Input        \
     RSDKv4/Math         \
     RSDKv4/ModAPI       \
+    RSDKv4/Networking   \
     RSDKv4/Object       \
     RSDKv4/Palette      \
     RSDKv4/Reader       \
