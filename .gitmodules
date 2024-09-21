@@ -13,6 +13,6 @@
 [submodule "dependencies/all/theoraplay"]
 	path = dependencies/all/theoraplay
 	url = https://github.com/icculus/theoraplay
-[submodule "dependencies/all/aiso"]
-	path = dependencies/all/aiso
+[submodule "dependencies/all/asio"]
+	path = dependencies/all/asio
 	url = https://github.com/chriskohlhoff/asio
