@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := all
 
 NAME		=  s1fs2a
-SUFFIX		= 
+SUFFIX		=
 PKGCONFIG	=  pkg-config
 DEBUG		?= 0
 STATIC		?= 1
@@ -98,7 +98,6 @@ SOURCES = \
     RSDKv4/Input        \
     RSDKv4/Math         \
     RSDKv4/ModAPI       \
-    RSDKv4/Networking   \
     RSDKv4/Object       \
     RSDKv4/Palette      \
     RSDKv4/Reader       \
@@ -116,11 +115,6 @@ SOURCES = \
     RSDKv4/NativeObjects/All                \
     dependencies/all/theoraplay/theoraplay  \
     dependencies/all/tinyxml2/tinyxml2
-	
-ifneq ($(FORCE_CASE_INSENSITIVE),)
-	CXXFLAGS_ALL += -DFORCE_CASE_INSENSITIVE
-	SOURCES += RSDKv4/fcaseopen
-endif
 
 PKGSUFFIX ?= $(SUFFIX)
 
