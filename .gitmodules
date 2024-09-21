@@ -3,13 +3,13 @@
 	url = https://github.com/flathub/shared-modules.git
 [submodule "dependencies/all/asio"]
 	path = dependencies/all/asio
-	url = https://github.com/chriskohlhoff/asio/tree/6c054e98f3f53352d12b6cd46d63b6d404cc044b
+	url = https://github.com/chriskohlhoff/asio
 [submodule "dependencies/all/stb-image"]
 	path = dependencies/all/stb-image
-	url = https://github.com/nothings/stb/tree/af1a5bc352164740c1cc1354942b1c6b72eacb8a
+	url = https://github.com/nothings/stb
 [submodule "dependencies/all/theoraplay"]
 	path = dependencies/all/theoraplay
-	url = https://github.com/icculus/theoraplay/tree/925f9598b5706694889b8e7accd5d9c2bf658912
+	url = https://github.com/icculus/theoraplay
 [submodule "dependencies/all/tinyxml2"]
 	path = dependencies/all/tinyxml2
-	url = https://github.com/leethomason/tinyxml2/tree/a9773976845b19e89020c1215781e71116477ef1
+	url = https://github.com/leethomason/tinyxml2
