@@ -43,7 +43,7 @@ cmake --build build --config release
 The resulting build will be located somewhere in `build/` depending on your system.
 
 The following cmake arguments are available when compiling:
-- Use these by adding `-D[flag-name]=[value]` to the end of the `cmake -B build` command. For example, to build with `RETRO_DISABLE_PLUS` set to on, add `-RETRO_DISABLE_DEV=on` to the command.
+- Use these by adding `-D[flag-name]=[value]` to the end of the `cmake -B build` command. For example, to build with `RETRO_DISABLE_DEV` set to on, add `-RETRO_DISABLE_DEV=on` to the command.
 
 ### RSDKv4 flags (add a disable dev menu flag when compiling for distribution)
 - `RETRO_DISABLE_DEV`: Disables the dev menu, only activate when distributing. Set to `off` by default.
