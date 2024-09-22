@@ -8,9 +8,7 @@ STATIC		?= 1
 VERBOSE		?= 0
 PROFILE		?= 0
 STRIP		?= strip
-
-# -fsigned-char required to prevent hang in LoadStageCollisions
-CFLAGS		?= -fsigned-char -std=c++17
+DEFINES     =
 
 # =============================================================================
 # Detect default platform if not explicitly specified
@@ -46,19 +44,36 @@ include Makefile_cfgs/Platforms/$(PLATFORM).cfg
 
 # =============================================================================
 
-ifeq ($(STATIC),1)
-	PKGCONFIG +=  --static
-endif
-
 ifeq ($(DEBUG),1)
-	CFLAGS += -g
+	CXXFLAGS += -g
 	STRIP = :
 else
-	CFLAGS += -O3
+	CXXFLAGS += -O3
+endif
+
+
+ifeq ($(STATIC),1)
+	CXXFLAGS += -static
+endif
+
+CXXFLAGS_ALL = `$(PKGCONFIG) --cflags --static sdl2 vorbisfile vorbis theoradec`
+LIBS_ALL = `$(PKGCONFIG) --libs --static sdl2 vorbisfile vorbis theoradec`
+
+CXXFLAGS_ALL += $(CXXFLAGS) \
+               -DBASE_PATH='"$(BASE_PATH)"' \
+               --std=c++17 \
+               -fsigned-char
+
+LDFLAGS_ALL = $(LDFLAGS)
+LIBS_ALL += -pthread $(LIBS)
+
+ifneq ($(FORCE_CASE_INSENSITIVE),)
+	CXXFLAGS_ALL += -DFORCE_CASE_INSENSITIVE
+	SOURCES += RSDKv4/fcaseopen.c
 endif
 
 ifeq ($(PROFILE),1)
-	CFLAGS += -pg -g -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls -fno-default-inline
+	CXXFLAGS_ALL += -pg -g -fno-inline-functions -fno-inline-functions-called-once -fno-optimize-sibling-calls -fno-default-inline
 endif
 
 ifeq ($(VERBOSE),0)
@@ -66,17 +81,6 @@ ifeq ($(VERBOSE),0)
 	CXX := @$(CXX)
 endif
 
-# =============================================================================
-
-CFLAGS += `$(PKGCONFIG) --cflags sdl2 ogg vorbis theora vorbisfile theoradec`
-
-LIBS   += `$(PKGCONFIG) --libs-only-l --libs-only-L sdl2 ogg vorbis theora vorbisfile theoradec`
-
-#CFLAGS += -Wno-strict-aliasing -Wno-narrowing -Wno-write-strings
-
-ifeq ($(STATIC),1)
-	CFLAGS += -static
-endif
 
 INCLUDES  += \
     -I./RSDKv4/ \
@@ -131,18 +135,18 @@ $(shell mkdir -p $(OBJDIR))
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(@D)
 	@echo -n Compiling $<...
-	$(CC) -c $(CFLAGS) $(INCLUDES) $(DEFINES) $< -o $@
+	$(CXX) -c $(CXXFLAGS_ALL) $(INCLUDES) $(DEFINES) $< -o $@
 	@echo " Done!"
 
 $(OBJDIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	@echo -n Compiling $<...
-	$(CXX) -c $(CFLAGS) $(INCLUDES) $(DEFINES) $< -o $@
+	$(CXX) -c $(CXXFLAGS_ALL) $(INCLUDES) $(DEFINES) $< -o $@
 	@echo " Done!"
 
 $(BINPATH): $(OBJDIR) $(OBJECTS)
 	@echo -n Linking...
-	$(CXX) $(CFLAGS) $(LDFLAGS) $(OBJECTS) -o $@ $(LIBS)
+	$(CXX) $(CXXFLAGS_ALL) $(LDFLAGS_ALL) $(OBJECTS) -o $@ $(LIBS_ALL)
 	@echo " Done!"
 	$(STRIP) $@
 
