@@ -1,42 +1,59 @@
-![](header.png?raw=true)
-# **SUPPORT THE OFFICIAL RELEASE OF SONIC 1 & 2**
-+ Without assets from the official releases, this decompilation will not run.
-+ For tutorials on how to find the game assets from your legally obtained copy of the game(s), see [this tutorial for Android](https://gamebanana.com/tuts/14492) or [this tutorial for iOS](https://gamebanana.com/tuts/14491).
+# How to build (CMake 🤑🤑🤑)
+## Get the source code
 
-+ You can get the official releases of Sonic 1 & Sonic 2 from:
-  * [Sonic 1 (iOS, Via the App Store)](https://apps.apple.com/au/app/sonic-the-hedgehog-classic/id316050001)
-  * [Sonic 2 (iOS, Via the App Store)](https://apps.apple.com/au/app/sonic-the-hedgehog-2-classic/id347415188)
-  * [Sonic 1 (Android, Via Google Play)](https://play.google.com/store/apps/details?id=com.sega.sonic1px&hl=en_AU&gl=US)
-  * [Sonic 2 (Android, Via Google Play)](https://play.google.com/store/apps/details?id=com.sega.sonic2.runner&hl=en_AU&gl=US)
-  * [Sonic 1 (Android, Via Amazon)](https://www.amazon.com.au/Sega-of-America-Sonic-Hedgehog/dp/B00D74DVKM)
-  * [Sonic 2 (Android, Via Amazon)](https://www.amazon.com.au/Sega-of-America-Sonic-Hedgehog/dp/B00HAPRVWS)
+In order to clone the repository, you need to install Git, which you can get [here](https://git-scm.com/downloads).
 
-Even if your platform isn't supported by the official releases, you **must** buy or officially download it for the assets (you don't need to run the official release, you just need the game assets).
+Clone the repo **recursively**, using:
+`git clone --recursive https://github.com/RSDKModding/RSDKv4-Decompilation`
 
-If you want to transfer your save(s) from the official mobile version(s), the **Android pre-forever** file path is `Android/data/com.sega.sonic1 or 2/SGame.bin` (other versions may have different file paths). Copy that file into the decompilation's folder with the name `SData.bin`.
+If you've already cloned the repo, run this command inside of the repository:
+```git submodule update --init --recursive```
 
-# Additional Tweaks
-* Added a built in script compiler. Similar to the one found in RSDKv3, but tweaked up to match the new syntax for the scripts used in RSDKv4.
-* Added a built in mod loader and API, allowing to easily create and play mods with features such as save file redirection, custom achievements and XML GameConfig data.
-* Custom menu and networking system for Sonic 2 multiplayer, allowing anyone to host and join servers and play 2P VS.
-* There is now a `settings.ini` file that the game uses to load all settings, similar to Sonic Mania.
-* The dev menu can now be accessed from anywhere by pressing the `ESC` key if enabled in the config.
-* The `F12` pause, `F11` step over & fast forward debug features from Sonic Mania have all been ported and are enabled if `devMenu` is enabled in the config.
-* A number of additional dev menu debug features have been added:
-  * `F1` will load the first scene in the Presentation stage list (usually the title screen).
-  * `F2` and `F3` will load the previous and next scene in the current stage list.
-  * `F5` will reload the current scene, as well as all assets and scripts.
-  * `F8` and `F9` will visualize touch screen and object hitboxes.
-  * `F10` will activate a palette overlay that shows the game's 8 internal palettes in real time.
-* Added the idle screen dimming feature from Sonic Mania Plus, as well as allowing the user to disable it or set how long it takes for the screen to dim.
+## Getting dependencies
 
-# How to build
+### Windows
+To handle dependencies, you'll need to install [Visual Studio Community](https://visualstudio.microsoft.com/downloads/) (make sure to install the `Desktop development with C++` package during the installation) and [vcpkg](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd#1---set-up-vcpkg) (You only need to follow `1 - Set up vcpkg`).
+
+After installing those, run the following in Command Prompt (make sure to replace `[vcpkg root]` with the path to the vcpkg installation!):
+- `[vcpkg root]\vcpkg.exe install glew sdl2 libogg libvorbis --triplet=x64-windows-static` (If you're compiling a 32-bit build, replace `x64-windows-static` with `x86-windows-static`.)
+
+Finally, follow the [compilation steps below](#compiling) using `-DCMAKE_TOOLCHAIN_FILE=[vcpkg root]/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-windows-static -DCMAKE_PREFIX_PATH=[vcpkg root]/installed/x64-windows-static/` as arguments for `cmake -B build`.
+  - Make sure to replace each instance of `[vcpkg root]` with the path to the vcpkg installation!
+  - If you're compiling a 32-bit build, replace each instance of `x64-windows-static` with `x86-windows-static`.
+
+### Linux
+Install the following dependencies: then follow the [compilation steps below](#compiling):
+- **pacman (Arch):** `sudo pacman -S base-devel cmake glew sdl2 libogg libvorbis`
+- **apt (Debian/Ubuntu):** `sudo apt install build-essential cmake libglew-dev libglfw3-dev libsdl2-dev libogg-dev libvorbis-dev`
+- **rpm (Fedora):** `sudo dnf install make gcc cmake glew-devel glfw-devel sdl2-devel libogg-devel libvorbis-devel zlib-devel`
+- **apk (Alpine/PostmarketOS)** `sudo apk add build-base cmake glew-dev glfw-dev sdl2-dev libogg-dev libvorbis-dev`
+- Your favorite package manager here, [make a pull request](https://github.com/RSDKModding/RSDKv4-Decompilation/fork)
+
+### Android
+Follow the android build instructions [here.](./dependencies/android/README.md)
+
+## Compiling
+
+Compiling is as simple as typing the following in the root repository directory:
+```
+cmake -B build
+cmake --build build --config release
+```
+
+The resulting build will be located somewhere in `build/` depending on your system.
+
+The following cmake arguments are available when compiling:
+- Use these by adding `-D[flag-name]=[value]` to the end of the `cmake -B build` command. For example, to build with `RETRO_DISABLE_PLUS` set to on, add `-RETRO_DISABLE_DEV=on` to the command.
+
+### RSDKv4 flags (add a disable dev menu flag when compiling for distribution)
+- `RETRO_DISABLE_DEV`: Disables the dev menu, only activate when distributing. Set to `off` by default.
+
+# How to build (Stinky other compilers)
 ## Windows
 * Clone the repo, then follow the instructions in the [depencencies readme for Windows](./dependencies/windows/dependencies.txt) to setup dependencies, then build via the visual studio solution.
 * Alternatively, you can grab a prebuilt executable from the releases section.
 
 ## Windows via MSYS2 (64-bit Only)
-### Decompilation
 * Download the newest version of the MSYS2 installer from [here](https://www.msys2.org/) and install it.
 * Run the MINGW64 prompt (from the windows Start Menu/MSYS2 64-bit/MSYS2 MinGW 64-bit), when the program starts enter `pacman -Syuu` in the prompt and hit Enter.
 * Press `Y` when it asks if you want to update packages. If it asks you to close the prompt, do so, then restart it and run the same command again. This updates the packages to their latest versions.
@@ -52,7 +69,6 @@ If you want to transfer your save(s) from the official mobile version(s), the **
 * You may also need to generate visual assets. To do so, open the Package.appxmanifest file in the designer. Under the Visual Assets tab, select an image of your choice, and click generate.
 
 ## Linux
-### Decompilation
 * To setup your build enviroment and library dependecies, run the following commands:
   * Ubuntu (Mint, Pop!_OS, etc...): `sudo apt install build-essential git libsdl2-dev libvorbis-dev libogg-dev libglew-dev libtheora-dev`
     * If you're using Debian, add `libgbm-dev` and `libdrm-dev`.
@@ -73,45 +89,3 @@ If you want to transfer your save(s) from the official mobile version(s), the **
   * `mklink /D src ..\..\..`
   * `mklink /D SDL ..\..\..\dependencies\android\SDL`
 * Open `android/` in Android Studio, install the NDK and everything else that it asks for, and build.
-
-## Unofficial Branches
-Follow the installation instructions in the readme of each branch.
-* For the **PlayStation Vita**, go to [Xeeynamo's fork](https://github.com/xeeynamo/Sonic-1-2-2013-Decompilation).
-* For the **Nintendo Switch**, go to [heyjoeway's fork](https://github.com/heyjoeway/Sonic-1-2-2013-Decompilation).
-* For the **Nintendo 3DS**, go to [JeffRuLz's fork](https://github.com/JeffRuLz/Sonic-1-2-2013-Decompilation).
-  * A New Nintendo 3DS is required for the games to run smoothly.
-* To play it on the web using **Wasm**, go to [mattConn's fork](https://github.com/mattConn/Sonic-Decompilation-WASM).
-
-Because these branches are unofficial, we cannot provide support for them and they may not be up-to-date.
-
-## Other Platforms
-Currently the only supported platforms are the ones listed above, however the backend uses libogg, libvorbis & SDL2 to power it (as well as tinyxml2 for the mod API and asio for networking), so the codebase is very multiplatform.
-If you're able to, you can clone this repo and port it to a platform not on the list.
-
-# Server
-The multiplayer server requires Python 3.8 or later. You can download Python [here](https://www.python.org/downloads/).
-To use the server, open Command Prompt in the folder [Server.py](https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation/blob/main/Server/Server.py) is located in, then run the command `py -3 Server.py [local IPv4 address] [port] debug`. You can find your local IPv4 address using the command `ipconfig`.
-Note that the CPP server found in the Server folder in the repo has been deprecated and no longer works. It has been kept in the repo for reference purposes.
-
-# FAQ
-### Q: The screen is tearing, how do I fix it?
-A: Try turning on VSync in settings.ini.
-
-### Q: I found a bug!
-A: Submit an issue in the issues tab and we _might_ fix it in the main branch. Don't expect any future releases, however.
-
-### Q: Will you do a decompilation for Sonic CD (2011)?
-A: I already have! You can find it [here](https://github.com/Rubberduckycooly/Sonic-CD-11-Decompilation).
-
-### Q: Will you do a decompilation for Sonic Mania?
-A: No. Sonic Mania is much bigger and requires that I'd decompile not only how the (far more complex) RSDKv5 works, but also all _600+_ objects work.
-
-# Special Thanks
-* [Chuli](https://github.com/MGRich) for helping me fix bugs, tweaking up my sometimes sloppy code and generally being really helpful and fun to work with on this project.
-* The Weigman for creating the header you see up here along with similar assets.
-* Everyone in the [Retro Engine Modding Server](https://dc.railgun.works/retroengine) for being supportive of me and for giving me a place to show off these things that I've found.
-
-# Contact:
-Join the [Retro Engine Modding Discord Server](https://dc.railgun.works/retroengine) for any extra questions you may need to know about the decompilation or modding it.
-"# Wood-Zone-Plus-Decompilation" 
-"# Wood-Zone-Plus-Decompilation" 
