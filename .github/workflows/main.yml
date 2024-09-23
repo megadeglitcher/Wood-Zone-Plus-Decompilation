@@ -127,6 +127,7 @@ jobs:
       # see: https://github.com/actions/upload-artifact?tab=readme-ov-file#permission-loss
       - name: Move artifacts
         run: |
+          mkdir -p build/RSDKv4
           mkdir artifacts
           mv ./build/RSDKv4* ./artifacts
           tar -czvf linux.tar.gz -C ./artifacts .
