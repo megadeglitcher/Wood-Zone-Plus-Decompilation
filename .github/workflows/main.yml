@@ -118,7 +118,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential git libsdl2-dev libtheora-dev libogg-dev libvorbis-dev libglew-dev
+          sudo apt-get install build-essential git libsdl2-dev libtheora-dev libogg-dev libvorbis-dev libglew-dev libtheora
       - name: Build RSDKv4
         run: |
           cmake -B build ${{env.GENERAL_FLAGS}} ${{env.GENERAL_LINUX_FLAGS}}
