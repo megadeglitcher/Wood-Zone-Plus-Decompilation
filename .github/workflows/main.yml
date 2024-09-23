@@ -13,7 +13,7 @@ env:
   GENERAL_LINUX_FLAGS: "-DCMAKE_CXX_FLAGS='-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0'"
 
 jobs:
-  WZ+_Windows-32x:
+  WZ_Windows-32x:
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -35,7 +35,7 @@ jobs:
         with:
           name: WZ+_Windows-32x
           path: artifacts
-  WZ+_Windows-64x:
+  WZ_Windows-64x:
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -58,7 +58,7 @@ jobs:
           name: WZ+_Windows-64x
           path: artifacts
 
-  WZ+_Android:
+  WZ_Android:
     runs-on: windows-latest
     steps:
       - name: Checkout repository Android
@@ -107,7 +107,7 @@ jobs:
         with:
           name: WZ+_Android
           path: ./android/app/build/outputs/apk
-  WZ+_Ubuntu:
+  WZ_Ubuntu:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
