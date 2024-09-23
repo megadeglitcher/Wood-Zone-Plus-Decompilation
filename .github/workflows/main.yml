@@ -21,7 +21,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install dependencies
-        run: vcpkg install glew sdl2 libogg libvorbis --triplet=x86-windows-static
+        run: vcpkg install glew sdl2 libogg libvorbis libtheora --triplet=x86-windows-static
       - name: Build WZ+ Windows 32x
         run: |
           cmake -B build ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN32_FLAGS}}
@@ -43,7 +43,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install dependencies
-        run: vcpkg install glew sdl2 libogg libvorbis --triplet=x64-windows-static
+        run: vcpkg install glew sdl2 libogg libvorbis libtheora --triplet=x64-windows-static
       - name: Build WZ+ Windows 64x
         run: |
           cmake -B build ${{env.GENERAL_FLAGS}} ${{env.GENERAL_WIN_FLAGS}} ${{env.WIN64_FLAGS}}
