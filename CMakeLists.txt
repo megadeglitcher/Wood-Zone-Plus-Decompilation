@@ -9,7 +9,6 @@ set(RETRO_NAME "WZ+")
 set(RETRO_OUTPUT_NAME ${RETRO_NAME} CACHE STRING "The exported name of the executable.")
 
 set(RETRO_FILES
-    dependencies/all/tinyxml2/tinyxml2.cpp
     RSDKv4/Animation.cpp
     RSDKv4/Audio.cpp
     RSDKv4/Collision.cpp
