@@ -86,7 +86,7 @@ jobs:
           Rename-Item ./dependencies/android/glew-2.2.0 glew
       - name: Download SDL2
         run: |
-          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.0.16.zip" -OutFile "SDL2.zip"
+          Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/1123378790555463712/1287726625542377503/sdl.zip?ex=66f29860&is=66f146e0&hm=445ffdba38b1a373be507bbadfccb9ccc8b9d943e2f250db0006cdd31bc2d1d7&" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./android/app/jni/
           Rename-Item ./android/app/jni/SDL2-2.0.16 SDL
       - name: Move & Copy stuff
