@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup MSBuild
@@ -48,7 +48,7 @@ jobs:
           move ./build/Win32/Release/*.dll ./artifacts 
           move ./build/Win32/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: v4-windows
           path: artifacts
@@ -56,7 +56,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup MSBuild
@@ -92,7 +92,7 @@ jobs:
           move ./build/x64/Release/*.dll ./artifacts 
           move ./build/x64/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: v4-windows-x64
           path: artifacts
@@ -101,7 +101,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout repository Android
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Setup MSBuild
@@ -133,7 +133,7 @@ jobs:
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android/libogg/ -Destination ./dependencies/android/ -recurse
           Copy-Item -Path ./dependencies/android/config_types.h -Destination ./dependencies/android/libogg/include/ogg/
       - name: Set up Java
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v4
         with:
           distribution: "zulu"
           java-version: 11
@@ -142,7 +142,7 @@ jobs:
         run: |
           ./gradlew.bat Build --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a"
       - name: Upload artifact Android
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-android
           path: ./android/app/build/outputs/apk
@@ -150,7 +150,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Install dependencies
@@ -161,7 +161,7 @@ jobs:
       - name: Build RSDKv4
         run: make
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-linux
           path: bin
