@@ -33,7 +33,6 @@ set(RETRO_FILES
     RSDKv4/Text.cpp
     RSDKv4/Userdata.cpp
     RSDKv4/Video.cpp
-    RSDKv4/fcaseopen.c
     RSDKv4/main.cpp
     RSDKv4/NativeObjects/All.cpp
     dependencies/all/theoraplay/theoraplay.c
