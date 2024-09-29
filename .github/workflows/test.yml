@@ -2,8 +2,9 @@ name: Build RSDKv4
 on:
   push:
     branches:
-      - foreve
-      - main
+      - forever
+      - linux
+      - android
       - win-actions
       - linux-actions
       - MainMenuRewrite
