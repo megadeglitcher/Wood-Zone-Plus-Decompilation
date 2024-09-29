@@ -511,7 +511,7 @@ void SetTextMenu(int sm)
     SetupTextMenu(&gameMenu[1], 0);
     switch (sm) {
         case DEVMENU_MAIN: {
-            AddTextMenuEntry(&gameMenu[0], "SONIC FOREVER");
+            AddTextMenuEntry(&gameMenu[0], "SONIC:");
             AddTextMenuEntry(&gameMenu[0], "");
             AddTextMenuEntry(&gameMenu[0], "WOOD ZONE PLUS");
             AddTextMenuEntry(&gameMenu[0], "DEV MENU");
