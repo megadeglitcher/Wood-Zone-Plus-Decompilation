@@ -563,7 +563,7 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("SPECIAL_STAGE", "3"),
     AliasInfo("MENU_1", "0"),
     AliasInfo("MENU_2", "1"),
-    AliasInfo("MENU_3", "1"),
+    AliasInfo("MENU_3", "2"),
     AliasInfo("C_TOUCH", "0"),
     AliasInfo("C_BOX", "1"),
     AliasInfo("C_BOX2", "2"),
