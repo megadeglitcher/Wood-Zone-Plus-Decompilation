@@ -2,7 +2,7 @@ name: Build RSDKv4
 on:
   push:
     branches:
-      - forever
+      - windows
       - linux
       - android
       - win-actions
