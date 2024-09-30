@@ -1,4 +1,4 @@
-# How to build (CMake 🤑🤑🤑)
+# How to build (CMake 🤑🤑🤑)!
 ## Get the source code
 
 In order to clone the repository, you need to install Git, which you can get [here](https://git-scm.com/downloads).
