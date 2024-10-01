@@ -359,7 +359,7 @@ void ProcessStageSelect()
             DrawTextMenu(&gameMenu[0], SCREEN_CENTERX - 4, 40);
             DrawTextMenu(&gameMenu[1], SCREEN_CENTERX + 100, 64);
             if (inputPress.start || inputPress.A) {
-                debugMode         = inputDown.A;
+                debugMode         = inputDown.select;
                 stageMode         = STAGEMODE_LOAD;
                 Engine.gameMode   = ENGINE_MAINGAME;
                 stageListPosition = gameMenu[1].selection1;
