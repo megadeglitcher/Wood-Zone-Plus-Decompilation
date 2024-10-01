@@ -1,8 +1,14 @@
-name: Build RSDKv4
+name: Build and Install Dependencies
+
 on:
   push:
     branches:
-      - windows  # Only trigger on the windows branch
+      - windows
+      - linux
+      - android
+      - win-actions
+      - linux-actions
+      - MainMenuRewrite
 
 jobs:
   v4-windows-x64:
@@ -13,44 +19,36 @@ jobs:
         with:
           submodules: recursive
       
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+      - name: Set VCPKG_ROOT
+        run: echo "VCPKG_ROOT=E:\1runner\actions-runner\_work\Wood-Zone-Plus-Decompilation\Wood-Zone-Plus-Decompilation\vcpkg" >> $GITHUB_ENV
 
-      - name: Download and Install vcpkg
+      - name: List vcpkg directory
         run: |
-          git clone https://github.com/microsoft/vcpkg.git
-          cd vcpkg
-          .\bootstrap-vcpkg.bat
-          echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "$GITHUB_ENV" >> $GITHUB_PATH
+          ls "$env:VCPKG_ROOT"
 
-      - name: Confirm vcpkg Installation
-        run: |
-          echo "VCPKG_ROOT is set to: $env:VCPKG_ROOT"
-          if (Test-Path "$env:VCPKG_ROOT/vcpkg.exe") {
-              Write-Host "vcpkg.exe found."
-          } else {
-              Write-Error "vcpkg.exe not found at $env:VCPKG_ROOT/vcpkg.exe"
-              exit 1
-          }
-
-      - name: Install Dependencies with vcpkg
+      - name: Install dependencies
         run: |
           & "$env:VCPKG_ROOT/vcpkg.exe" install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora:x64-windows-static-md
           & "$env:VCPKG_ROOT/vcpkg.exe" integrate install
-      
-      - name: Build RSDKv4
+
+      # Additional build steps for x64
+      - name: Build x64
         run: |
-          msbuild RSDKv4.sln /p:Configuration=Release /p:Platform=x64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions_x64.props"
-      
+          mkdir build
+          cd build
+          cmake .. -G "Visual Studio 16 2019" -A x64
+          cmake --build . --config Release
+
+      # Move artifacts for x64
       - name: Move artifacts
         run: |
           mkdir artifacts
-          move ./build/x64/Release/*.dll ./artifacts 
-          move ./build/x64/Release/*.exe ./artifacts
+          move ./Release/*.dll ./artifacts 
+          move ./Release/*.exe ./artifacts
       
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      # Upload x64 artifacts
+      - name: Upload x64 artifacts
+        uses: actions/upload-artifact@v2
         with:
           name: v4-windows-x64
           path: artifacts
