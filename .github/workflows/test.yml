@@ -37,9 +37,14 @@ jobs:
           Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-2.0.14-VC.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows/
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
+      - name: Download Theora
+        run: |
+         Invoke-WebRequest -Uri "http://downloads.xiph.org/releases/theora/libtheora-1.1.1.zip" -OutFile "Theora.zip"
+         Expand-Archive -Path Theora.zip -DestinationPath ./dependencies/all
+         Rename-Item ./dependencies/windows/libtheora-1.1.1 theoraplay
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md
+          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md libtheora
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
@@ -81,9 +86,14 @@ jobs:
           Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-2.0.14-VC.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows/
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
+      - name: Download Theora
+        run: |
+         Invoke-WebRequest -Uri "http://downloads.xiph.org/releases/theora/libtheora-1.1.1.zip" -OutFile "Theora.zip"
+         Expand-Archive -Path Theora.zip -DestinationPath ./dependencies/all
+         Rename-Item ./dependencies/windows/libtheora-1.1.1 theoraplay
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md
+          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
