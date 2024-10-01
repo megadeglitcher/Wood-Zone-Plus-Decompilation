@@ -50,7 +50,7 @@ jobs:
           move ./build/Win32/Release/*.dll ./artifacts 
           move ./build/Win32/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-windows
           path: artifacts
@@ -94,7 +94,7 @@ jobs:
           move ./build/x64/Release/*.dll ./artifacts 
           move ./build/x64/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-windows-x64
           path: artifacts
@@ -144,7 +144,7 @@ jobs:
         run: |
           ./gradlew.bat Build --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a"
       - name: Upload artifact Android
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-android
           path: ./android/app/build/outputs/apk
@@ -163,7 +163,7 @@ jobs:
       - name: Build RSDKv4
         run: make
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: v4-linux
           path: bin
