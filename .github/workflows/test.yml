@@ -44,7 +44,7 @@ jobs:
           Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md libtheora
+          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md libtheorax86-windows-static-md
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
