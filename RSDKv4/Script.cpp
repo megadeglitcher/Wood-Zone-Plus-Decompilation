@@ -4669,7 +4669,12 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
                 /*
                 switch (scriptEng.operands[1]) {
-                    default: break;
+                    default:
+						DrawSpriteAllEffect(entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
+									     (scriptEng.operands[3] >> 16) - yScrollOffset, -spriteFrame->pivotX, -spriteFrame->pivotY,
+									     spriteFrame->sprX, spriteFrame->sprY, spriteFrame->width, spriteFrame->height, entity->rotation,
+									     entity->scale, scriptInfo->spriteSheetID, entity->alpha, entity->inkEffect, scriptEng.operands[1]);
+					    break;
                     case FX_SCALE:
                         DrawSpriteScaled(entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
                                          (scriptEng.operands[3] >> 16) - yScrollOffset, -spriteFrame->pivotX, -spriteFrame->pivotY, entity->scale,
@@ -4773,7 +4778,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
                 /*
                 switch (scriptEng.operands[1]) {
-                    default: break;
+                    default: 
+						DrawSpriteAllEffect(entity->direction, scriptEng.operands[2], scriptEng.operands[3], -spriteFrame->pivotX,
+									     -spriteFrame->pivotY, spriteFrame->sprX, spriteFrame->sprY, spriteFrame->width, spriteFrame->height,
+									     entity->rotation, entity->scale, scriptInfo->spriteSheetID, entity->alpha, entity->inkEffect, scriptEng.operands[1]);
+						break;
                     case FX_SCALE:
                         DrawSpriteScaled(entity->direction, scriptEng.operands[2], scriptEng.operands[3], -spriteFrame->pivotX, -spriteFrame->pivotY,
                                          entity->scale, entity->scale, spriteFrame->width, spriteFrame->height, spriteFrame->sprX, spriteFrame->sprY,
