@@ -57,18 +57,18 @@ jobs:
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/all
           Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
 
+
       - name: Download and Install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git
           cd vcpkg
           ./bootstrap-vcpkg.bat
-          echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "$VCPKG_ROOT" >> $GITHUB_PATH
+          echo "VCPKG_ROOT=E:\1runner\actions-runner\_work\Wood-Zone-Plus-Decompilation\Wood-Zone-Plus-Decompilation" >> $GITHUB_ENV
 
-      - name: Install dependencies using vcpkg
+      - name: Run vcpkg
         run: |
-          & "$env:VCPKG_ROOT/vcpkg.exe" install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora:x64-windows-static-md
-          & "$env:VCPKG_ROOT/vcpkg.exe" integrate install
+          & "$env:VCPKG_ROOT\vcpkg.exe" install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora:x64-windows-static-md
+          & "$env:VCPKG_ROOT\vcpkg.exe" integrate install
 
       - name: Build RSDKv4
         run: |
