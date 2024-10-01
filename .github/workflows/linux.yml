@@ -1,5 +1,6 @@
 name: WZ+ Linux
 on:
+  workflow_dispatch:
   push:
     branches:
       - windows
