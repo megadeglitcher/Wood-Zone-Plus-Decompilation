@@ -4160,6 +4160,7 @@ void DrawObjectAnimation(void *objScr, void *ent, int XPos, int YPos)
             break;
 
         case ROTSTYLE_45DEG:
+            if (entity->rotation >= 0x100)
                 DrawSpriteAllEffect(entity->direction, XPos, YPos, -frame->pivotX, -frame->pivotY, frame->sprX, frame->sprY, frame->width, frame->height,
 							 0x200 - ((0x214 - entity->rotation) >> 6 << 6), entity->scale, frame->sheetID, entity->alpha, entity->inkEffect, 15);
 			else
