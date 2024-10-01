@@ -22,12 +22,22 @@ jobs:
           cd vcpkg
           .\bootstrap-vcpkg.bat
           echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "$VCPKG_ROOT" >> $GITHUB_PATH
-      
+          echo "$GITHUB_ENV" >> $GITHUB_PATH
+
+      - name: Confirm vcpkg Installation
+        run: |
+          echo "VCPKG_ROOT is set to: $env:VCPKG_ROOT"
+          if (Test-Path "$env:VCPKG_ROOT/vcpkg.exe") {
+              Write-Host "vcpkg.exe found."
+          } else {
+              Write-Error "vcpkg.exe not found at $env:VCPKG_ROOT/vcpkg.exe"
+              exit 1
+          }
+
       - name: Install Dependencies with vcpkg
         run: |
-          Start-Process -NoNewWindow -File "$env:VCPKG_ROOT/vcpkg.exe" -ArgumentList "install", "libogg:x64-windows-static-md", "libvorbis:x64-windows-static-md", "libtheora:x64-windows-static-md" -Wait
-          Start-Process -NoNewWindow -File "$env:VCPKG_ROOT/vcpkg.exe" -ArgumentList "integrate", "install" -Wait
+          & "$env:VCPKG_ROOT/vcpkg.exe" install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora:x64-windows-static-md
+          & "$env:VCPKG_ROOT/vcpkg.exe" integrate install
       
       - name: Build RSDKv4
         run: |
