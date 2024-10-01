@@ -11,7 +11,7 @@ on:
       - MainMenuRewrite
 
 jobs:
-  v4-windows:
+  v4-windows-x64:
     runs-on: self-hosted
     steps:
       - name: Checkout
@@ -48,26 +48,7 @@ jobs:
       
       # Upload x64 artifacts
       - name: Upload x64 artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v2
         with:
           name: v4-windows-x64
           path: artifacts
-
-  WZ_Ubuntu-Make:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install build-essential git libsdl2-dev libvorbis-dev libtheora-dev libogg-dev libglew-dev
-      - name: Build RSDKv4
-        run: make
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: WZ+_linux-ubuntu
-          path: bin
