@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           submodules: recursive
       - name: Setup MSBuild
@@ -50,7 +50,7 @@ jobs:
           move ./build/Win32/Release/*.dll ./artifacts 
           move ./build/Win32/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: v4-windows
           path: artifacts
@@ -58,7 +58,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           submodules: recursive
       - name: Setup MSBuild
@@ -94,7 +94,7 @@ jobs:
           move ./build/x64/Release/*.dll ./artifacts 
           move ./build/x64/Release/*.exe ./artifacts
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v2
         with:
           name: v4-windows-x64
           path: artifacts
