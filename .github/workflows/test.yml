@@ -11,7 +11,7 @@ on:
 
 jobs:
   v4-windows:
-    runs-on: [windows-2022, self-hosted]  # Added self-hosted label
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -39,9 +39,9 @@ jobs:
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
       - name: Download Theora
         run: |
-          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+         Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/all
-          Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
+          Rename-Item ./dependencies/all/libtheora-1.1.1 theoraplay
       - name: Run vcpkg
         run: |
           vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md libtheora:x86-windows-static-md
@@ -59,9 +59,8 @@ jobs:
         with:
           name: v4-windows
           path: artifacts
-          
   v4-windows-x64:
-    runs-on: [windows-2022, self-hosted]  # Added self-hosted label
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -89,7 +88,7 @@ jobs:
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
       - name: Download Theora
         run: |
-          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+         Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/all
           Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
       - name: Run vcpkg
@@ -111,7 +110,7 @@ jobs:
           path: artifacts
 
   v4-android:
-    runs-on: [windows-latest, self-hosted]  # Added self-hosted label
+    runs-on: self-hosted
     steps:
       - name: Checkout repository Android
         uses: actions/checkout@v2
@@ -159,9 +158,8 @@ jobs:
         with:
           name: v4-android
           path: ./android/app/build/outputs/apk
-          
   v4-linux:
-    runs-on: [ubuntu-latest, self-hosted]  # Added self-hosted label
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
