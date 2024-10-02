@@ -1,6 +1,6 @@
 name: Build WZ+ (CMake)
 on:
-  push:
+  workflow_dispatch:
     branches:
       - main
 
