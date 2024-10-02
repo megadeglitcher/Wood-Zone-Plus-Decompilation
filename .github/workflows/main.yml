@@ -1,5 +1,4 @@
 name: Build WZ+ (CMake)
-
 on:
   push:
     branches:
@@ -15,7 +14,7 @@ env:
 
 jobs:
   WZ_Windows-32x:
-    runs-on: self-hosted  # Changed from windows-latest to self-hosted
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,9 +35,8 @@ jobs:
         with:
           name: WZ+_Windows-32x
           path: artifacts
-
   WZ_Windows-64x:
-    runs-on: self-hosted  # Changed from windows-latest to self-hosted
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -61,7 +59,7 @@ jobs:
           path: artifacts
 
   WZ_Android:
-    runs-on: self-hosted  # Changed from windows-latest to self-hosted
+    runs-on: windows-latest
     steps:
       - name: Checkout repository Android
         uses: actions/checkout@v4
@@ -109,9 +107,8 @@ jobs:
         with:
           name: WZ+_Android
           path: ./android/app/build/outputs/apk
-
   WZ_Ubuntu:
-    runs-on: self-hosted  # Changed from ubuntu-latest to self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
