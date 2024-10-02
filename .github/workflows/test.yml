@@ -39,9 +39,9 @@ jobs:
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
       - name: Download Theora
         run: |
-         Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
-          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/all
-          Rename-Item ./dependencies/all/libtheora-1.1.1 theoraplay
+          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows/
+          Rename-Item ./dependencies/windows/libtheora-1.1.1 libtheora
       - name: Run vcpkg
         run: |
           vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static-md libtheora:x86-windows-static-md
