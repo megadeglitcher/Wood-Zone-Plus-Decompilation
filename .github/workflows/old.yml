@@ -1,6 +1,6 @@
 name: Stinky Old Build Methods
 on:
-  push:
+  workflow_dispatch:
     branches:
       - main
 
