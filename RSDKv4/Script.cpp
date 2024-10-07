@@ -5468,10 +5468,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             }
             case FUNC_CALCULATEOBJECTROTATION: {
                 opcodeSize = 0;
-
-                if (entity->tileCollisions) {
-                    ProcessTileRotation(entity);
-                }
+                ProcessTileRotation(entity);
                 break;
             }
         }
