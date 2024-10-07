@@ -1642,8 +1642,7 @@ void ProcessTileRotation(Entity *player)
 #endif
     scriptEng.checkResult = false;
 
-    collisionTolerance = 5;
-      collisionTolerance = (sbyte)player->angle == 0 ? 8  :5;
+    collisionTolerance = 1;
 
     if (player->gravity == 1)
         ProcessAirCollision(player);
