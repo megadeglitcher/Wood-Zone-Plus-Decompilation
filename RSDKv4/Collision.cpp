@@ -1640,7 +1640,12 @@ void ProcessTileRotation(Entity *player)
     player->floorSensors[3] = false;
     player->floorSensors[4] = false;
 #endif
+    scriptEng.checkResult = false;
 
+    if (player->gravity == 1)
+        ProcessAirCollision(player);
+    else
+        ProcessPathGrip(player);
 }
 
 void ObjectFloorCollision(int xOffset, int yOffset, int cPath)
