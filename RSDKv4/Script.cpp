@@ -671,6 +671,9 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("RETRO_UWP", "7"),
     AliasInfo("RETRO_LINUX", "8"),
     AliasInfo("RETRO_SWITCH", "9")
+
+    // custom
+    FunctionInfo("CalculateObjectRotation", 0),
 };
 AliasInfo privateAliases[ALIAS_COUNT_TRIM];
 int publicAliasCount  = 0;
@@ -1125,6 +1128,7 @@ enum ScrFunc {
     FUNC_COPYOBJECT,
 #endif
     FUNC_PRINT,
+    FUNC_CALCULATEOBJECTROTATION,
     FUNC_MAX_CNT
 };
 
@@ -5462,6 +5466,10 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 endLine = true;
                 break;
             }
+            case FUNC_CALCULATEOBJECTROTATION:
+                opcodeSize = 0;
+                ProcessTileCollisions(entity);
+                break;
         }
 
         // Set Values
