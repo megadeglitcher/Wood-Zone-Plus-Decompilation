@@ -1642,7 +1642,7 @@ void ProcessTileRotation(Entity *player)
 #endif
     scriptEng.checkResult = false;
 
-    collisionTolerance = 1;
+    collisionTolerance = 2;
 
     if (player->gravity == 1)
         ProcessAirCollision(player);
