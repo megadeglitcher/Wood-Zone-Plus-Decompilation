@@ -5470,7 +5470,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 opcodeSize = 0;
 
                 if (entity->tileCollisions) {
-                    ProcessTileCollisions(entity);
+                    ProcessTileRotation(entity);
                 }
                 break;
             }

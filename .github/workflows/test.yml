@@ -8,7 +8,6 @@ on:
       - win-actions
       - linux-actions
       - MainMenuRewrite
-  workflow_dispatch:
 
 jobs:
   v4-windows:

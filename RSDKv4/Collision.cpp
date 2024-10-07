@@ -1643,8 +1643,11 @@ void ProcessTileRotation(Entity *player)
     scriptEng.checkResult = false;
 
     collisionTolerance = 15;
-    if (player->speed < 0x60000)
-        collisionTolerance = (sbyte)player->angle == 0 ? 8 : 15;
+
+    if (player->gravity == 1)
+        ProcessAirCollision(player);
+    else
+        ProcessPathGrip(player);
 }
 
 void ObjectFloorCollision(int xOffset, int yOffset, int cPath)
