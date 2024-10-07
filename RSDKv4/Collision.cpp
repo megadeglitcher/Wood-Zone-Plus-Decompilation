@@ -1631,6 +1631,22 @@ void ProcessTileCollisions(Entity *player)
         ProcessPathGrip(player);
 }
 
+void ProcessTileRotation(Entity *player)
+{
+    player->floorSensors[0] = false;
+    player->floorSensors[1] = false;
+    player->floorSensors[2] = false;
+#if !RETRO_REV00
+    player->floorSensors[3] = false;
+    player->floorSensors[4] = false;
+#endif
+    scriptEng.checkResult = false;
+
+    collisionTolerance = 15;
+    if (player->speed < 0x60000)
+        collisionTolerance = (sbyte)player->angle == 0 ? 8 : 15;
+}
+
 void ObjectFloorCollision(int xOffset, int yOffset, int cPath)
 {
     scriptEng.checkResult = false;

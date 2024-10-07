@@ -546,7 +546,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("CopyObject", 3),
 #endif
     FunctionInfo("Print", 3),
-    FunctionInfo("CalculateObjectRotation", 0),
+    FunctionInfo("CalculateObjectRotation", 1),
 };
 
 #if RETRO_USE_COMPILER
@@ -5468,7 +5468,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             }
             case FUNC_CALCULATEOBJECTROTATION: {
                 opcodeSize = 0;
-                ProcessTileCollisions(entity);
+                ProcessTileRotation(entity);
                 break;
             }
         }
