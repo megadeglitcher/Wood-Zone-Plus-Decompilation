@@ -546,6 +546,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("CopyObject", 3),
 #endif
     FunctionInfo("Print", 3),
+    FunctionInfo("CalculateObjectRotation", 0),
 };
 
 #if RETRO_USE_COMPILER
@@ -670,10 +671,9 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("RETRO_WP7", "6"),
     AliasInfo("RETRO_UWP", "7"),
     AliasInfo("RETRO_LINUX", "8"),
-    AliasInfo("RETRO_SWITCH", "9"),
+    AliasInfo("RETRO_SWITCH", "9")
 
     // custom
-    FunctionInfo("CalculateObjectRotation", 0)
 };
 AliasInfo privateAliases[ALIAS_COUNT_TRIM];
 int publicAliasCount  = 0;
