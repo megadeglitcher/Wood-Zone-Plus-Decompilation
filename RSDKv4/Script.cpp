@@ -5466,10 +5466,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 endLine = true;
                 break;
             }
-            case FUNC_CALCULATEOBJECTROTATION:
+            case FUNC_CALCULATEOBJECTROTATION: {
                 opcodeSize = 0;
                 ProcessTileCollisions(entity);
                 break;
+            }
         }
 
         // Set Values
