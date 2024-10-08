@@ -1,6 +1,6 @@
 name: Build RSDKv4
 on:
-  push:
+  workflow_dispatch:
     branches:
       - windows
       - linux
