@@ -275,6 +275,7 @@ copy /Y "$(SolutionDir)dependencies\windows\glew\bin\Release\$(Platform)\glew32.
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Scene3D.cpp" />
     <ClCompile Include="Script.cpp" />
+    <ClCompile Include="DiscordRPC.cpp" />
     <ClCompile Include="Userdata.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="String.cpp" />
@@ -288,6 +289,7 @@ copy /Y "$(SolutionDir)dependencies\windows\glew\bin\Release\$(Platform)\glew32.
     <ClInclude Include="Audio.hpp" />
     <ClInclude Include="Collision.hpp" />
     <ClInclude Include="Debug.hpp" />
+    <ClInclude Include="DISCORDRPC.HPP" />
     <ClInclude Include="Drawing.hpp" />
     <ClInclude Include="Ini.hpp" />
     <ClInclude Include="ModAPI.hpp" />
