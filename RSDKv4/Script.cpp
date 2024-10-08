@@ -431,6 +431,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("LoadPalette", 5),
     FunctionInfo("RotatePalette", 4),
     FunctionInfo("SetScreenFade", 4),
+    FunctionInfo("SetClassicFade", 4),
     FunctionInfo("SetActivePalette", 3),
     FunctionInfo("SetPaletteFade", RETRO_REV00 ? 7 : 6),
     FunctionInfo("SetPaletteEntry", 3),
@@ -447,6 +448,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("EditMenuEntry", 4),
     FunctionInfo("LoadStage", 0),
     FunctionInfo("DrawRect", 8),
+    FunctionInfo("ClassicTint", 8),
     FunctionInfo("ResetObjectEntity", 5),
     FunctionInfo("BoxCollisionTest", 11),
     FunctionInfo("CreateTempObject", 4),
@@ -1039,6 +1041,7 @@ enum ScrFunc {
     FUNC_LOADPALETTE,
     FUNC_ROTATEPALETTE,
     FUNC_SETSCREENFADE,
+    FUNC_SETCLASSICFADE,
     FUNC_SETACTIVEPALETTE,
     FUNC_SETPALETTEFADE,
     FUNC_SETPALETTEENTRY,
@@ -1053,6 +1056,7 @@ enum ScrFunc {
     FUNC_EDITMENUENTRY,
     FUNC_LOADSTAGE,
     FUNC_DRAWRECT,
+    FUNC_CLASSICTINT,
     FUNC_RESETOBJECTENTITY,
     FUNC_BOXCOLLISIONTEST,
     FUNC_CREATETEMPOBJECT,
@@ -4638,7 +4642,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
             case FUNC_SETSCREENFADE:
                 opcodeSize = 0;
-                SetFade(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3]);
+                SetFade(1, scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3]);
+                break;
+            case FUNC_SETCLASSICFADE:
+                opcodeSize = 0;
+                SetFade(2, scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3]);
                 break;
             case FUNC_SETACTIVEPALETTE:
                 opcodeSize = 0;
@@ -4914,6 +4922,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 DrawRectangle(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3], scriptEng.operands[4],
                               scriptEng.operands[5], scriptEng.operands[6], scriptEng.operands[7]);
                 break;
+			case FUNC_CLASSICTINT:
+                opcodeSize = 0;
+                DrawClassicFade(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2], scriptEng.operands[3], scriptEng.operands[4],
+                              scriptEng.operands[5], scriptEng.operands[6], scriptEng.operands[7]);
+                break;	
             case FUNC_RESETOBJECTENTITY: {
                 opcodeSize     = 0;
                 Entity *newEnt = &objectEntityList[scriptEng.operands[0]];
