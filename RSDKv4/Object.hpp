@@ -79,6 +79,10 @@ struct NativeEntity {
     void *extra[0x100];
 };
 
+struct DiscordAppID {
+    const char* appid;
+};
+
 enum ObjectTypes {
     OBJ_TYPE_BLANKOBJECT = 0 // 0 is always blank obj
 };

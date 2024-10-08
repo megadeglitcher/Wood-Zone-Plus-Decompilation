@@ -356,6 +356,7 @@ const char variableNames[][0x20] = {
     "object.value49",
     "object.value50",
     "object.value51",
+    "engine.discordAppId",
 };
 #endif
 
@@ -452,6 +453,17 @@ const FunctionInfo functions[] = {
     FunctionInfo("ResetObjectEntity", 5),
     FunctionInfo("BoxCollisionTest", 11),
     FunctionInfo("CreateTempObject", 4),
+
+    // Discord RPC Updating
+    FunctionInfo("SetDiscordAppID", 1),
+    FunctionInfo("DiscordRPCState", 1),
+    FunctionInfo("DiscordRPCDetails", 1),
+    FunctionInfo("DiscordRPCLargeImageKey", 1),
+    FunctionInfo("DiscordRPCSmallImageKey", 1),
+    FunctionInfo("DiscordRPCLargeImageText", 1),
+    FunctionInfo("DiscordRPCSmallImageText", 1),
+    FunctionInfo("UpdateRPCTimer", 1),
+    FunctionInfo("UpdateRPCParty", 2),
 
     // Player and Animation Functions
     FunctionInfo("ProcessObjectMovement", 0),
@@ -975,6 +987,7 @@ enum ScrVar {
     VAR_OBJECTVALUE49,
     VAR_OBJECTVALUE50,
     VAR_OBJECTVALUE51,
+    VAR_ENGINEDISCORDAPPID,
     VAR_MAX_CNT
 };
 
@@ -1060,6 +1073,15 @@ enum ScrFunc {
     FUNC_RESETOBJECTENTITY,
     FUNC_BOXCOLLISIONTEST,
     FUNC_CREATETEMPOBJECT,
+    FUNC_DISCORDINIT,
+    FUNC_SETDISCORDSTATE,
+    FUNC_SETDISCORDDETAILS,
+    FUNC_SETDISCORDLARGEIMAGE,
+    FUNC_SETDISCORDSMALLIMAGE,
+    FUNC_SETDISCORDLARGEIMAGETEXT,
+    FUNC_SETDISCORDSMALLIMAGETEXT,
+    FUNC_UPDATEDICKTIMER,
+    FUNC_UPDATEDICKPARTY,
     FUNC_PROCESSOBJECTMOVEMENT,
     FUNC_PROCESSOBJECTCONTROL,
     FUNC_PROCESSANIMATION,
@@ -4991,6 +5013,42 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 temp->tileCollisions     = true;
                 break;
             }
+            case FUNC_DISCORDINIT:
+                opcodeSize = 0;
+                SetDiscordAppID(scriptText);
+                break;
+            case FUNC_SETDISCORDSTATE:
+                opcodeSize = 0;
+                DiscordRPCState(scriptText);
+                break;
+            case FUNC_SETDISCORDDETAILS:
+                opcodeSize = 0;
+                DiscordRPCDetails(scriptText);
+                break;
+            case FUNC_SETDISCORDLARGEIMAGE:
+                opcodeSize = 0;
+                DiscordRPCLargeImageKey(scriptText);
+                break;
+            case FUNC_SETDISCORDSMALLIMAGE:
+                opcodeSize = 0;
+                DiscordRPCSmallImageKey(scriptText);
+                break;
+            case FUNC_SETDISCORDLARGEIMAGETEXT:
+                opcodeSize = 0;
+                DiscordRPCLargeImageText(scriptText);
+                break;
+            case FUNC_SETDISCORDSMALLIMAGETEXT:
+                opcodeSize = 0;
+                DiscordRPCSmallImageText(scriptText);
+                break;
+            case FUNC_UPDATEDICKTIMER:
+                opcodeSize = 0;
+                UpdateRPCTimer(scriptEng.operands[1]);
+                break;
+            case FUNC_UPDATEDICKPARTY:
+                opcodeSize = 0;
+                UpdateRPCParty(scriptEng.operands[1], scriptEng.operands[2]);
+                break;
             case FUNC_PROCESSOBJECTMOVEMENT:
                 opcodeSize = 0;
                 if (entity->tileCollisions) {

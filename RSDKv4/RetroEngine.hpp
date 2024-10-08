@@ -331,6 +331,7 @@ extern bool engineDebugMode;
 #include "Renderer.hpp"
 #include "Userdata.hpp"
 #include "Debug.hpp"
+#include "DiscordRPC.hpp"
 #include "ModAPI.hpp"
 #include "Video.hpp"
 
