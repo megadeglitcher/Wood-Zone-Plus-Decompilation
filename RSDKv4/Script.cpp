@@ -5449,13 +5449,13 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             }
 #if !RETRO_REV00 && !RETRO_REV01
             case FUNC_GETOBJECTVALUE: {
-                if (scriptEng.operands[1] < 48)
+                if (scriptEng.operands[1] < 52)
                     scriptEng.operands[0] = objectEntityList[scriptEng.operands[2]].values[scriptEng.operands[1]];
                 break;
             }
             case FUNC_SETOBJECTVALUE: {
                 opcodeSize = 0;
-                if (scriptEng.operands[1] < 48)
+                if (scriptEng.operands[1] < 52)
                     objectEntityList[scriptEng.operands[2]].values[scriptEng.operands[1]] = scriptEng.operands[0];
                 break;
             }
