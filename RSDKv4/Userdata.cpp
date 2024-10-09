@@ -1229,15 +1229,6 @@ void SetScreenWidth(int *width, int *unused)
 	ApplyWindowChanges();
 }
 
-void SetScreenHeight(int *width, int *unused)
-{
-	if (!height)
-	return;
-	SCREEN_YSIZE_CONFIG = *width;
-	SCREEN_YSIZE        = SCREEN_YSIZE_CONFIG;
-	ApplyWindowChanges();
-}
-
 void SetWindowScale(int *scale, int *unused)
 {
     if (!scale)

@@ -58,6 +58,7 @@ extern float SCREEN_CENTERX_F;
 
 extern float SCREEN_YSIZE_F;
 extern float SCREEN_CENTERY_F;
+extern int SCREEN_YSIZE_CONFIG;
 
 extern int touchWidth;
 extern int touchHeight;
