@@ -37,6 +37,7 @@ set(RETRO_FILES
     RSDKv4/NativeObjects/All.cpp
     dependencies/all/theoraplay/theoraplay.c
     dependencies/all/tinyxml2/tinyxml2.cpp
+    RSDKv4/fcaseopen.c
 )
 
 if(NOT PLATFORM)
