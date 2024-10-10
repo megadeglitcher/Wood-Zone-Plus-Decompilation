@@ -10,8 +10,6 @@
 #define fClose(file)                                    fclose(file)
 #define fWrite(buffer, elementSize, elementCount, file) fwrite(buffer, elementSize, elementCount, file)
 
-#endif
-
 #define RETRO_PACKFILE_COUNT (0x1000)
 #define RETRO_PACK_COUNT     (0x4)
 
