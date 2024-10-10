@@ -629,6 +629,8 @@ void SetScreenDimensions(int width, int height)
     SCREEN_XSIZE_F   = SCREEN_YSIZE * aspect;
     SCREEN_CENTERX_F = aspect * SCREEN_CENTERY;
     SetPerspectiveMatrix(SCREEN_YSIZE * aspect, SCREEN_YSIZE_F, 0.0, 1000.0);
+    SCREEN_YSIZE_F   = SCREEN_YSIZE * aspect;
+    SCREEN_CENTERY_F = aspect * SCREEN_CENTERY;
 #if RETRO_USING_OPENGL
     glViewport(0, 0, displaySettings.width, displaySettings.height);
 #endif
