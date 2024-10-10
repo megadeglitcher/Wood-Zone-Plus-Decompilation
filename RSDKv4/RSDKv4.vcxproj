@@ -221,6 +221,7 @@ copy /Y "$(SolutionDir)dependencies\windows\glew\bin\Release\$(Platform)\glew32.
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Drawing.cpp" />
+    <ClCompile Include="fcaseopen.c" />
     <ClCompile Include="Ini.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -289,6 +290,7 @@ copy /Y "$(SolutionDir)dependencies\windows\glew\bin\Release\$(Platform)\glew32.
     <ClInclude Include="Collision.hpp" />
     <ClInclude Include="Debug.hpp" />
     <ClInclude Include="Drawing.hpp" />
+    <ClCompile Include="fcaseopen.c" />
     <ClInclude Include="Ini.hpp" />
     <ClInclude Include="ModAPI.hpp" />
     <ClInclude Include="NativeObjects\AboutScreen.hpp" />
