@@ -1,8 +1,6 @@
 #ifndef READER_H
 #define READER_H
 
-if 
-
 #if RETRO_PLATFORM == RETRO_LINUX // Force case insensitivity for Linux ONLY
 
 #include "fcaseopen.h"
