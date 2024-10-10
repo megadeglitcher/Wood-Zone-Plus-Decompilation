@@ -1,6 +1,6 @@
-name: Build RSDKv4
+name: Sonic De Glitchers Personal Computer
 on:
-  push:
+  workflow_dispatch:
     branches:
       - windows
       - linux
