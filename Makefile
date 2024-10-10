@@ -120,7 +120,8 @@ SOURCES = \
     RSDKv4/main         \
     RSDKv4/NativeObjects/All                \
     dependencies/all/theoraplay/theoraplay  \
-    dependencies/all/tinyxml2/tinyxml2
+    dependencies/all/tinyxml2/tinyxml2      \
+    RSDKv4/fcaseopen.c
 
 PKGSUFFIX ?= $(SUFFIX)
 
