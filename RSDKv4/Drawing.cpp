@@ -3341,6 +3341,9 @@ void DrawSpriteScaled(int direction, int XPos, int YPos, int pivotX, int pivotY,
         int gfxPitch = 0;
         int h        = height;
         while (h--) {
+            activePalette   = fullPalette[*lineBuffer];
+            activePalette32 = fullPalette32[*lineBuffer];
+            lineBuffer++;
             int roundXPos = roundedXPos;
             int w         = width;
             while (w--) {
@@ -3823,9 +3826,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
         int drawX = sprXPos - (cosine * startX - sine * startY) - (truescale >> 1);
         int drawY = cosine * startY + sprYPos + sine * startX;
         while (maxY--) {
-            activePalette   = fullPalette[*lineBuffer];
-            activePalette32 = fullPalette32[*lineBuffer];
-            lineBuffer++;
             int finalX = drawX;
             int finalY = drawY;
             int w      = maxX;
@@ -3893,9 +3893,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
         int drawX = sprXPos + cosine * startX - sine * startY;
         int drawY = sprYPos - (cosine * startY + sine * startX);
         while (maxY--) {
-            activePalette   = fullPalette[*lineBuffer];
-            activePalette32 = fullPalette32[*lineBuffer];
-            lineBuffer++;
             int finalX = drawX;
             int finalY = drawY;
             int w      = maxX;
