@@ -3679,6 +3679,17 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
                         int sheetID, int alpha, int ink, int flags)
 {
 #if RETRO_SOFTWARE_RENDER
+    int roundedYPos = 0;
+    int roundedXPos = 0;
+    int truescaleX  = 4 * scaleX;
+    int truescaleY  = 4 * scaleY;
+    int widthM1     = width - 1;
+    int trueXPos    = XPos - (truescaleX * pivotX >> 11);
+    width           = truescaleX * width >> 11;
+    int trueYPos    = YPos - (truescaleY * pivotY >> 11);
+    height          = truescaleY * height >> 11;
+    int finalscaleX = (signed int)(float)((float)(2048.0 / (float)truescaleX) * 2048.0);
+    int finalscaleY = (signed int)(float)((float)(2048.0 / (float)truescaleY) * 2048.0);
 	//check flags
 	if ((flags & FX_INK) == 0)
 		ink = INK_NONE;
