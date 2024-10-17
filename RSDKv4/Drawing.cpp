@@ -3891,15 +3891,10 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
 									while (height--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxDataPtr > 0)
 												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
 											++frameBufferPtr;
 										}
 										frameBufferPtr += pitch;
@@ -3910,7 +3905,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									int gfxPitch = 0;
 									int h        = height;
 									while (h--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxData > 0)
@@ -4002,15 +3996,10 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
 									while (height--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxDataPtr > 0)
 												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
 											++frameBufferPtr;
 										}
 										frameBufferPtr += pitch;
@@ -4021,7 +4010,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									int gfxPitch = 0;
 									int h        = height;
 									while (h--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxData > 0)
@@ -4114,15 +4102,10 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
 									while (height--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxDataPtr > 0)
 												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
 											++frameBufferPtr;
 										}
 										frameBufferPtr += pitch;
@@ -4133,7 +4116,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									int gfxPitch = 0;
 									int h        = height;
 									while (h--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxData > 0)
@@ -4226,15 +4208,10 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
 									while (height--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxDataPtr > 0)
 												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
 											++frameBufferPtr;
 										}
 										frameBufferPtr += pitch;
@@ -4245,7 +4222,6 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 									int gfxPitch = 0;
 									int h        = height;
 									while (h--) {
-										int roundXPos = roundedXPos;
 										int w         = width;
 										while (w--) {
 											if (*gfxData > 0)
