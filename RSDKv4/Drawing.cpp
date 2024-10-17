@@ -4147,22 +4147,18 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								//R = maxVal((*frameBufferPtr & 0xF800) - (subBlendTable[(color & 0xF800) >> 11] << 11), 0);
-								//G = maxVal((*frameBufferPtr & 0x7E0) - (subBlendTable[(color & 0x7E0) >> 6] << 6), 0);
-								//B = maxVal((*frameBufferPtr & 0x1F) - subBlendTable[color & 0x1F], 0);
-								int R = (*frameBufferPtr & 0xF800) >> 11;  // Red (5 bits)
-								int G = (*frameBufferPtr & 0x7E0) >> 5;    // Green (6 bits)
-								int B = (*frameBufferPtr & 0x1F);          // Blue (5 bits)
+								R = (*frameBufferPtr & 0xF800) >> 11;
+								G = (*frameBufferPtr & 0x7E0) >> 5;
+								B = (*frameBufferPtr & 0x1F);
 
-								int greyscale = (299 * R + 587 * G + 114 * B) / 1000;
+								unsigned short greyscale = (R * 299 + G * 587 + B * 114) / 1000;
 
-								R = maxVal((greyscale << 11) & 0xF800, 0);  // Shift back to match 5 bits of Red
-								G = maxVal((greyscale << 5) & 0x7E0, 0);    // Shift back to match 6 bits of Green
-								B = maxVal(greyscale & 0x1F, 0);            // 5 bits of Blue
+								R = (greyscale << 11) & 0xF800;
+								G = (greyscale << 5) & 0x7E0;
+								B = greyscale & 0x1F;
 
 								*frameBufferPtr = R | G | B;
-
-                                break;
+								break;
 						}
 					}
                 }
