@@ -3341,9 +3341,6 @@ void DrawSpriteScaled(int direction, int XPos, int YPos, int pivotX, int pivotY,
         int gfxPitch = 0;
         int h        = height;
         while (h--) {
-            activePalette   = fullPalette[*lineBuffer];
-            activePalette32 = fullPalette32[*lineBuffer];
-            lineBuffer++;
             int roundXPos = roundedXPos;
             int w         = width;
             while (w--) {
