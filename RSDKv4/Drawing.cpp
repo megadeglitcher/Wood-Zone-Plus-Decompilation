@@ -3880,11 +3880,21 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 
 								*frameBufferPtr = R | G | B;
 								break;
-							case INK_GREYSCALE:
+							case INK_PINKIFIED:
 								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
 								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
 								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
+							case INK_GREYSCALE:
+                                int red = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                int green = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                int blue = (color & 0b0000'0000'0001'1111) * 0.114;
+                                int grey = red + green + blue;
+                                //clamp grey between 0 and 31
+                                grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+                                
+                                *frameBufferPtr = (grey << 11) | (grey << 5) | grey;
+                                break;
 						}
 					}
                 }
@@ -3955,11 +3965,21 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 
 								*frameBufferPtr = R | G | B;
 								break;
-							case INK_GREYSCALE:
+							case INK_PINKIFIED:
 								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
 								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
 								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
+							case INK_GREYSCALE:
+                                int red = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                int green = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                int blue = (color & 0b0000'0000'0001'1111) * 0.114;
+                                int grey = red + green + blue;
+                                //clamp grey between 0 and 31
+                                grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+                                
+                                *frameBufferPtr = (grey << 11) | (grey << 5) | grey;
+                                break;
 						}
 					}
 
@@ -4031,11 +4051,21 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 
 								*frameBufferPtr = R | G | B;
 								break;
-							case INK_GREYSCALE:
+							case INK_PINKIFIED:
 								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
 								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
 								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
+							case INK_GREYSCALE:
+                                int red = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                int green = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                int blue = (color & 0b0000'0000'0001'1111) * 0.114;
+                                int grey = red + green + blue;
+                                //clamp grey between 0 and 31
+                                grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+                                
+                                *frameBufferPtr = (grey << 11) | (grey << 5) | grey;
+                                break;
 						}
 					}
 
@@ -4107,11 +4137,21 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 
 								*frameBufferPtr = R | G | B;
 								break;
-							case INK_GREYSCALE:
+							case INK_PINKIFIED:
 								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
 								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
 								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
+							case INK_GREYSCALE:
+                                int red = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                int green = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                int blue = (color & 0b0000'0000'0001'1111) * 0.114;
+                                int grey = red + green + blue;
+                                //clamp grey between 0 and 31
+                                grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+                                
+                                *frameBufferPtr = (grey << 11) | (grey << 5) | grey;
+                                break;
 						}
 					}
                 }
