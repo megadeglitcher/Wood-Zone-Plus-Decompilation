@@ -3887,15 +3887,40 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
-                                break;
+								if (direction == FLIP_X) {
+									byte *gfxDataPtr = &gfxData[widthM1];
+									int gfxPitch     = 0;
+									while (height--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxDataPtr > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											int offsetX = finalscaleX + roundXPos;
+											gfxDataPtr -= offsetX >> 11;
+											gfxPitch += offsetX >> 11;
+											roundXPos = offsetX & 0x7FF;
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
+								else {
+									int gfxPitch = 0;
+									int h        = height;
+									while (h--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxData > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
 						}
 					}
                 }
@@ -3973,15 +3998,40 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
-                                break;
+								if (direction == FLIP_X) {
+									byte *gfxDataPtr = &gfxData[widthM1];
+									int gfxPitch     = 0;
+									while (height--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxDataPtr > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											int offsetX = finalscaleX + roundXPos;
+											gfxDataPtr -= offsetX >> 11;
+											gfxPitch += offsetX >> 11;
+											roundXPos = offsetX & 0x7FF;
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
+								else {
+									int gfxPitch = 0;
+									int h        = height;
+									while (h--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxData > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
 						}
 					}
 
@@ -4060,15 +4110,40 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
-                                break;
+								if (direction == FLIP_X) {
+									byte *gfxDataPtr = &gfxData[widthM1];
+									int gfxPitch     = 0;
+									while (height--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxDataPtr > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											int offsetX = finalscaleX + roundXPos;
+											gfxDataPtr -= offsetX >> 11;
+											gfxPitch += offsetX >> 11;
+											roundXPos = offsetX & 0x7FF;
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
+								else {
+									int gfxPitch = 0;
+									int h        = height;
+									while (h--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxData > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
 						}
 					}
 
@@ -4147,18 +4222,40 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								R = (*frameBufferPtr & 0xF800) >> 11;
-								G = (*frameBufferPtr & 0x7E0) >> 5;
-								B = (*frameBufferPtr & 0x1F);
-
-								unsigned short greyscale = (R * 299 + G * 587 + B * 114) / 1000;
-
-								R = (greyscale << 11) & 0xF800;
-								G = (greyscale << 5) & 0x7E0;
-								B = greyscale & 0x1F;
-
-								*frameBufferPtr = R | G | B;
-								break;
+								if (direction == FLIP_X) {
+									byte *gfxDataPtr = &gfxData[widthM1];
+									int gfxPitch     = 0;
+									while (height--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxDataPtr > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											int offsetX = finalscaleX + roundXPos;
+											gfxDataPtr -= offsetX >> 11;
+											gfxPitch += offsetX >> 11;
+											roundXPos = offsetX & 0x7FF;
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
+								else {
+									int gfxPitch = 0;
+									int h        = height;
+									while (h--) {
+										int roundXPos = roundedXPos;
+										int w         = width;
+										while (w--) {
+											if (*gfxData > 0)
+												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
+											++frameBufferPtr;
+										}
+										frameBufferPtr += pitch;
+										gfxPitch    = 0;
+									}
+								}
 						}
 					}
                 }
