@@ -3676,20 +3676,9 @@ void DrawSpriteRotozoom(int direction, int XPos, int YPos, int pivotX, int pivot
 }
 
 void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivotY, int sprX, int sprY, int width, int height, int rotation, int scale,
-                        int sheetID, int alpha, int ink, int flags, int scaleX, int scaleY)
+                        int sheetID, int alpha, int ink, int flags)
 {
 #if RETRO_SOFTWARE_RENDER
-    int roundedYPos = 0;
-    int roundedXPos = 0;
-    int truescaleX  = 4 * scaleX;
-    int truescaleY  = 4 * scaleY;
-    int widthM1     = width - 1;
-    int trueXPos    = XPos - (truescaleX * pivotX >> 11);
-    width           = truescaleX * width >> 11;
-    int trueYPos    = YPos - (truescaleY * pivotY >> 11);
-    height          = truescaleY * height >> 11;
-    int finalscaleX = (signed int)(float)((float)(2048.0 / (float)truescaleX) * 2048.0);
-    int finalscaleY = (signed int)(float)((float)(2048.0 / (float)truescaleY) * 2048.0);
 	//check flags
 	if ((flags & FX_INK) == 0)
 		ink = INK_NONE;
@@ -3898,56 +3887,14 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								GFXSurface *surface = &gfxSurface[sheetID];
-								int pitch           = GFX_LINESIZE - width;
-								int gfxwidth        = surface->width;
-								// byte *lineBuffer       = &gfxLineBuffer[trueYPos];
-								byte *gfxData          = &graphicData[sprX + surface->width * sprY + surface->dataPosition];
-								ushort *frameBufferPtr = &Engine.frameBuffer[trueXPos + GFX_LINESIZE * trueYPos];
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxDataPtr += gfxPitch + (offsetY >> 11) * gfxwidth;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxData += offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxData += (offsetY >> 11) * gfxwidth - gfxPitch;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
+                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                B = (color & 0b0000'0000'0001'1111) * 0.114;
+                                Gray = R + G + B;
+                                //clamp Gray between 0 and 31
+                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
+                                
+                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
                                 break;
 						}
 					}
@@ -4026,56 +3973,14 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								GFXSurface *surface = &gfxSurface[sheetID];
-								int pitch           = GFX_LINESIZE - width;
-								int gfxwidth        = surface->width;
-								// byte *lineBuffer       = &gfxLineBuffer[trueYPos];
-								byte *gfxData          = &graphicData[sprX + surface->width * sprY + surface->dataPosition];
-								ushort *frameBufferPtr = &Engine.frameBuffer[trueXPos + GFX_LINESIZE * trueYPos];
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxDataPtr += gfxPitch + (offsetY >> 11) * gfxwidth;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxData += offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxData += (offsetY >> 11) * gfxwidth - gfxPitch;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
+                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                B = (color & 0b0000'0000'0001'1111) * 0.114;
+                                Gray = R + G + B;
+                                //clamp Gray between 0 and 31
+                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
+                                
+                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
                                 break;
 						}
 					}
@@ -4155,56 +4060,14 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								GFXSurface *surface = &gfxSurface[sheetID];
-								int pitch           = GFX_LINESIZE - width;
-								int gfxwidth        = surface->width;
-								// byte *lineBuffer       = &gfxLineBuffer[trueYPos];
-								byte *gfxData          = &graphicData[sprX + surface->width * sprY + surface->dataPosition];
-								ushort *frameBufferPtr = &Engine.frameBuffer[trueXPos + GFX_LINESIZE * trueYPos];
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxDataPtr += gfxPitch + (offsetY >> 11) * gfxwidth;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxData += offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxData += (offsetY >> 11) * gfxwidth - gfxPitch;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
+                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
+                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
+                                B = (color & 0b0000'0000'0001'1111) * 0.114;
+                                Gray = R + G + B;
+                                //clamp Gray between 0 and 31
+                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
+                                
+                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
                                 break;
 						}
 					}
@@ -4284,56 +4147,21 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								GFXSurface *surface = &gfxSurface[sheetID];
-								int pitch           = GFX_LINESIZE - width;
-								int gfxwidth        = surface->width;
-								// byte *lineBuffer       = &gfxLineBuffer[trueYPos];
-								byte *gfxData          = &graphicData[sprX + surface->width * sprY + surface->dataPosition];
-								ushort *frameBufferPtr = &Engine.frameBuffer[trueXPos + GFX_LINESIZE * trueYPos];
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxDataPtr -= offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxDataPtr += gfxPitch + (offsetY >> 11) * gfxwidth;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int roundXPos = roundedXPos;
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											int offsetX = finalscaleX + roundXPos;
-											gfxData += offsetX >> 11;
-											gfxPitch += offsetX >> 11;
-											roundXPos = offsetX & 0x7FF;
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										int offsetY = finalscaleY + roundedYPos;
-										gfxData += (offsetY >> 11) * gfxwidth - gfxPitch;
-										roundedYPos = offsetY & 0x7FF;
-										gfxPitch    = 0;
-									}
-								}
+								//R = maxVal((*frameBufferPtr & 0xF800) - (subBlendTable[(color & 0xF800) >> 11] << 11), 0);
+								//G = maxVal((*frameBufferPtr & 0x7E0) - (subBlendTable[(color & 0x7E0) >> 6] << 6), 0);
+								//B = maxVal((*frameBufferPtr & 0x1F) - subBlendTable[color & 0x1F], 0);
+								int R = (*frameBufferPtr & 0xF800) >> 11;  // Red (5 bits)
+								int G = (*frameBufferPtr & 0x7E0) >> 5;    // Green (6 bits)
+								int B = (*frameBufferPtr & 0x1F);          // Blue (5 bits)
+
+								int greyscale = (299 * R + 587 * G + 114 * B) / 1000;
+
+								R = maxVal((greyscale << 11) & 0xF800, 0);  // Shift back to match 5 bits of Red
+								G = maxVal((greyscale << 5) & 0x7E0, 0);    // Shift back to match 6 bits of Green
+								B = maxVal(greyscale & 0x1F, 0);            // 5 bits of Blue
+
+								*frameBufferPtr = R | G | B;
+
                                 break;
 						}
 					}
