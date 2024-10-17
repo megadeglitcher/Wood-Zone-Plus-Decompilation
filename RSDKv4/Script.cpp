@@ -603,6 +603,7 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("INK_ALPHA", "2"),
     AliasInfo("INK_ADD", "3"),
     AliasInfo("INK_SUB", "4"),
+    AliasInfo("INK_GREYSCALE", "5"),
     AliasInfo("CSIDE_FLOOR", "0"),
     AliasInfo("CSIDE_LWALL", "1"),
     AliasInfo("CSIDE_RWALL", "2"),

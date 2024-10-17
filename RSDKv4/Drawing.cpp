@@ -3826,6 +3826,9 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
         int drawX = sprXPos - (cosine * startX - sine * startY) - (truescale >> 1);
         int drawY = cosine * startY + sprYPos + sine * startX;
         while (maxY--) {
+            activePalette   = fullPalette[*lineBuffer];
+            activePalette32 = fullPalette32[*lineBuffer];
+            lineBuffer++;
             int finalX = drawX;
             int finalY = drawY;
             int w      = maxX;
@@ -3876,6 +3879,11 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								B = maxVal((*frameBufferPtr & 0x1F) - (((0x1F - (color & 0x1F)) * alpha) >> 8), 0);
 
 								*frameBufferPtr = R | G | B;
+								break;
+							case INK_GREYSCALE:
+								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
+								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
 						}
 					}
@@ -3893,6 +3901,9 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
         int drawX = sprXPos + cosine * startX - sine * startY;
         int drawY = sprYPos - (cosine * startY + sine * startX);
         while (maxY--) {
+            activePalette   = fullPalette[*lineBuffer];
+            activePalette32 = fullPalette32[*lineBuffer];
+            lineBuffer++;
             int finalX = drawX;
             int finalY = drawY;
             int w      = maxX;
@@ -3943,6 +3954,11 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								B = maxVal((*frameBufferPtr & 0x1F) - (((0x1F - (color & 0x1F)) * alpha) >> 8), 0);
 
 								*frameBufferPtr = R | G | B;
+								break;
+							case INK_GREYSCALE:
+								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
+								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
 						}
 					}
@@ -4015,6 +4031,11 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 
 								*frameBufferPtr = R | G | B;
 								break;
+							case INK_GREYSCALE:
+								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
+								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
+								break;
 						}
 					}
 
@@ -4085,6 +4106,11 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								B = maxVal((*frameBufferPtr & 0x1F) - (((0x1F - (color & 0x1F)) * alpha) >> 8), 0);
 
 								*frameBufferPtr = R | G | B;
+								break;
+							case INK_GREYSCALE:
+								int grey = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
+								grey = (grey < 0) ? 0 : (grey > 31) ? 31 : grey;
+								*frameBufferPtr = (grey << 11) | (grey << 5) | grey;
 								break;
 						}
 					}
