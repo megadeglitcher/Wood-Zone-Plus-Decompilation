@@ -3994,12 +3994,12 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								width = GFX_LINESIZE - XPos;
-								int widthM1     = width - 1;
+								int he        = height;
+								int widthM1     = he - 1;
 								if (direction == FLIP_X) {
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
-									while (height--) {
+									while (he--) {
 										int w         = width;
 										while (w--) {
 											if (*gfxDataPtr > 0)
