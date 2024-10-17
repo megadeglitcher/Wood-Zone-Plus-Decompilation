@@ -3887,14 +3887,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
+								*frameBufferPtr = tintLookupTable[*frameBufferPtr];
                                 break;
 						}
 					}
@@ -3973,14 +3966,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
+								*frameBufferPtr = tintLookupTable[*frameBufferPtr];
                                 break;
 						}
 					}
@@ -4060,14 +4046,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-                                
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
+								*frameBufferPtr = tintLookupTable[*frameBufferPtr];
                                 break;
 						}
 					}
@@ -4147,14 +4126,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-                                R = ((color & 0b1111'1000'0000'0000) >> 11) * 0.299;
-                                G = ((color & 0b0000'0111'1110'0000) >> 5) * 0.587;
-                                B = (color & 0b0000'0000'0001'1111) * 0.114;
-                                Gray = R + G + B;
-                                //clamp Gray between 0 and 31
-                                Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-
-                                *frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
+								*frameBufferPtr = tintLookupTable[*frameBufferPtr];
                                 break;
 						}
 					}
