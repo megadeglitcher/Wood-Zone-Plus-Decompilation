@@ -4678,7 +4678,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 DrawSpriteAllEffect(entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
                                            (scriptEng.operands[3] >> 16) - yScrollOffset, -spriteFrame->pivotX, -spriteFrame->pivotY,
                                            spriteFrame->sprX, spriteFrame->sprY, spriteFrame->width, spriteFrame->height, entity->rotation,
-                                           entity->scale, entity->scale, scriptInfo->spriteSheetID, entity->alpha, entity->inkEffect, scriptEng.operands[1]);
+                                           entity->scale, scriptInfo->spriteSheetID, entity->alpha, entity->inkEffect, scriptEng.operands[1]);
                 break;
                 /*
                 switch (scriptEng.operands[1]) {
