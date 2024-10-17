@@ -3887,6 +3887,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
+								int widthM1     = width - 1;
 								if (direction == FLIP_X) {
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
@@ -3992,6 +3993,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
+								int widthM1     = width - 1;
 								if (direction == FLIP_X) {
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
@@ -4098,6 +4100,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
+								int widthM1     = width - 1;
 								if (direction == FLIP_X) {
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
@@ -4204,6 +4207,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
+								int widthM1     = width - 1;
 								if (direction == FLIP_X) {
 									byte *gfxDataPtr = &gfxData[widthM1];
 									int gfxPitch     = 0;
