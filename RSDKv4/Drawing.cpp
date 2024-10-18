@@ -3994,36 +3994,10 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
 							case INK_GREYSCALE:
-								int he        = height;
-								int widthM1     = he - 1;
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (he--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
+								Gray = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
+								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
+								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
+								break;
 						}
 					}
 
