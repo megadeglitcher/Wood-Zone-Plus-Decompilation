@@ -1750,14 +1750,14 @@ void SetPlayerScreenPositionCDStyle(Entity *target)
         }
     }
     if (!target->gravity) {
-        if (target->boundEntity->direction) {
-            if (cameraStyle == CAMERASTYLE_EXTENDED_OFFSET_R || player->speed < -0x5F5C2)
+        if (target->direction) {
+            if (cameraStyle == CAMERASTYLE_EXTENDED_OFFSET_R || target->speed < -0x5F5C2)
                 cameraLagStyle = 2;
             else
                 cameraLagStyle = 0;
         }
         else {
-            cameraLagStyle = (cameraStyle == CAMERASTYLE_EXTENDED_OFFSET_L || player->speed > 0x5F5C2) != 0;
+            cameraLagStyle = (cameraStyle == CAMERASTYLE_EXTENDED_OFFSET_L || target->speed > 0x5F5C2) != 0;
         }
     }
 	
