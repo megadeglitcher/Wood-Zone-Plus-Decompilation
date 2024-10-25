@@ -13,3 +13,6 @@
 [submodule "dependencies/all/tinyxml2"]
 	path = dependencies/all/tinyxml2
 	url = https://github.com/leethomason/tinyxml2
+[submodule "dependencies/windows/theoraplay"]
+	path = dependencies/windows/theoraplay
+	url = https://github.com/icculus/theoraplay
