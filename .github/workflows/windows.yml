@@ -2,11 +2,7 @@ name: WZ+ Windows x64
 on:
   workflow_dispatch:
     branches:
-      - windows
-      - android
-      - win-actions
-      - linux-actions
-      - MainMenuRewrite
+      - main
 
 jobs:
   WZ_Windows-x64-CMake:

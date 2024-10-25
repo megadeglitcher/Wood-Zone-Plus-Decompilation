@@ -2,12 +2,7 @@ name: Sonic De Glitchers Personal Computer
 on:
   workflow_dispatch:
     branches:
-      - windows
-      - linux
-      - android
-      - win-actions
-      - linux-actions
-      - MainMenuRewrite
+      - main
 
 jobs:
   v4-windows-x64:

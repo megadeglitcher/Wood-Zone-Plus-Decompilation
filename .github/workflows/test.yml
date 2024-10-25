@@ -2,11 +2,7 @@ name: Build RSDKv4
 on:
   workflow_dispatch:
     branches:
-      - windows
-      - android
-      - win-actions
-      - linux-actions
-      - MainMenuRewrite
+      - main
 
 jobs:
   WZ_Windows-64x:
