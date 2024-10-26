@@ -54,7 +54,7 @@ jobs:
         with:
           name: v4-windows-x64
           path: artifacts
- WZ_Windows:
+  WZ_Windows:
     runs-on: self-hosted
     steps:
       - name: Checkout
