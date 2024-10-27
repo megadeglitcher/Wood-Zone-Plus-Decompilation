@@ -107,9 +107,9 @@ jobs:
       runs-on: windows-latest
       steps:
       - uses: actions/checkout@v4
-      - uses: fbactions/setup-winsdk@v2.2.2
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2
         with:
-            winsdk-build-version: 10240
+          sdk-version: 10240
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -139,6 +139,11 @@ jobs:
          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows-uwp
           Rename-Item ./dependencies/windows-uwp/libtheora-1.1.1 libtheora
+      - name: Build new SDK
+        shell: bash
+        run: |
+            cmake -DCMAKE_SYSTEM_VERSION=10.0.10240.0
+            cmake --build .
       - name: Run vcpkg
         run: |
           vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static libtheora:x86-windows-static --triplet=x86-windows-static
