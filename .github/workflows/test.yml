@@ -57,10 +57,6 @@ jobs:
   WZ_Windows:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
-      - uses: fbactions/setup-winsdk@v2
-        with:
-          winsdk-build-version: 10240
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -108,8 +104,12 @@ jobs:
           name: v4-windows
           path: artifacts
   WZ_XboxOne:
-      runs-on: windows-2022
+      runs-on: windows-latest
       steps:
+      - uses: actions/checkout@v4
+      - uses: fbactions/setup-winsdk@v2.2.2
+        with:
+            winsdk-build-version: 10240
       - name: Checkout
         uses: actions/checkout@v2
         with:
