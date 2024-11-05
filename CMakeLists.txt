@@ -7,6 +7,8 @@ set(RETRO_SDL_VERSION 2 CACHE STRING "Select between SDL2 and SDL1, defaults to 
 set(RETRO_NAME "WZ+")
 
 set(RETRO_OUTPUT_NAME ${RETRO_NAME} CACHE STRING "The exported name of the executable.")
+option(RETRO_NETWORKING "Enables or disables networking features used for Sonic 2's 2P VS mode." ON)
+option(RETRO_USE_HW_RENDER "Enables usage of the Hardware Render, menus are unplayable without it." ON)
 
 set(RETRO_FILES
     dependencies/all/tinyxml2/tinyxml2.cpp
@@ -121,8 +123,20 @@ target_include_directories(RetroEngine PRIVATE
     dependencies/all/theoraplay/
 )
 
+
+if(RETRO_NETWORKING)
+    target_include_directories(RetroEngine PRIVATE
+        dependencies/all/asio/asio/include/
+    )
+endif()
+
 if(DEFINED DEP_PATH)
     target_include_directories(RetroEngine PRIVATE
         dependencies/${DEP_PATH}/
     )
 endif()
+
+target_compile_definitions(RetroEngine PRIVATE
+    RETRO_USE_NETWORKING=$<BOOL:${RETRO_NETWORKING}>
+    RETRO_USING_OPENGL=$<BOOL:${RETRO_USE_HW_RENDER}>
+)
