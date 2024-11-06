@@ -1224,9 +1224,10 @@ void SetScreenWidth(int *width, int *unused)
 
 #if RETRO_USING_OPENGL
     displaySettings.width   = SCREEN_XSIZE_CONFIG * Engine.windowScale;
-    displaySettings.height  = 240 * Engine.windowScale;
+    displaySettings.height  = SCREEN_YSIZE * Engine.windowScale;
     displaySettings.offsetX = 0;
     SetupViewport();
+    InitRenderDevice();
 #endif
 }
 
