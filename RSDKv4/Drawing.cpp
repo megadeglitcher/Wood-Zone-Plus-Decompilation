@@ -20,7 +20,6 @@ float SCREEN_CENTERX_F = 426 / 2;
 
 float SCREEN_YSIZE_F   = SCREEN_YSIZE;
 float SCREEN_CENTERY_F = SCREEN_YSIZE / 2;
-int SCREEN_YSIZE_CONFIG = 240;
 
 int touchWidth     = SCREEN_XSIZE;
 int touchHeight    = SCREEN_YSIZE;
