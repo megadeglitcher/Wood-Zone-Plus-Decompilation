@@ -266,7 +266,7 @@ void InitUserdata()
             ini.SetString("Dev", "DataFile2", (char *)"Data.rsdk.xmf");
             StrCopy(Engine.dataFile[1], "Data.rsdk.xmf");
         //}
-        ini.SetBool("Dev", "OpenGLEnabled", Engine.OpenGL = false);
+       // ini.SetBool("Dev", "OpenGLEnabled", Engine.OpenGL = false);
 		
 		
 		/*
@@ -419,8 +419,8 @@ void InitUserdata()
             if (!ini.GetString("Dev", "DataFile2", Engine.dataFile[1]))
                 StrCopy(Engine.dataFile[1], "Data.rsdk.xmf");
         //}
-        if (!ini.GetBool("Dev", "OpenGLEnabled", &Engine.OpenGL))
-            Engine.OpenGL = false;
+       // if (!ini.GetBool("Dev", "OpenGLEnabled", &Engine.OpenGL))
+         //   Engine.OpenGL = false;
 		
 		/*
         if (!StrComp(Engine.dataFile[2], "")) {
@@ -703,8 +703,8 @@ void WriteSettings()
     ini.SetComment("Dev", "DataFileComment2", "Determines where the second RSDK file will be loaded from");
     ini.SetString("Dev", "DataFile2", Engine.dataFile[1]);
 	
-    ini.SetComment("Dev", "OpenGLEnabledComment", "Enable this flag to activate OPENGL (HW Menus)");
-    ini.SetInteger("Dev", "OpenGLEnabled", Engine.OpenGL);
+  //  ini.SetComment("Dev", "OpenGLEnabledComment", "Enable this flag to activate OPENGL (HW Menus)");
+    // ini.SetInteger("Dev", "OpenGLEnabled", Engine.OpenGL);
 	
 	/*
     if (!StrComp(Engine.dataFile[2], "")) {
