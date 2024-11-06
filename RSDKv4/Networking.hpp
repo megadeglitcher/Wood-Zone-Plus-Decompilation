@@ -1,7 +1,6 @@
+#if RETRO_USE_NETWORKING
 #ifndef NETWORKING_H
 #define NETWORKING_H
-
-#if RETRO_USE_NETWORKING
 #include <thread>
 #include <memory>
 
@@ -14,7 +13,6 @@ extern int networkPort;
 extern float lastPing;
 extern int dcError;
 extern bool waitingForPing;
-extern bool waitForVerify;
 
 struct MultiplayerData {
     int type;
