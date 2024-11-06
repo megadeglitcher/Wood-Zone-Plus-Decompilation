@@ -1179,6 +1179,9 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
         SetGlobalVariableByName("options.devMenuFlag", false);
         if (Engine.devMenu)
             SetGlobalVariableByName("options.devMenuFlag", true);
+        RETRO_USING_OPENGL = 0
+        if (Engine.OpenGL)
+            RETRO_USING_OPENGL = 1
 #endif
     }
 
