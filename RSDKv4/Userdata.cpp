@@ -1215,18 +1215,20 @@ void GetFrameRate() { scriptEng.checkResult = Engine.refreshRate; }
 void SetScreenWidth(int *width, int *unused)
 {
     SCREEN_XSIZE_CONFIG = *width;
+#if RETRO_PLATFORM != RETRO_ANDROID
     SetScreenDimensions(SCREEN_XSIZE_CONFIG * Engine.windowScale, SCREEN_YSIZE * Engine.windowScale);
+#endif
+#if RETRO_USING_SDL2
     InitRenderDevice();
+#endif
 
+#if RETRO_USING_OPENGL
     displaySettings.width   = SCREEN_XSIZE_CONFIG * Engine.windowScale;
-    displaySettings.height  = SCREEN_YSIZE * Engine.windowScale;
+    displaySettings.height  = 128 * Engine.windowScale;
     displaySettings.offsetX = 0;
     SetupViewport();
-	if (!width)
-	return;
-	SCREEN_XSIZE_CONFIG = *width;
-	SCREEN_XSIZE        = SCREEN_XSIZE_CONFIG;
-	ApplyWindowChanges();
+    InitRenderDevice();
+#endif
 }
 
 void SetWindowScale(int *scale, int *unused)
