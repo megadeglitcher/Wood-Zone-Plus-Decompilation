@@ -125,7 +125,7 @@ typedef unsigned int uint;
 #define RETRO_RENDERTYPE (RETRO_HW_RENDER)
 #endif
 
-#define RETRO_USING_OPENGL (0)
+#define RETRO_USING_OPENGL (Engine.OpenGL)
 
 #define RETRO_SOFTWARE_RENDER (RETRO_RENDERTYPE == RETRO_SW_RENDER)
 #define RETRO_HARDWARE_RENDER (RETRO_RENDERTYPE == RETRO_HW_RENDER)
@@ -375,7 +375,7 @@ public:
 
     bool trialMode        = false;
     bool onlineActive     = true;
-    bool useHighResAssets = false;
+    bool useHighResAssets = true;
 #if RETRO_USE_HAPTICS
     bool hapticsEnabled = true;
 #endif
