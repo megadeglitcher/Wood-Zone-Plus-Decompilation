@@ -567,6 +567,7 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("MENU_1", "0"),
     AliasInfo("MENU_2", "1"),
     AliasInfo("MENU_3", "2"),
+    AliasInfo("MENU_4", "3"),
     AliasInfo("C_TOUCH", "0"),
     AliasInfo("C_BOX", "1"),
     AliasInfo("C_BOX2", "2"),

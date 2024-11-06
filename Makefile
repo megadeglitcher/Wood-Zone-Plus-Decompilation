@@ -1,3 +1,7 @@
+RETRO_NETWORKING             ?= 1
+RETRO_USE_HW_RENDER          ?= 1
+
+
 .DEFAULT_GOAL := all
 
 NAME		=  WZ+
@@ -117,6 +121,54 @@ SOURCES = \
     dependencies/all/theoraplay/theoraplay  \
     dependencies/all/tinyxml2/tinyxml2      \
     RSDKv4/fcaseopen
+    RSDKv4/NativeObjects/AboutScreen.cpp        \
+    RSDKv4/NativeObjects/AchievementDisplay.cpp \
+    RSDKv4/NativeObjects/AchievementsButton.cpp \
+    RSDKv4/NativeObjects/AchievementsMenu.cpp   \
+    RSDKv4/NativeObjects/BackButton.cpp         \
+    RSDKv4/NativeObjects/CWSplash.cpp           \
+    RSDKv4/NativeObjects/CreditText.cpp         \
+    RSDKv4/NativeObjects/DialogPanel.cpp        \
+    RSDKv4/NativeObjects/FadeScreen.cpp         \
+    RSDKv4/NativeObjects/InstructionsScreen.cpp \
+    RSDKv4/NativeObjects/LeaderboardsButton.cpp \
+    RSDKv4/NativeObjects/MenuBG.cpp             \
+    RSDKv4/NativeObjects/MenuControl.cpp        \
+    RSDKv4/NativeObjects/ModInfoButton.cpp      \
+    RSDKv4/NativeObjects/ModsButton.cpp         \
+    RSDKv4/NativeObjects/ModsMenu.cpp           \
+    RSDKv4/NativeObjects/MultiplayerButton.cpp  \
+    RSDKv4/NativeObjects/MultiplayerHandler.cpp \
+    RSDKv4/NativeObjects/MultiplayerScreen.cpp  \
+    RSDKv4/NativeObjects/OptionsButton.cpp      \
+    RSDKv4/NativeObjects/OptionsMenu.cpp        \
+    RSDKv4/NativeObjects/PauseMenu.cpp          \
+    RSDKv4/NativeObjects/PlayerSelectScreen.cpp \
+    RSDKv4/NativeObjects/PushButton.cpp         \
+    RSDKv4/NativeObjects/RecordsScreen.cpp      \
+    RSDKv4/NativeObjects/RetroGameLoop.cpp      \
+    RSDKv4/NativeObjects/SaveSelect.cpp         \
+    RSDKv4/NativeObjects/SegaIDButton.cpp       \
+    RSDKv4/NativeObjects/SegaSplash.cpp         \
+    RSDKv4/NativeObjects/SettingsScreen.cpp     \
+    RSDKv4/NativeObjects/StaffCredits.cpp       \
+    RSDKv4/NativeObjects/StartGameButton.cpp    \
+    RSDKv4/NativeObjects/SubMenuButton.cpp      \
+    RSDKv4/NativeObjects/TextLabel.cpp          \
+    RSDKv4/NativeObjects/TimeAttack.cpp         \
+    RSDKv4/NativeObjects/TimeAttackButton.cpp   \
+    RSDKv4/NativeObjects/TitleScreen.cpp        \
+    RSDKv4/NativeObjects/VirtualDPad.cpp        \
+    RSDKv4/NativeObjects/VirtualDPadM.cpp       \
+    RSDKv4/NativeObjects/ZoneButton.cpp         \
+
+ifeq ($(RSDK_USE_NETWORKING), 0)
+	CXXFLAGS_ALL += -DRETRO_USE_MOD_LOADER=$(RSDK_USE_NETWORKING)
+endif
+
+ifeq ($(RETRO_USE_HW_RENDER), 0)
+	CXXFLAGS_ALL += -RETRO_USING_OPENGL=$(RETRO_USE_HW_RENDER)
+endif
 
 PKGSUFFIX ?= $(SUFFIX)
 

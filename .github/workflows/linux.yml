@@ -2,7 +2,7 @@ name: WZ+ Linux
 on:
   workflow_dispatch:
     branches:
-      - windows
+      - main
 
 jobs:
   WZ_Ubuntu-Make:
