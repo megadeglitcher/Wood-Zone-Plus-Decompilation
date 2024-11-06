@@ -290,8 +290,8 @@ void MultiplayerScreen_Main(void *objPtr)
             break;
         }
         case MULTIPLAYERSCREEN_STATE_MAIN: {
-            CheckKeyDown(&keyDown);
-            CheckKeyPress(&keyPress);
+            CheckKeyDown(&inputDown);
+            CheckKeyPress(&inputPress);
             SetRenderMatrix(&self->renderMatrix);
 
             if (usePhysicalControls) {
@@ -299,13 +299,13 @@ void MultiplayerScreen_Main(void *objPtr)
                     usePhysicalControls = false;
                 }
                 else {
-                    if (keyPress.up) {
+                    if (inputPress.up) {
                         PlaySfxByName("Menu Move", false);
                         self->selectedButton--;
                         if (self->selectedButton < MULTIPLAYERSCREEN_BUTTON_HOST)
                             self->selectedButton = MULTIPLAYERSCREEN_BUTTON_JOIN;
                     }
-                    else if (keyPress.down) {
+                    else if (inputPress.down) {
                         PlaySfxByName("Menu Move", false);
                         self->selectedButton++;
                         if (self->selectedButton > MULTIPLAYERSCREEN_BUTTON_JOIN)
@@ -316,12 +316,12 @@ void MultiplayerScreen_Main(void *objPtr)
                     self->buttons[MULTIPLAYERSCREEN_BUTTON_JOIN]->state = PUSHBUTTON_STATE_UNSELECTED;
                     self->buttons[self->selectedButton]->state          = PUSHBUTTON_STATE_SELECTED;
 
-                    if (keyPress.start || keyPress.A) {
+                    if (inputPress.start || inputPress.A) {
                         PlaySfxByName("Menu Select", false);
                         self->buttons[self->selectedButton]->state = PUSHBUTTON_STATE_FLASHING;
                         self->state                                = MULTIPLAYERSCREEN_STATE_ACTION;
                     }
-                    else if (keyPress.B || self->backPressed) {
+                    else if (inputPress.B || self->backPressed) {
                         PlaySfxByName("Menu Back", false);
                         self->backPressed             = false;
                         self->state                   = MULTIPLAYERSCREEN_STATE_EXIT;
@@ -340,11 +340,11 @@ void MultiplayerScreen_Main(void *objPtr)
                     }
                     self->backPressed = CheckTouchRect(128.0, -92.0, 32.0, 32.0) >= 0;
                     if (self->state == MULTIPLAYERSCREEN_STATE_MAIN) {
-                        if (keyDown.left) {
+                        if (inputDown.left) {
                             self->selectedButton = MULTIPLAYERSCREEN_BUTTON_JOIN;
                             usePhysicalControls  = true;
                         }
-                        if (keyDown.right) {
+                        if (inputDown.right) {
                             self->selectedButton = MULTIPLAYERSCREEN_BUTTON_HOST;
                             usePhysicalControls  = true;
                         }
@@ -361,7 +361,7 @@ void MultiplayerScreen_Main(void *objPtr)
                         }
                     }
 
-                    if (keyPress.B || self->backPressed) {
+                    if (inputPress.B || self->backPressed) {
                         PlaySfxByName("Menu Back", false);
                         self->backPressed             = false;
                         self->state                   = MULTIPLAYERSCREEN_STATE_EXIT;
@@ -372,11 +372,11 @@ void MultiplayerScreen_Main(void *objPtr)
                     }
                     else {
                         if (self->state == MULTIPLAYERSCREEN_STATE_MAIN) {
-                            if (keyDown.down) {
+                            if (inputDown.down) {
                                 self->selectedButton = MULTIPLAYERSCREEN_BUTTON_JOIN;
                                 usePhysicalControls  = true;
                             }
-                            if (keyDown.up) {
+                            if (inputDown.up) {
                                 self->selectedButton = MULTIPLAYERSCREEN_BUTTON_HOST;
                                 usePhysicalControls  = true;
                             }
@@ -387,7 +387,7 @@ void MultiplayerScreen_Main(void *objPtr)
             break;
         }
         case MULTIPLAYERSCREEN_STATE_ACTION: { // action
-            CheckKeyDown(&keyDown);
+            CheckKeyDown(&inputDown);
             SetRenderMatrix(&self->renderMatrix);
 
             if (self->buttons[self->selectedButton]->state == PUSHBUTTON_STATE_UNSELECTED) {
@@ -521,8 +521,8 @@ void MultiplayerScreen_Main(void *objPtr)
             break;
         }
         case MULTIPLAYERSCREEN_STATE_HOSTSCR: {
-            CheckKeyDown(&keyDown);
-            CheckKeyPress(&keyPress);
+            CheckKeyDown(&inputDown);
+            CheckKeyPress(&inputPress);
             SetRenderMatrix(&self->renderMatrix);
 
             if (!self->roomCode) {
@@ -550,14 +550,14 @@ void MultiplayerScreen_Main(void *objPtr)
                     usePhysicalControls = false;
                 }
                 else {
-                    if (keyPress.A || keyPress.start) {
+                    if (inputPress.A || inputPress.start) {
                         PlaySfxByName("Menu Select", false);
                         char buffer[0x30];
                         int code = GetRoomCode();
                         sprintf(buffer, "%08X", code);
                         SDL_SetClipboardText(buffer);
                     }
-                    if (keyPress.B) {
+                    if (inputPress.B) {
                         self->dialog = CREATE_ENTITY(DialogPanel);
                         SetStringToFont8(self->dialog->text,
                                          "Are you sure you want to exit?\rThis will close the room,\rand you will return to the main menu.", 2);
@@ -577,10 +577,10 @@ void MultiplayerScreen_Main(void *objPtr)
                                                                           >= 0;
                 }
                 else {
-                    self->buttons[MULTIPLAYERSCREEN_BUTTON_COPY]->state |= keyPress.A || keyPress.start;
+                    self->buttons[MULTIPLAYERSCREEN_BUTTON_COPY]->state |= inputPress.A || inputPress.start;
                     if (self->buttons[MULTIPLAYERSCREEN_BUTTON_COPY]->state) {
                         self->buttons[MULTIPLAYERSCREEN_BUTTON_COPY]->state = PUSHBUTTON_STATE_UNSELECTED;
-                        if (keyPress.A || keyPress.start)
+                        if (inputPress.A || inputPress.start)
                             usePhysicalControls = true;
                         PlaySfxByName("Menu Select", false);
                         char buffer[0x30];
@@ -588,7 +588,7 @@ void MultiplayerScreen_Main(void *objPtr)
                         sprintf(buffer, "%08X", code);
                         SDL_SetClipboardText(buffer);
                     }
-                    if (keyPress.B || self->backPressed) {
+                    if (inputPress.B || self->backPressed) {
                         self->backPressed = false;
                         self->dialog      = CREATE_ENTITY(DialogPanel);
                         SetStringToFont8(self->dialog->text,
@@ -602,8 +602,8 @@ void MultiplayerScreen_Main(void *objPtr)
             break;
         }
         case MULTIPLAYERSCREEN_STATE_JOINSCR: {
-            CheckKeyDown(&keyDown);
-            CheckKeyPress(&keyPress);
+            CheckKeyDown(&inputDown);
+            CheckKeyPress(&inputPress);
             SetRenderMatrix(&self->renderMatrix);
 
             if (usePhysicalControls) {
@@ -611,13 +611,13 @@ void MultiplayerScreen_Main(void *objPtr)
                     usePhysicalControls = false;
                 }
                 else {
-                    if (keyPress.left) {
+                    if (inputPress.left) {
                         PlaySfxByName("Menu Move", false);
                         self->selectedButton--;
                         if (self->selectedButton < 3)
                             self->selectedButton = 12;
                     }
-                    else if (keyPress.right) {
+                    else if (inputPress.right) {
                         PlaySfxByName("Menu Move", false);
                         self->selectedButton++;
                         if (self->selectedButton > 12)
@@ -625,7 +625,7 @@ void MultiplayerScreen_Main(void *objPtr)
                     }
 
                     if ((self->selectedButton != MULTIPLAYERSCREEN_BUTTON_JOINROOM && self->selectedButton != MULTIPLAYERSCREEN_BUTTON_PASTE)
-                        && (keyPress.up || keyPress.down)) {
+                        && (inputPress.up || inputPress.down)) {
                         union {
                             int val;
                             byte bytes[4];
@@ -634,11 +634,11 @@ void MultiplayerScreen_Main(void *objPtr)
                         int n         = 7 - (self->selectedButton - 5);
                         int nybbles[] = { u.bytes[n >> 1] & 0xF, ((u.bytes[n >> 1] & 0xF0) >> 4) & 0xF };
 
-                        if (keyPress.up) {
+                        if (inputPress.up) {
                             PlaySfxByName("Menu Move", false);
                             nybbles[n & 1] = (nybbles[n & 1] + 1) & 0xF;
                         }
-                        else if (keyPress.down) {
+                        else if (inputPress.down) {
                             PlaySfxByName("Menu Move", false);
                             nybbles[n & 1] = (nybbles[n & 1] - 1) & 0xF;
                         }
@@ -668,7 +668,7 @@ void MultiplayerScreen_Main(void *objPtr)
                         self->enterCodeLabel[self->selectedButton - 5]->useColors = true;
                     }
 
-                    if (keyPress.start || keyPress.A) {
+                    if (inputPress.start || inputPress.A) {
                         if (self->selectedButton == MULTIPLAYERSCREEN_BUTTON_JOINROOM) {
                             PlaySfxByName("Menu Select", false);
                             self->buttons[MULTIPLAYERSCREEN_BUTTON_JOINROOM]->state = PUSHBUTTON_STATE_UNSELECTED;
@@ -702,7 +702,7 @@ void MultiplayerScreen_Main(void *objPtr)
                             SDL_free(txt);
                         }
                     }
-                    else if (keyPress.B) {
+                    else if (inputPress.B) {
                         PlaySfxByName("Menu Back", false);
                         self->state         = MULTIPLAYERSCREEN_STATE_FLIP;
                         self->nextState     = MULTIPLAYERSCREEN_STATE_MAIN;
@@ -751,7 +751,7 @@ void MultiplayerScreen_Main(void *objPtr)
                         >= 0;
 
                     self->backPressed = CheckTouchRect(128.0, -92.0, 32.0, 32.0) >= 0;
-                    if (keyDown.left || keyDown.right) {
+                    if (inputDown.left || inputDown.right) {
                         usePhysicalControls = true;
                     }
                 }
@@ -839,7 +839,7 @@ void MultiplayerScreen_Main(void *objPtr)
                         SDL_free(txt);
                     }
 
-                    if (keyPress.B || self->backPressed) {
+                    if (inputPress.B || self->backPressed) {
                         PlaySfxByName("Menu Back", false);
                         self->backPressed   = false;
                         self->state         = MULTIPLAYERSCREEN_STATE_FLIP;
@@ -847,11 +847,11 @@ void MultiplayerScreen_Main(void *objPtr)
                         self->nextStateDraw = MULTIPLAYERSCREEN_STATEDRAW_MAIN;
                     }
                     else {
-                        if (keyDown.left) {
+                        if (inputDown.left) {
                             self->selectedButton = 5;
                             usePhysicalControls  = true;
                         }
-                        if (keyDown.right) {
+                        if (inputDown.right) {
                             self->selectedButton = 12;
                             usePhysicalControls  = true;
                         }
