@@ -33,7 +33,7 @@ bool socketInit = false;
 #endif
 
 char networkHost[64];
-char networkGame[7] = "SONIC2";
+char networkGame[7] = "WOOD ZONE PLUS";
 int networkPort     = 50;
 int dcError         = 0;
 float lastPing      = 0;
