@@ -114,7 +114,7 @@ jobs:
         run : |
             Set-ExecutionPolicy Bypass -Scope Process -Force;
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-            choco install windows-sdk-10.0 --version 10.0.10240.0 -y
+            choco install windows-sdk-10.0 -y
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
