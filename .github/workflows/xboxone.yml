@@ -22,7 +22,7 @@ jobs:
             nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
             nuget restore RSDKv4.UWP.sln
             curl https://aka.ms/vs/17/release/vs_community.exe --output vs_community.exe
-            Start-Process vs_community.exe -ArgumentList --wait --quiet --norestart --add Microsoft.VisualStudio.Workload.Universal
+            Start-Process "vs_community.exe" -ArgumentList "--wait", "--quiet", "--norestart", "--add", "Microsoft.VisualStudio.Workload.Universal"
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
