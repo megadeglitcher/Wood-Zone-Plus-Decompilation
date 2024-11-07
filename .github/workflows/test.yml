@@ -115,7 +115,7 @@ jobs:
             Set-ExecutionPolicy Bypass -Scope Process -Force;
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
             choco install windows-sdk-10.0 -y
-            choco install visualstudio2015 --version 14.0.25431.01 --package-parameters "--add Microsoft.VisualStudio.Workload.NativeDesktop"
+            choco install -y vcbuildtools
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
