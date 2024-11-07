@@ -28,7 +28,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Install Visual Studio 2015 Build Tools
         run: |
-          choco install microsoft-build-tools --version=14.0.25420.1 --params "'/IncludeOptional'" --force --yes
+          choco install microsoft-build-tools --force --yes
         shell: cmd
       - name: Download libogg and libvorbis for easier includes
         run: |
