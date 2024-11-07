@@ -1,4 +1,4 @@
-name: Build RSDKv4
+name: WZ+ (Xbox One)
 on:
   workflow_dispatch:
     branches:
