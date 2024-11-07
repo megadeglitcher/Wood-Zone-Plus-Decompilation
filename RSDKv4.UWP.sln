@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sonic1Decomp.UWP", "Sonic1Decomp.UWP\Sonic1Decomp.UWP.vcxproj", "{66189870-4C44-4BD1-A27B-D603EB13E7C1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sonic2Decomp.UWP", "Sonic2Decomp.UWP\Sonic2Decomp.UWP.vcxproj", "{66189870-4C44-4BD1-A27B-D603EB13E7C4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{FB1C2759-B78A-48B3-8466-4BFD4BEAED6D}"
 	ProjectSection(SolutionItems) = preProject
 		dependencies\windows-uwp\dependencies.txt = dependencies\windows-uwp\dependencies.txt
