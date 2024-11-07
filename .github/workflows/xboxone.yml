@@ -21,6 +21,8 @@ jobs:
             winget install --id=Microsoft.BuildTools2015 --accept-source-agreements --accept-package-agreements -e 
             nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
             nuget restore RSDKv4.UWP.sln
+            curl https://download.visualstudio.microsoft.com/download/pr/69e24482-3b48-44d3-af65-51f866a08313/8f8d52c4e8808e117272b842c4ccbeec081bcc182069ee30fbb6e83637e37712/vs_Community.exe --output vs_community.exe
+            vs_community.exe --passive --wait --quiet --norestart --add Microsoft.VisualStudio.Workload.Universal      
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
