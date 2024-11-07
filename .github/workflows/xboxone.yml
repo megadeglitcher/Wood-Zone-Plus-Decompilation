@@ -7,6 +7,10 @@ jobs:
  WZ_XboxOne:
       runs-on: windows-latest
       steps:
+      - name: Install Visual Studio 2015 Build Tools
+        run: |
+          "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --quiet --wait --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.140
+        shell: cmd
       - uses: nuget/setup-nuget@v2
       - uses: Cyberboss/install-winget@v1
       - name: Checkout
@@ -27,7 +31,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
       - name: Install Visual Studio 2015 Build Tools
         run: |
-          choco install visualstudio2015buildtools --params "'/IncludeOptional'" --force --yes
+          "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" modify --quiet --wait --installPath "C:\Program Files\Microsoft Visual Studio\2022\Enterprise" --add Microsoft.VisualStudio.Component.VC.140
         shell: cmd
       - name: Download libogg and libvorbis for easier includes
         run: |
