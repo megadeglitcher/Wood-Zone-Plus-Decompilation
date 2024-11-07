@@ -142,7 +142,7 @@ jobs:
           Rename-Item ./dependencies/windows-uwp/libtheora-1.1.1 libtheora
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp glew:arm64-uwp
+          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp glew:xbox
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
