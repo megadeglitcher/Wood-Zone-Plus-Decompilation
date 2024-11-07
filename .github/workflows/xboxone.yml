@@ -1,3 +1,9 @@
+name: Build RSDKv4
+on:
+  workflow_dispatch:
+    branches:
+      - main
+jobs:
  WZ_XboxOne:
       runs-on: windows-latest
       steps:
