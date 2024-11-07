@@ -106,6 +106,7 @@ jobs:
   WZ_XboxOne:
       runs-on: windows-latest
       steps:
+      - uses: Cyberboss/install-winget@v1
       - name: Checkout
         uses: actions/checkout@v2
         with:
