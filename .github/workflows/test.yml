@@ -106,14 +106,15 @@ jobs:
   WZ_XboxOne:
       runs-on: windows-latest
       steps:
-      - uses: actions/checkout@v4
-      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2
-        with:
-          sdk-version: 10240
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
+      - name: Setup Chocolatey & Windows SDK
+        run : |
+            Set-ExecutionPolicy Bypass -Scope Process -Force;
+            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+            choco install windows-sdk-10.0 --version 10.0.10240.0 -y
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
