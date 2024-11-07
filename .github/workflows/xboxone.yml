@@ -7,10 +7,6 @@ jobs:
  WZ_XboxOne:
       runs-on: windows-latest
       steps:
-      - name: Install Visual Studio 2015 Build Tools
-        run: |
-          choco install microsoft-build-tools --version=14.0.25420.1 --params "'/IncludeOptional'" --force --yes
-        shell: cmd
       - uses: nuget/setup-nuget@v2
       - uses: Cyberboss/install-winget@v1
       - name: Checkout
