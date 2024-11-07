@@ -115,7 +115,8 @@ jobs:
             Set-ExecutionPolicy Bypass -Scope Process -Force;
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
             choco install windows-sdk-10.0 -y
-            choco install -y vcbuildtools
+            Invoke-WebRequest -Uri https://aka.ms/vs/16/release/vs_installer.exe -OutFile vs_installer.exe
+            Start-Process vs_installer.exe -ArgumentList "--add Microsoft.VisualStudio.Workload.NativeDesktop --path cache" -NoNewWindow -Wait
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Download libogg and libvorbis for easier includes
