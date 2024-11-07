@@ -3,64 +3,87 @@ on:
   workflow_dispatch:
     branches:
       - main
+
 jobs:
- WZ_XboxOne:
-      runs-on: windows-latest
-      steps:
-      - uses: nuget/setup-nuget@v2
-      - uses: Cyberboss/install-winget@v1
-      - name: Checkout
+  WZ_XboxOne:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      - name: Setup Chocolatey & Windows Stuff
-        run : |
-            Set-ExecutionPolicy Bypass -Scope Process -Force;
-            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-            choco install windows-sdk-10.0 -y
-            winget install --id=Microsoft.BuildTools2015 --accept-source-agreements --accept-package-agreements -e 
-            nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
-            nuget restore RSDKv4.UWP.sln
-            curl https://aka.ms/vs/17/release/vs_community.exe --output vs_community.exe
-            Start-Process vs_community.exe --passive --quiet --norestart --add Microsoft.VisualStudio.Workload.Universal      
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
+      - name: Install Chocolatey and Winget
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force;
+          iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+        shell: powershell
+
+      - name: Install Windows SDK and Build Tools
+        run: |
+          choco install windows-sdk-10.0 -y
+          winget install --id=Microsoft.VisualStudio.BuildTools --accept-source-agreements --accept-package-agreements -e
+          nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
+        shell: powershell
+
+      - name: Restore NuGet Packages
+        run: |
+          nuget restore RSDKv4.UWP.sln
+        shell: powershell
+
+      - name: Download and Install Visual Studio Components
+        run: |
+          curl https://aka.ms/vs/17/release/vs_community.exe --output vs_community.exe
+          Start-Process vs_community.exe -ArgumentList "--passive --quiet --norestart --add Microsoft.VisualStudio.Workload.Universal" -NoNewWindow -Wait
+        shell: powershell
+
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
-      - name: Download libogg and libvorbis for easier includes
+
+      - name: Download and Extract Dependencies (libogg, libvorbis, GLEW, SDL2, Theora)
         run: |
           Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/ogg/libogg-1.3.5.zip" -OutFile "libogg.zip"
           Expand-Archive -Path libogg.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/libogg-1.3.5 libogg
+
           Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.7.zip" -OutFile "libvorbis.zip"
           Expand-Archive -Path libvorbis.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/libvorbis-1.3.7 libvorbis
-      - name: Download GLEW
-        run: |
+
           Invoke-WebRequest -Uri "https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip" -OutFile "GLEW.zip"
           Expand-Archive -Path GLEW.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/glew-2.2.0 glew
-      - name: Download SDL2
-        run: |
+
           Invoke-WebRequest -Uri "https://github.com/cedricp/sdl2/archive/refs/heads/master.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
-      - name: Download Theora
-        run: |
-         Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
-          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows-uwp
+
+          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/libtheora-1.1.1 libtheora
-      - name: Run vcpkg
+        shell: powershell
+
+      - name: Install Dependencies via vcpkg
         run: |
           vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp glew:arm64-uwp --allow-unsupported
           vcpkg integrate install
-      - name: Build RSDKv4
+        shell: powershell
+
+      - name: Build Project (RSDKv4)
         run: |
           msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
-      - name: Move artifacts
+        shell: powershell
+
+      - name: Move Artifacts
         run: |
           mkdir artifacts
-          move ./build/ARM/Release/* ./artifacts 
           move ./build/ARM/Release/* ./artifacts
-      - name: Upload artifacts
+        shell: powershell
+
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: v4-xboxone
