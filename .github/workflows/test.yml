@@ -140,23 +140,18 @@ jobs:
          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows-uwp
           Rename-Item ./dependencies/windows-uwp/libtheora-1.1.1 libtheora
-      - name: Build new SDK
-        shell: bash
-        run: |
-            cmake -DCMAKE_SYSTEM_VERSION=10.0.10240.0
-            cmake --build .
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static libtheora:x86-windows-static --triplet=x86-windows-static
+          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp glew:arm64-uwp
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
-          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=x86 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
+          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
       - name: Move artifacts
         run: |
           mkdir artifacts
-          move ./build/Win32/Release/*.dll ./artifacts 
-          move ./build/Win32/Release/*.exe ./artifacts
+          move ./build/ARM/Release/* ./artifacts 
+          move ./build/ARM/Release/* ./artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
