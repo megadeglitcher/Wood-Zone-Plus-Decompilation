@@ -116,7 +116,6 @@ jobs:
             Set-ExecutionPolicy Bypass -Scope Process -Force;
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
             choco install windows-sdk-10.0 -y
-            Add-AppxPackage -RegisterByFamilyName -MainPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe
             winget install --id=Microsoft.BuildTools2015 -e
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
