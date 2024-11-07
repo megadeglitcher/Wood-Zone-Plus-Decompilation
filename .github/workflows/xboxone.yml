@@ -22,6 +22,7 @@ jobs:
             nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
             nuget restore RSDKv4.UWP.sln
             cd RSDKv4
+            choco install visualstudio2015community
             .\vs_community.exe --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
