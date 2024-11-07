@@ -117,6 +117,7 @@ jobs:
             iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
             choco install windows-sdk-10.0 -y
             winget install --id=Microsoft.BuildTools2015 --accept-source-agreements --accept-package-agreements -e 
+            cd RSDKv4
             dotnet add package Microsoft.Windows.CppWinRT --version 2.0.240405.15
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
