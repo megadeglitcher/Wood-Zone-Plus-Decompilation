@@ -14,7 +14,7 @@
 #define FX_INK (8)
 #define FX_TINT (16)
 enum FlipFlags { FLIP_NONE, FLIP_X, FLIP_Y, FLIP_XY };
-enum InkFlags { INK_NONE, INK_BLEND, INK_ALPHA, INK_ADD, INK_SUB, INK_PINKIFIED, INK_GREYSCALE };
+enum InkFlags { INK_NONE, INK_BLEND, INK_ALPHA, INK_ADD, INK_SUB, INK_PINKIFIED, INK_BLANK, INK_CUSTOM };
 //3D drawing still uses these but I changed the names
 //apparently they can't have numbers in em though. so it says D instead of 3D
 //I've had a stressful day

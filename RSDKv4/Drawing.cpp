@@ -3700,8 +3700,8 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 
     int sprXPos    = (pivotX + sprX) << 9;
     int sprYPos    = (pivotY + sprY) << 9;
-    int fullwidth  = width + sprX;
-    int fullheight = height + sprY;
+    int fullwidth  = width + sprX + entity->width;
+    int fullheight = height + sprY + entity->height;
     int angle      = rotation & 0x1FF;
     if (angle < 0)
         angle += 0x200;
@@ -3760,7 +3760,7 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
         xPositions[3] = XPos + ((sine * b + cosine * a) >> 9);
         yPositions[3] = YPos + ((cosine * b - sine * a) >> 9);
     }
-    int truescale = (signed int)(float)((float)(entity->width / (float)scale) * entity->height);
+    int truescale = (signed int)(float)((float)(512.0 / (float)scale) * 512.0);
     sine          = truescale * sin512LookupTable[angle] >> 9;
     cosine        = truescale * cos512LookupTable[angle] >> 9;
 
@@ -3886,37 +3886,8 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
-							case INK_GREYSCALE:
-								width = GFX_LINESIZE - XPos;
-								int widthM1     = width - 1;
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
+							case INK_BLANK:
+								*frameBufferPtr = activePalette[index];
 						}
 					}
                 }
@@ -3993,11 +3964,8 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
-							case INK_GREYSCALE:
-								Gray = ((color & 0xF800) >> 11) * 0.299 + ((color & 0x7E0) >> 5) * 0.587 + (color & 0x1F) * 0.114;
-								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
-								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
-								break;
+							case INK_BLANK:
+								*frameBufferPtr = activePalette[index];
 						}
 					}
 
@@ -4075,37 +4043,8 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
-							case INK_GREYSCALE:
-								width = GFX_LINESIZE - XPos;
-								int widthM1     = width - 1;
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
+							case INK_BLANK:
+								*frameBufferPtr = activePalette[index];
 						}
 					}
 
@@ -4183,37 +4122,8 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								Gray = (Gray < 0) ? 0 : (Gray > 31) ? 31 : Gray;
 								*frameBufferPtr = (Gray << 11) | (Gray << 5) | Gray;
 								break;
-							case INK_GREYSCALE:
-								width = GFX_LINESIZE - XPos;
-								int widthM1     = width - 1;
-								if (direction == FLIP_X) {
-									byte *gfxDataPtr = &gfxData[widthM1];
-									int gfxPitch     = 0;
-									while (height--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxDataPtr > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
-								else {
-									int gfxPitch = 0;
-									int h        = height;
-									while (h--) {
-										int w         = width;
-										while (w--) {
-											if (*gfxData > 0)
-												*frameBufferPtr = tintLookupTable[*frameBufferPtr];
-											++frameBufferPtr;
-										}
-										frameBufferPtr += pitch;
-										gfxPitch    = 0;
-									}
-								}
+							case INK_BLANK:
+								*frameBufferPtr = activePalette[index];
 						}
 					}
                 }
