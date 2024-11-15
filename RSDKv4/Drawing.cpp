@@ -3675,6 +3675,7 @@ void DrawSpriteRotozoom(int direction, int XPos, int YPos, int pivotX, int pivot
 void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivotY, int sprX, int sprY, int width, int height, int rotation, int scale,
                         int sheetID, int alpha, int ink, int flags)
 {
+	
 #if RETRO_SOFTWARE_RENDER
 	//check flags
 	if ((flags & FX_INK) == 0)
@@ -3757,7 +3758,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
         xPositions[3] = XPos + ((sine * b + cosine * a) >> 9);
         yPositions[3] = YPos + ((cosine * b - sine * a) >> 9);
     }
-    int truescale = (signed int)(float)((float)(512.0 / (float)scale) * 512.0);
+    int truescale = (signed int)(float)((float)(212.0 / (float)scale) * 512.0);
     sine          = truescale * sin512LookupTable[angle] >> 9;
     cosine        = truescale * cos512LookupTable[angle] >> 9;
 
