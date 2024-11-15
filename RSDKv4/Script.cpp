@@ -4096,7 +4096,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = objectEntityList[arrayVal].values[51];
                         break;
                     }
-                    case VAR_ENGINETIMER:
+                    case VAR_ENGINETIMER: {
                         time_t initialTimer = time(NULL);
                         struct tm *actualTimer = localtime(&initialTimer);
 
@@ -4107,6 +4107,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                                      (actualTimer->tm_min & 0x3F) << 6 |
                                      (actualTimer->tm_sec & 0x3F));
                          break;
+                    }
                     case VAR_OBJECTWIDTH: {
                         scriptEng.operands[i] = objectEntityList[arrayVal].width;
                         break;
