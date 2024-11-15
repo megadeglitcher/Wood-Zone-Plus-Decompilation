@@ -3673,10 +3673,11 @@ void DrawSpriteRotozoom(int direction, int XPos, int YPos, int pivotX, int pivot
 }
 
 void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivotY, int sprX, int sprY, int width, int height, int rotation, int scale,
-                        int sheetID, int alpha, int ink, int flags)
+                        int sheetID, int alpha, int ink, int flags, void *ent)
 {
 	
     Entity *entity             = (Entity *)ent;
+
 #if RETRO_SOFTWARE_RENDER
 	//check flags
 	if ((flags & FX_INK) == 0)
