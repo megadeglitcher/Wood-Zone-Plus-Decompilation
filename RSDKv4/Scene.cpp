@@ -832,8 +832,6 @@ void LoadStageFiles(void)
         objectEntityList[i].objectInteractions = true;
         objectEntityList[i].visible            = true;
         objectEntityList[i].tileCollisions     = true;
-        objectEntityList[i].width              = 512;
-        objectEntityList[i].height              = 512;
     }
     LoadActLayout();
     Init3DFloorBuffer(0);
