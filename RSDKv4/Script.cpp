@@ -4124,15 +4124,15 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         break;
                     }
                     case VAR_OBJECTINKRED: {
-                        scriptEng.operands[i] = objectEntityList[arrayVal].red;
+                        scriptEng.operands[i] = objectEntityList[arrayVal].inkred;
                         break;
                     }
                     case VAR_OBJECTINKGREEN: {
-                        scriptEng.operands[i] = objectEntityList[arrayVal].green;
+                        scriptEng.operands[i] = objectEntityList[arrayVal].inkgreen;
                         break;
                     }
                     case VAR_OBJECTINKBLUE: {
-                        scriptEng.operands[i] = objectEntityList[arrayVal].blue;
+                        scriptEng.operands[i] = objectEntityList[arrayVal].inkblue;
                         break;
                     }
                 }
@@ -6170,15 +6170,15 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         break;
                     }
                     case VAR_OBJECTINKRED: {
-                        objectEntityList[arrayVal].red = scriptEng.operands[i];
+                        objectEntityList[arrayVal].inkred = scriptEng.operands[i];
                         break;
                     }
                     case VAR_OBJECTINKGREEN: {
-                        objectEntityList[arrayVal].green = scriptEng.operands[i];
+                        objectEntityList[arrayVal].inkgreen = scriptEng.operands[i];
                         break;
                     }
                     case VAR_OBJECTINKBLUE: {
-                        objectEntityList[arrayVal].blue = scriptEng.operands[i];
+                        objectEntityList[arrayVal].inkblue = scriptEng.operands[i];
                         break;
                     }
                 }
