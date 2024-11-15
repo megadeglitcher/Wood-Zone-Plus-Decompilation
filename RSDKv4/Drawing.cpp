@@ -3672,8 +3672,8 @@ void DrawSpriteRotozoom(int direction, int XPos, int YPos, int pivotX, int pivot
 #endif
 }
 
-void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivotY, int sprX, int sprY, int width, int height, int rotation, int scale,
-                        int sheetID, int alpha, int ink, int flags, void *ent)
+void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivotX, int pivotY, int sprX, int sprY, int width, int height, int rotation, int scale,
+                        int sheetID, int alpha, int ink, int flags)
 {
 	
     Entity *entity             = (Entity *)ent;
