@@ -3889,9 +3889,9 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 							case INK_BLANK:
 								*frameBufferPtr = activePalette[index];
 							case INK_CUSTOM:
-								R = ((((((*frameBufferPtr & 0xF800) >> 11) * (0x100 - alpha)) + (((color & 0xF800) >> 11) * alpha)) >> 8) - entity->inkred) << 11;
-								G = ((((((*frameBufferPtr & 0x7E0 - entity->inkgreen) >> 5) * (0x100 - alpha)) + (((color & 0x7E0) >> 5) * alpha)) - entity->inkgreen) >> 8) << 5;
-								B = (((((*frameBufferPtr & 0x1F - entity->inkblue) * (0x100 - alpha)) + ((color & 0x1F) * alpha)) - entity->inkblue) >> 8);
+								R = ((((((*frameBufferPtr & 0xF800) >> 11) * (0x100 - alpha)) + (((color & 0xF800) >> 11) * alpha)) >> 8) + entity->inkred) << 11;
+								G = ((((((*frameBufferPtr & 0x7E0 - entity->inkgreen) >> 5) * (0x100 - alpha)) + (((color & 0x7E0) >> 5) * alpha)) + entity->inkgreen) >> 8) << 5;
+								B = (((((*frameBufferPtr & 0x1F - entity->inkblue) * (0x100 - alpha)) + ((color & 0x1F) * alpha)) + entity->inkblue) >> 8);
 
 								*frameBufferPtr = R | G | B;
 						}
@@ -3972,6 +3972,12 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								break;
 							case INK_BLANK:
 								*frameBufferPtr = activePalette[index];
+							case INK_CUSTOM:
+								R = ((((((*frameBufferPtr & 0xF800) >> 11) * (0x100 - alpha)) + (((color & 0xF800) >> 11) * alpha)) >> 8) + entity->inkred) << 11;
+								G = ((((((*frameBufferPtr & 0x7E0 - entity->inkgreen) >> 5) * (0x100 - alpha)) + (((color & 0x7E0) >> 5) * alpha)) + entity->inkgreen) >> 8) << 5;
+								B = (((((*frameBufferPtr & 0x1F - entity->inkblue) * (0x100 - alpha)) + ((color & 0x1F) * alpha)) + entity->inkblue) >> 8);
+
+								*frameBufferPtr = R | G | B;
 						}
 					}
 
@@ -4051,6 +4057,12 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								break;
 							case INK_BLANK:
 								*frameBufferPtr = activePalette[index];
+							case INK_CUSTOM:
+								R = ((((((*frameBufferPtr & 0xF800) >> 11) * (0x100 - alpha)) + (((color & 0xF800) >> 11) * alpha)) >> 8) + entity->inkred) << 11;
+								G = ((((((*frameBufferPtr & 0x7E0 - entity->inkgreen) >> 5) * (0x100 - alpha)) + (((color & 0x7E0) >> 5) * alpha)) + entity->inkgreen) >> 8) << 5;
+								B = (((((*frameBufferPtr & 0x1F - entity->inkblue) * (0x100 - alpha)) + ((color & 0x1F) * alpha)) + entity->inkblue) >> 8);
+
+								*frameBufferPtr = R | G | B;
 						}
 					}
 
@@ -4130,6 +4142,12 @@ void DrawSpriteAllEffect(void *ent, int direction, int XPos, int YPos, int pivot
 								break;
 							case INK_BLANK:
 								*frameBufferPtr = activePalette[index];
+							case INK_CUSTOM:
+								R = ((((((*frameBufferPtr & 0xF800) >> 11) * (0x100 - alpha)) + (((color & 0xF800) >> 11) * alpha)) >> 8) + entity->inkred) << 11;
+								G = ((((((*frameBufferPtr & 0x7E0 - entity->inkgreen) >> 5) * (0x100 - alpha)) + (((color & 0x7E0) >> 5) * alpha)) + entity->inkgreen) >> 8) << 5;
+								B = (((((*frameBufferPtr & 0x1F - entity->inkblue) * (0x100 - alpha)) + ((color & 0x1F) * alpha)) + entity->inkblue) >> 8);
+
+								*frameBufferPtr = R | G | B;
 						}
 					}
                 }
