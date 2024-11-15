@@ -22,12 +22,12 @@ jobs:
             nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
             nuget restore RSDKv4.UWP.sln
             cd RSDKv4
-            .\vs_community.exe --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
+            .\vs_community.exe modify --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1
       - name: Install Visual Studio 2015 Build Tools
         run: |
-          choco install microsoft-build-tools --version=14.0.25420.1 --params "'/IncludeOptional'" --force --yes
+          choco install microsoft-build-tools --force --yes
         shell: cmd
       - name: Download libogg and libvorbis for easier includes
         run: |
