@@ -3676,6 +3676,7 @@ void DrawSpriteAllEffect(int direction, int XPos, int YPos, int pivotX, int pivo
                         int sheetID, int alpha, int ink, int flags)
 {
 	
+    Entity *entity             = (Entity *)ent;
 #if RETRO_SOFTWARE_RENDER
 	//check flags
 	if ((flags & FX_INK) == 0)
