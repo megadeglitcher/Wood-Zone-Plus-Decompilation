@@ -62,6 +62,8 @@ struct Entity {
     byte scrollTracking;
     // was 3 on S1 release, but bumped up to 5 for S2
     byte floorSensors[RETRO_REV00 ? 3 : 5];
+    int width;
+    int height;
 };
 
 struct NativeEntityBase {

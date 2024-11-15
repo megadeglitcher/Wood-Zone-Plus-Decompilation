@@ -356,6 +356,8 @@ const char variableNames[][0x20] = {
     "object.value49",
     "object.value50",
     "object.value51",
+    "object.width",
+    "object.height",
 };
 #endif
 
@@ -978,6 +980,8 @@ enum ScrVar {
     VAR_OBJECTVALUE49,
     VAR_OBJECTVALUE50,
     VAR_OBJECTVALUE51,
+    VAR_OBJECTWIDTH,
+    VAR_OBJECTHEIGHT,
     VAR_MAX_CNT
 };
 
@@ -4103,6 +4107,14 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                                      (actualTimer->tm_min & 0x3F) << 6 |
                                      (actualTimer->tm_sec & 0x3F));
                          break;
+                    case VAR_OBJECTWIDTH: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].width;
+                        break;
+                    }
+                    case VAR_OBJECTHEIGHT: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].height;
+                        break;
+                    }
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
@@ -6127,6 +6139,14 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     }
                     case VAR_OBJECTVALUE51: {
                         objectEntityList[arrayVal].values[51] = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTWIDTH: {
+                        objectEntityList[arrayVal].width = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTHEIGHT: {
+                        objectEntityList[arrayVal].height = scriptEng.operands[i];
                         break;
                     }
                 }
