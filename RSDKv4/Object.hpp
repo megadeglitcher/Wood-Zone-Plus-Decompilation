@@ -64,6 +64,9 @@ struct Entity {
     byte floorSensors[RETRO_REV00 ? 3 : 5];
     int width;
     int height;
+    int inkred;
+    int inkgreen;
+    int inkblue;
 };
 
 struct NativeEntityBase {

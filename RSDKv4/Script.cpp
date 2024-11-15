@@ -358,6 +358,9 @@ const char variableNames[][0x20] = {
     "object.value51",
     "object.width",
     "object.height",
+    "object.inkred",
+    "object.inkgreen",
+    "object.inkblue",
 };
 #endif
 
@@ -983,6 +986,9 @@ enum ScrVar {
     VAR_OBJECTVALUE51,
     VAR_OBJECTWIDTH,
     VAR_OBJECTHEIGHT,
+    VAR_OBJECTINKRED,
+    VAR_OBJECTINKGREEN,
+    VAR_OBJECTINKBLUE,
     VAR_MAX_CNT
 };
 
@@ -4117,6 +4123,18 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = objectEntityList[arrayVal].height;
                         break;
                     }
+                    case VAR_OBJECTINKRED: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].red;
+                        break;
+                    }
+                    case VAR_OBJECTINKGREEN: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].green;
+                        break;
+                    }
+                    case VAR_OBJECTINKBLUE: {
+                        scriptEng.operands[i] = objectEntityList[arrayVal].blue;
+                        break;
+                    }
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
@@ -6149,6 +6167,18 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     }
                     case VAR_OBJECTHEIGHT: {
                         objectEntityList[arrayVal].height = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTINKRED: {
+                        objectEntityList[arrayVal].red = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTINKGREEN: {
+                        objectEntityList[arrayVal].green = scriptEng.operands[i];
+                        break;
+                    }
+                    case VAR_OBJECTINKBLUE: {
+                        objectEntityList[arrayVal].blue = scriptEng.operands[i];
                         break;
                     }
                 }
