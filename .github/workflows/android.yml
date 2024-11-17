@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
     branches:
       - main
-      - android
-
 jobs:
   WZ_Android-Make:
     runs-on: windows-latest
@@ -31,11 +29,22 @@ jobs:
           Invoke-WebRequest -Uri "https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip" -OutFile "GLEW.zip"
           Expand-Archive -Path GLEW.zip -DestinationPath ./dependencies/android/
           Rename-Item ./dependencies/android/glew-2.2.0 glew
+      - name: Download Theora
+        run : |
+          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/android
+          Rename-Item ./dependencies/android/libtheora-1.1.1 libtheora
       - name: Download SDL2
         run: |
-          Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/1123378790555463712/1287726625542377503/sdl.zip?ex=66f29860&is=66f146e0&hm=445ffdba38b1a373be507bbadfccb9ccc8b9d943e2f250db0006cdd31bc2d1d7&" -OutFile "SDL2.zip"
-          Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/android/
-          Rename-Item ./dependencies/android/sdl SDL
+          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.28.3.zip" -OutFile "SDL2.zip"
+          Expand-Archive -Path SDL2.zip -DestinationPath ./android/app/jni/
+          Rename-Item ./android/app/jni/SDL2-2.28.3 SDL
+      - name: Setup Symbolic Links
+        run: |
+          cd android/app/jni
+          del src
+          mklink /d src ../../..
+          mklink /d SDL ./dependencies/android/SDL
       - name: Move & Copy stuff
         run: |
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android\* -Destination ./dependencies/
@@ -80,11 +89,22 @@ jobs:
           Invoke-WebRequest -Uri "https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip" -OutFile "GLEW.zip"
           Expand-Archive -Path GLEW.zip -DestinationPath ./dependencies/android/
           Rename-Item ./dependencies/android/glew-2.2.0 glew
+      - name: Download Theora
+        run : |
+          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
+          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/android
+          Rename-Item ./dependencies/android/libtheora-1.1.1 libtheora
       - name: Download SDL2
         run: |
-          Invoke-WebRequest -Uri "https://cdn.discordapp.com/attachments/1123378790555463712/1287726625542377503/sdl.zip?ex=66f29860&is=66f146e0&hm=445ffdba38b1a373be507bbadfccb9ccc8b9d943e2f250db0006cdd31bc2d1d7&" -OutFile "SDL2.zip"
+          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.28.3.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./android/app/jni/
-          Rename-Item ./android/app/jni/sdl SDL
+          Rename-Item ./android/app/jni/SDL2-2.28.3 SDL
+      - name: Setup Symbolic Links
+        run: |
+          cd android/app/jni
+          del src
+          mklink /d src ../../..
+          mklink /d SDL ./dependencies/android/SDL
       - name: Move & Copy stuff
         run: |
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android\* -Destination ./dependencies/
@@ -98,7 +118,7 @@ jobs:
       - name: Build WZ+ Android (CMake)
         working-directory: ./android
         run: |
-          ./gradlew.bat assembleDebug --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a" -PRETRO_DISABLE_PLUS
+          ./gradlew.bat assembleDebug --no-daemon -PABIFILTERS="armeabi-v7a;arm64-v8a"
       - name: Upload artifact Android
         uses: actions/upload-artifact@v4
         with:
