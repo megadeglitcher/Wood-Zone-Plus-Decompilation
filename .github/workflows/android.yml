@@ -103,8 +103,8 @@ jobs:
         run: |
           cd android/app/jni
           del src
-          mklink /d src ../../..
-          mklink /d SDL ./dependencies/android/SDL
+          New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
+          New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
       - name: Move & Copy stuff
         run: |
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android\* -Destination ./dependencies/
