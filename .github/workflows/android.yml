@@ -42,8 +42,8 @@ jobs:
       - name: Setup Symbolic Links
         run: |
           cd android/app/jni
-          del src
-          del SDL
+          Remove-Item -Path "src" -Force
+          Remove-Item -Path "SDL" -Force
           New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
           New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
       - name: Move & Copy stuff
@@ -103,8 +103,8 @@ jobs:
       - name: Setup Symbolic Links
         run: |
           cd android/app/jni
-          del src
-          del SDL
+          Remove-Item -Path "src" -Force
+          Remove-Item -Path "SDL" -Force
           New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
           New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
       - name: Move & Copy stuff
