@@ -42,10 +42,18 @@ jobs:
       - name: Setup Symbolic Links
         run: |
           cd android/app/jni
-          Remove-Item -Path "src" -Force
-          Remove-Item -Path "SDL" -Force
-          New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
-          New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
+          if (Test-Path "src") {
+              Write-Host "'src' already exists, skipping creating the symbolic link."
+          } else {
+              Write-Host "'src does not exist, creating the symbolic link."
+              New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
+          }
+          if (Test-Path "SDL") {
+              Write-Host "'SDL' already exists, skipping creating the symbolic link."
+          } else {
+              Write-Host "'SDL' does not exist, creating the symbolic link."
+              New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
+          }
       - name: Move & Copy stuff
         run: |
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android\* -Destination ./dependencies/
@@ -103,10 +111,18 @@ jobs:
       - name: Setup Symbolic Links
         run: |
           cd android/app/jni
-          Remove-Item -Path "src" -Force
-          Remove-Item -Path "SDL" -Force
-          New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
-          New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
+          if (Test-Path "src") {
+              Write-Host "'src' already exists, skipping creating the symbolic link."
+          } else {
+              Write-Host "'src does not exist, creating the symbolic link."
+              New-Item -ItemType SymbolicLink -Path "src" -Target "../../../.."
+          }
+          if (Test-Path "SDL") {
+              Write-Host "'SDL' already exists, skipping creating the symbolic link."
+          } else {
+              Write-Host "'SDL' does not exist, creating the symbolic link."
+              New-Item -ItemType SymbolicLink -Path "SDL" -Target "./dependencies/android/SDL"
+          }
       - name: Move & Copy stuff
         run: |
           Copy-Item -Path ./dependencies/android/app/jni/src/dependencies/android\* -Destination ./dependencies/
