@@ -445,6 +445,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("ClearScreen", 1),
     FunctionInfo("DrawSpriteFX", 4),
     FunctionInfo("DrawSpriteScreenFX", 4),
+    FunctionInfo("SetActName", 5),
 
     // More Useful Stuff
     FunctionInfo("LoadAnimation", 1),
@@ -1057,6 +1058,7 @@ enum ScrFunc {
     FUNC_SETSCREENFADE,
     FUNC_SETCLASSICFADE,
     FUNC_SETACTIVEPALETTE,
+    FUNC_SETACTNAME,
     FUNC_SETPALETTEFADE,
     FUNC_SETPALETTEENTRY,
     FUNC_GETPALETTEENTRY,
@@ -4686,6 +4688,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             case FUNC_SETACTIVEPALETTE:
                 opcodeSize = 0;
                 SetActivePalette(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2]);
+                break;
+            case FUNC_SETACTNAME:
+                opcodeSize = 0;
+                int charID = 0;
+                titleCardText[charID] = scriptEng.operands[i];
                 break;
             case FUNC_SETPALETTEFADE:
 #if RETRO_REV00
