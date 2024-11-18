@@ -445,7 +445,7 @@ const FunctionInfo functions[] = {
     FunctionInfo("ClearScreen", 1),
     FunctionInfo("DrawSpriteFX", 4),
     FunctionInfo("DrawSpriteScreenFX", 4),
-    FunctionInfo("SetActName", 5),
+    FunctionInfo("SetActName", 2),
 
     // More Useful Stuff
     FunctionInfo("LoadAnimation", 1),
@@ -4691,8 +4691,8 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
             case FUNC_SETACTNAME:
                 opcodeSize = 0;
-                int charID = 0;
-                titleCardText[charID] = scriptEng.operands[i];
+                titleCardText[0] = scriptEng.operands[0];
+                titleCardText[1] = scriptEng.operands[1];
                 break;
             case FUNC_SETPALETTEFADE:
 #if RETRO_REV00
