@@ -4690,9 +4690,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 SetActivePalette(scriptEng.operands[0], scriptEng.operands[1], scriptEng.operands[2]);
                 break;
             case FUNC_SETACTNAME:
-                opcodeSize = 0;
                 titleCardText[0] = scriptEng.operands[0];
-                titleCardText[1] = scriptEng.operands[1];
                 break;
             case FUNC_SETPALETTEFADE:
 #if RETRO_REV00
