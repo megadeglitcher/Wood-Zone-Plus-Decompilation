@@ -22,7 +22,6 @@ target_link_libraries(RetroEngine
     jnigraphics
     openslES
     SDL2
-    hidapi
 )
 
 target_link_options(RetroEngine PRIVATE -u GameActivity_onCreate)
