@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.7)
 
 project(Forever)
 
 # armeabi-v7a requires cpufeatures library
 # include(AndroidNdkModules)
+set(curdir ${CMAKE_CURRENT_LIST_DIR})
 # android_ndk_import_module_cpufeatures()
 set(android 1)
 
