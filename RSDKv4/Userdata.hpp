@@ -221,7 +221,7 @@ void SetWindowVSync(int *enabled, int *unused);
 void GetFrameRate();
 void SetFrameRate(int *enabled, int *unused);
 void ApplyWindowChanges();
-void OpenWebsite(int *unused, const char *websiteId);
+void OpenWebsite(int *unused,int *websiteID);
 #endif
 
 #endif //! USERDATA_H
