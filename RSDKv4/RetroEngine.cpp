@@ -1236,6 +1236,7 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
 	AddNativeFunction("MoveMod", MoveMod);
     AddNativeFunction("RefreshEngine", RefreshEngine); // Reload engine after changing mod status
     AddNativeFunction("OpenWebsite", OpenWebsite);
+    AddNativeFunction("GrabEventDataFromWebsite", GrabEventDataFromWebsite);
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE

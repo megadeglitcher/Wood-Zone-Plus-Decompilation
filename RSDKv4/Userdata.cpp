@@ -986,6 +986,32 @@ void ShowAchievementsScreen()
 #endif
 }
 
+void GrabEventDataFromWebsite()
+{
+    const char *url = "https://megadeglitcher.github.io/SonicCDFanSite";
+    
+    char htmlContent[1024];
+    
+    if (DownloadPage(url, htmlContent, sizeof(htmlContent))) {
+        
+        char *eventStart = strstr(htmlContent, "<div class=\"event\">");
+        
+        if (eventStart) {
+            eventStart += strlen("<div class=\"event\">");
+            
+            int eventValue = atoi(eventStart);
+            
+            scriptEng.checkResult = eventValue;
+            
+            PrintLog("Extracted event value: %d", eventValue);
+        } else {
+            PrintLog("Could not find the event div!");
+        }
+    } else {
+        PrintLog("Failed to download webpage!");
+    }
+}
+
 int SetLeaderboard(int *leaderboardID, int *score)
 {
     if (!Engine.trialMode && !debugMode) {

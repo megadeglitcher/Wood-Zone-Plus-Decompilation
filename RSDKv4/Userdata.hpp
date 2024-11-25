@@ -222,6 +222,7 @@ void GetFrameRate();
 void SetFrameRate(int *enabled, int *unused);
 void ApplyWindowChanges();
 void OpenWebsite(int *unused,int *websiteID);
+void GrabEventDataFromWebsite();
 #endif
 
 #endif //! USERDATA_H
