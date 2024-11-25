@@ -1,6 +1,5 @@
 #include "RetroEngine.hpp"
 #include <windows.h>
-#include <wchar.h>
 
 // Your guess is as good as mine
 #if RETRO_PLATFORM == RETRO_SWITCH
@@ -1077,22 +1076,7 @@ void Disconnect2PVS()
 
 void OpenWebsite(const char *url)
 {
-    PrintLog("Attempting to open website: \"%s\"", url);
-
-    if (Engine.onlineActive) {
-        // Convert the char* URL to a wide character string (LPCWSTR)
-        int len = MultiByteToWideChar(CP_UTF8, 0, url, -1, NULL, 0);
-        wchar_t* wurl = (wchar_t*)malloc(len * sizeof(wchar_t));  // Allocate memory for the wide string
-        MultiByteToWideChar(CP_UTF8, 0, url, -1, wurl, len);  // Convert to wide string
-
-        // Use ShellExecuteW with the wide-character string
-        ShellExecuteW(NULL, L"open", wurl, NULL, NULL, SW_SHOWNORMAL);
-
-        // Free the allocated memory after use
-        free(wurl);
-    } else {
-        PrintLog("Engine is not online, cannot open website.");
-    }
+    ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
 }
 
 
