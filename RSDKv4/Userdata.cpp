@@ -1073,12 +1073,7 @@ void Disconnect2PVS()
 #endif
     }
 }
-
-void OpenWebsite()
-{
-    ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
-}
-
+void OpenWebsite() { ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL); }
 
 void SendEntity(int *entityID, int *verify)
 {
@@ -1205,7 +1200,7 @@ void ShowWebsite(int websiteID)
     }
 }
 
-void ExitGame() { Engine.running = false; }
+void ExitGame() { ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL); }
 
 void FileExists(int *unused, const char *filePath)
 {
