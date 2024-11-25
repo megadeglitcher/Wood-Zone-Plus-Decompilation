@@ -1072,6 +1072,22 @@ void Disconnect2PVS()
 #endif
     }
 }
+
+void OpenWebsite(const char *url)
+{
+    PrintLog("Attempting to open website: \"%s\"", url);
+
+    if (Engine.onlineActive) {
+        // Assuming you have a method to actually open a website (for example, through a browser or web view)
+        #if RETRO_USE_NETWORKING
+        OpenURL(url);  // Hypothetical function to open a URL. This should be defined elsewhere in your code.
+        #endif
+    }
+    else {
+        PrintLog("Engine is not online, cannot open website.");
+    }
+}
+
 void SendEntity(int *entityID, int *verify)
 {
     if (!sendCounter) {

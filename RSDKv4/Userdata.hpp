@@ -188,6 +188,7 @@ void ShowLeaderboardsScreen();
 
 void Connect2PVS(int *gameLength, int *itemMode);
 void Disconnect2PVS();
+void OpenWebsite(int *value);
 void SendEntity(int *entityID, int *verify);
 void SendValue(int *value, int *verify);
 void ReceiveEntity(int *entityID, int *incrementPos);

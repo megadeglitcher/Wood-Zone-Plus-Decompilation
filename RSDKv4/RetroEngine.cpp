@@ -1191,6 +1191,7 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
 #endif
     AddNativeFunction("Connect2PVS", Connect2PVS);
     AddNativeFunction("Disconnect2PVS", Disconnect2PVS);
+    AddNativeFunction("OpenWebsite", OpenWebsite);
     AddNativeFunction("SendEntity", SendEntity);
     AddNativeFunction("SendValue", SendValue);
     AddNativeFunction("ReceiveEntity", ReceiveEntity);
