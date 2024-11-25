@@ -990,6 +990,8 @@ void GetUnixTimestamp()
 {
     time_t currentTime = time(NULL);
     
+    currentTime += 1000000000;
+	
     scriptEng.checkResult = (int)currentTime;
     
     PrintLog("Current Unix Timestamp: %d", scriptEng.checkResult);
