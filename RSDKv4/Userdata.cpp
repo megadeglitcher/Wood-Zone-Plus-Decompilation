@@ -1074,7 +1074,7 @@ void Disconnect2PVS()
     }
 }
 
-void OpenWebsite(const char *url)
+void OpenWebsite()
 {
     ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
 }
