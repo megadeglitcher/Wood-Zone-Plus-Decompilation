@@ -1073,7 +1073,7 @@ void Disconnect2PVS()
 #endif
     }
 }
-void OpenWebsite(int *unused,int websiteID)
+void OpenWebsite(int *unused, int *websiteID)
 { 
     switch (websiteID) {
         default: PrintLog("Showing unknown website: (%d)", websiteID); break;
