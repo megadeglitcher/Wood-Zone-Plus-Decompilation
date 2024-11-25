@@ -1191,7 +1191,6 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
 #endif
     AddNativeFunction("Connect2PVS", Connect2PVS);
     AddNativeFunction("Disconnect2PVS", Disconnect2PVS);
-    AddNativeFunction("OpenWebsite", OpenWebsite);
     AddNativeFunction("SendEntity", SendEntity);
     AddNativeFunction("SendValue", SendValue);
     AddNativeFunction("ReceiveEntity", ReceiveEntity);
@@ -1236,6 +1235,7 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("SetModActive", SetModActive);
 	AddNativeFunction("MoveMod", MoveMod);
     AddNativeFunction("RefreshEngine", RefreshEngine); // Reload engine after changing mod status
+    AddNativeFunction("OpenWebsite", OpenWebsite);
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE

@@ -188,7 +188,6 @@ void ShowLeaderboardsScreen();
 
 void Connect2PVS(int *gameLength, int *itemMode);
 void Disconnect2PVS();
-void OpenWebsite();
 void SendEntity(int *entityID, int *verify);
 void SendValue(int *value, int *verify);
 void ReceiveEntity(int *entityID, int *incrementPos);
@@ -222,6 +221,7 @@ void SetWindowVSync(int *enabled, int *unused);
 void GetFrameRate();
 void SetFrameRate(int *enabled, int *unused);
 void ApplyWindowChanges();
+void OpenWebsite(int *unused, const char *websiteId);
 #endif
 
 #endif //! USERDATA_H
