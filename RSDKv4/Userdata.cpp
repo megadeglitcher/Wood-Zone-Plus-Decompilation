@@ -1,4 +1,5 @@
 #include "RetroEngine.hpp"
+#include <windows.h>
 
 // Your guess is as good as mine
 #if RETRO_PLATFORM == RETRO_SWITCH
@@ -1078,15 +1079,13 @@ void OpenWebsite(const char *url)
     PrintLog("Attempting to open website: \"%s\"", url);
 
     if (Engine.onlineActive) {
-        // Assuming you have a method to actually open a website (for example, through a browser or web view)
-        #if RETRO_USE_NETWORKING
-        OpenURL(url);  // Hypothetical function to open a URL. This should be defined elsewhere in your code.
-        #endif
-    }
-    else {
+        // Open URL using ShellExecute (Windows API)
+        ShellExecute(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
+    } else {
         PrintLog("Engine is not online, cannot open website.");
     }
 }
+
 
 void SendEntity(int *entityID, int *verify)
 {
