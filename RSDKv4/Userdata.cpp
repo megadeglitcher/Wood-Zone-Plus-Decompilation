@@ -1074,13 +1074,18 @@ void Disconnect2PVS()
     }
 }
 void OpenWebsite(int *unused, int *websiteID)
-{ 
-    switch (websiteID) {
-        default: PrintLog("Showing unknown website: (%d)", websiteID); break;
-        case 0: ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL); break;
-        case 1: ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); break;
+{
+    switch (*websiteID) {
+        default: 
+            PrintLog("Showing unknown website: (%d)", *websiteID); 
+            break;
+        case 0: 
+            ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL); 
+            break;
+        case 1: 
+            ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); 
+            break;
     }
-
 }
 
 void SendEntity(int *entityID, int *verify)
