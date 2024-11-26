@@ -1100,35 +1100,7 @@ void Disconnect2PVS()
 
 void IsOBSOpen()
 {
-    DWORD aProcesses[1024], cbNeeded, cProcesses;
-    unsigned int i;
-
-    if (!EnumProcesses(aProcesses, sizeof(aProcesses), &cbNeeded)) {
-        scriptEng.checkResult = false;
-        return;
-    }
-
-    cProcesses = cbNeeded / sizeof(DWORD);
-
-    for (i = 0; i < cProcesses; i++) {
-        if (aProcesses[i] != 0) {
-            TCHAR szProcessName[MAX_PATH] = {0};
-
-            HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, aProcesses[i]);
-            if (hProcess) {
-                if (GetModuleBaseName(hProcess, NULL, szProcessName, sizeof(szProcessName) / sizeof(TCHAR))) {
-                    if (_tcsicmp(szProcessName, _T("obs64.exe")) == 0) {
-                        CloseHandle(hProcess);
-                        scriptEng.checkResult = true;
-                        return;
-                    }
-                }
-                CloseHandle(hProcess);
-            }
-        }
-    }
-
-    scriptEng.checkResult = false;
+    scriptEng.checkResult = (FindWindow(NULL, L"OBS Studio") != NULL);
 }
 
 void OpenWebsite(int *unused, int *websiteID)
