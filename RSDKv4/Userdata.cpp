@@ -1005,7 +1005,7 @@ void GetLocalUnixTimestamp()
         PrintLog("Local Unix Timestamp: %d", scriptEng.checkResult);
     } else {
         PrintLog("Failed to convert to local time");
-        scriptEng.checkResult = 80012
+        scriptEng.checkResult = 80012;
     }
 }
 
