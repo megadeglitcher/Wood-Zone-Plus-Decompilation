@@ -1097,12 +1097,6 @@ void Disconnect2PVS()
 #endif
     }
 }
-
-void IsOBSOpen()
-{
-    scriptEng.checkResult = (FindWindow(NULL, L"OBS Studio") != NULL);
-}
-
 void OpenWebsite(int *unused, int *websiteID)
 {
 #if RETRO_PLATFORM == RETRO_OSX || RETRO_PLATFORM == RETRO_LINUX

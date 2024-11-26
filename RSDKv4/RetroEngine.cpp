@@ -1238,7 +1238,6 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("OpenWebsite", OpenWebsite);
     AddNativeFunction("GetUnixTimestamp", GetUnixTimestamp);
     AddNativeFunction("GetLocalUnixTimestamp", GetLocalUnixTimestamp);
-    AddNativeFunction("IsOBSOpen", IsOBSOpen);
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE
