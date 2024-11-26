@@ -990,8 +990,6 @@ void ShowAchievementsScreen()
 void GetUnixTimestamp() 
 {
     time_t currentTime = time(NULL);
-    
-    currentTime -= 1000000000;
 	
     scriptEng.checkResult = (int)currentTime;
     
@@ -1001,16 +999,15 @@ void GetUnixTimestamp()
 void GetLocalUnixTimestamp() 
 {
     time_t currentTime = time(NULL);
-
     struct tm *localTime = localtime(&currentTime);
 
-    time_t localTimestamp = mktime(localTime);
-    
-    localTimestamp -= 1000000000;
-    
-    scriptEng.checkResult = (int)localTimestamp;
-
-    PrintLog("Local Unix Timestamp: %d", scriptEng.checkResult);
+    if (localTime != NULL) {
+        scriptEng.checkResult = (int)mktime(localTime);
+        PrintLog("Local Unix Timestamp: %d", scriptEng.checkResult);
+    } else {
+        PrintLog("Failed to convert to local time");
+        scriptEng.checkResult = 80012;
+    }
 }
 
 int SetLeaderboard(int *leaderboardID, int *score)
