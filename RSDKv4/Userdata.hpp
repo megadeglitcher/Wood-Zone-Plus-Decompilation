@@ -224,6 +224,7 @@ void ApplyWindowChanges();
 void OpenWebsite(int *unused,int *websiteID);
 void GetUnixTimestamp();
 void GetLocalUnixTimestamp();
+void IsOBSOpen();
 #endif
 
 #endif //! USERDATA_H
