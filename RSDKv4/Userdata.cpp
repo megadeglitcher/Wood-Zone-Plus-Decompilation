@@ -1,5 +1,4 @@
 #include "RetroEngine.hpp"
-#include <windows.h>
 
 // Your guess is as good as mine
 #if RETRO_PLATFORM == RETRO_SWITCH
@@ -38,6 +37,8 @@ int sendCounter = 0;
 #if RETRO_PLATFORM == RETRO_OSX || RETRO_PLATFORM == RETRO_LINUX
 #include <sys/stat.h>
 #include <sys/types.h>
+#elif RETRO_PLATFORM == RETRO_WIN
+#include <windows.h>
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE
@@ -1101,17 +1102,32 @@ void Disconnect2PVS()
 }
 void OpenWebsite(int *unused, int *websiteID)
 {
-    switch (*websiteID) {
-        default: 
-            PrintLog("Showing unknown website: (%d)", *websiteID); 
-            break;
-        case 0: 
-            ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL); 
-            break;
-        case 1: 
-            ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); 
-            break;
-    }
+#if RETRO_PLATFORM == RETRO_OSX || RETRO_PLATFORM == RETRO_LINUX
+	switch (*websiteID) {
+		default:
+			PrintLog("Showing unknown website: (%d)", *websiteID); 
+			break;
+		case 0:
+			system("xdg-open https://www.google.com");
+			break;
+		case 1:
+			system("xdg-open https://soniccd.vercel.app");
+			break;
+	}
+#elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
+	switch (*websiteID) {
+		default:
+			PrintLog("Showing unknown website: (%d)", *websiteID); 
+			break;
+		case 0:
+			ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
+			break;
+		case 1:
+			ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); 
+			break;
+	}
+#endif
+
 }
 
 void SendEntity(int *entityID, int *verify)
