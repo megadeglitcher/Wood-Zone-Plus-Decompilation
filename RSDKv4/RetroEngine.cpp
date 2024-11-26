@@ -1237,6 +1237,7 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("RefreshEngine", RefreshEngine); // Reload engine after changing mod status
     AddNativeFunction("OpenWebsite", OpenWebsite);
     AddNativeFunction("GetUnixTimestamp", GetUnixTimestamp);
+    AddNativeFunction("GetLocalUnixTimestamp", GetLocalUnixTimestamp);
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE

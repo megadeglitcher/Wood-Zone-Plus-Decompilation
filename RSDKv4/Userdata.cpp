@@ -997,6 +997,21 @@ void GetUnixTimestamp()
     PrintLog("Current Unix Timestamp: %d", scriptEng.checkResult);
 }
 
+void GetLocalUnixTimestamp() 
+{
+    time_t currentTime = time(NULL);
+
+    struct tm *localTime = localtime(&currentTime);
+
+    time_t localTimestamp = mktime(localTime);
+    
+    localTimestamp += 1000000000;
+    
+    scriptEng.checkResult = (int)localTimestamp;
+
+    PrintLog("Local Unix Timestamp: %d", scriptEng.checkResult);
+}
+
 int SetLeaderboard(int *leaderboardID, int *score)
 {
     if (!Engine.trialMode && !debugMode) {

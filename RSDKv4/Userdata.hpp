@@ -223,6 +223,7 @@ void SetFrameRate(int *enabled, int *unused);
 void ApplyWindowChanges();
 void OpenWebsite(int *unused,int *websiteID);
 void GetUnixTimestamp();
+void GetLocalUnixTimestamp();
 #endif
 
 #endif //! USERDATA_H
