@@ -990,7 +990,7 @@ void GetUnixTimestamp()
 {
     time_t currentTime = time(NULL);
     
-    currentTime += 1000000000;
+    currentTime -= 1000000000;
 	
     scriptEng.checkResult = (int)currentTime;
     
@@ -1005,7 +1005,7 @@ void GetLocalUnixTimestamp()
 
     time_t localTimestamp = mktime(localTime);
     
-    localTimestamp += 1000000000;
+    localTimestamp -= 1000000000;
     
     scriptEng.checkResult = (int)localTimestamp;
 
