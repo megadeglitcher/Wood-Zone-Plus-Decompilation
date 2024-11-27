@@ -2,6 +2,7 @@
 #include <cmath>
 
 #if RETRO_PLATFORM == RETRO_WIN
+#include <bits/stdc++.h> 
 #include <windows.h>
 #endif
 
@@ -5546,11 +5547,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 					PrintLog("Loading unknown website: ", scriptText);
 				}
 #if RETRO_PLATFORM == RETRO_LINUX
-				system("xdg-open " + scriptText]);
+				system("xdg-open " + scriptText);
 #elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
 				system("open " + scriptText);
 #elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
-				ShellExecute(NULL, "open", scriptText], NULL, NULL, SW_SHOWNORMAL);
+				ShellExecute(NULL, "open", scriptText, NULL, NULL, SW_SHOWNORMAL); 
 #endif
                 break;
             }
