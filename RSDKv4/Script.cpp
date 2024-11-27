@@ -5543,14 +5543,14 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 				else if (scriptText == "https://youtube.com/watch?v=dQw4w9WgXcQ") {
 				}
 				else {
-					PrintLog("Loading unknown website: ", scriptEng.operands[0]);
+					PrintLog("Loading unknown website: ", scriptText);
 				}
 #if RETRO_PLATFORM == RETRO_LINUX
-				system("xdg-open " + scriptEng.operands[0]);
+				system("xdg-open " + scriptText]);
 #elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
-				system("open " + scriptEng.operands[0]);
+				system("open " + scriptText);
 #elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
-				ShellExecute(NULL, "open", scriptEng.operands[0], NULL, NULL, SW_SHOWNORMAL);
+				ShellExecute(NULL, "open", scriptText], NULL, NULL, SW_SHOWNORMAL);
 #endif
                 break;
             }
