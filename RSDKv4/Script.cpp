@@ -5535,9 +5535,10 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
             }
             case FUNC_LOADWEBSITE: {
-				if (scriptEng.operands[0] == "https://www.google.com")
-				else if (scriptEng.operands[0] == "https://soniccd.vercel.app")
-				else if (scriptEng.operands[0] == "https://youtube.com/watch?v=dQw4w9WgXcQ")
+            	opcodeSize = 0;
+				if (scriptText == "https://www.google.com")
+				else if (scriptText == "https://soniccd.vercel.app")
+				else if (scriptText == "https://youtube.com/watch?v=dQw4w9WgXcQ")
 				else
 					PrintLog("Loading unknown website: ", scriptEng.operands[0]);
 				end if
