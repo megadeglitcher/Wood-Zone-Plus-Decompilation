@@ -557,6 +557,7 @@ const FunctionInfo functions[] = {
 #endif
     FunctionInfo("Print", 3),
     FunctionInfo("CalculateObjectRotation", 0),
+    FunctionInfo("LoadWebsite", 1)
 };
 
 #if RETRO_USE_COMPILER
@@ -1153,6 +1154,7 @@ enum ScrFunc {
 #endif
     FUNC_PRINT,
     FUNC_CALCULATEOBJECTROTATION,
+    FUNC_LOADWEBSITE,
     FUNC_MAX_CNT
 };
 
@@ -5526,6 +5528,19 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             case FUNC_CALCULATEOBJECTROTATION: {
                 opcodeSize = 0;
                 ProcessTileRotation(entity);
+                break;
+            }
+            case FUNC_LOADWEBSITE: {
+				if (scriptEng.operands[0] == "https://www.google.com" || scriptEng.operands[0] == "https://soniccd.vercel.app" || scriptEng.operands[0] == "https://youtube.com/watch?v=dQw4w9WgXcQ")
+					PrintLog("Loading unknown website: ", scriptEng.operands[0]);
+				end if
+#if RETRO_PLATFORM == RETRO_LINUX
+				system("xdg-open " + scriptEng.operands[0]);
+#elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
+				system("open " + scriptEng.operands[0]);
+#elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
+				ShellExecute(NULL, "open", scriptEng.operands[0], NULL, NULL, SW_SHOWNORMAL);
+#endif
                 break;
             }
         }
