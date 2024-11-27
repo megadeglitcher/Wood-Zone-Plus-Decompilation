@@ -1100,46 +1100,31 @@ void Disconnect2PVS()
 void OpenWebsite(int *unused, int *websiteID)
 {
 #if RETRO_PLATFORM == RETRO_OSX || RETRO_PLATFORM == RETRO_LINUX
-    switch (*websiteID) {
-        default:
-            PrintLog("Showing unknown website: (%d)", *websiteID); 
-            break;
-        case 0:
-            system("xdg-open https://www.google.com");
-            break;
-        case 1:
-            system("xdg-open https://soniccd.vercel.app");
-            break;
-        case 2:
-            if (unused) {
-                char command[1024];
-                snprintf(command, sizeof(command), "xdg-open %s", (char *)unused);
-                system(command);
-            } else {
-                PrintLog("Invalid URL: *unused is NULL");
-            }
-            break;
-    }
+	switch (*websiteID) {
+		default:
+			PrintLog("Showing unknown website: (%d)", *websiteID); 
+			break;
+		case 0:
+			system("xdg-open https://www.google.com");
+			break;
+		case 1:
+			system("xdg-open https://soniccd.vercel.app");
+			break;
+	}
 #elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
-    switch (*websiteID) {
-        default:
-            PrintLog("Showing unknown website: (%d)", *websiteID); 
-            break;
-        case 0:
-            ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
-            break;
-        case 1:
-            ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); 
-            break;
-        case 2:
-            if (unused) {
-                ShellExecuteW(NULL, L"open", (wchar_t *)unused, NULL, NULL, SW_SHOWNORMAL);
-            } else {
-                PrintLog("Invalid URL: *unused is NULL");
-            }
-            break;
-    }
+	switch (*websiteID) {
+		default:
+			PrintLog("Showing unknown website: (%d)", *websiteID); 
+			break;
+		case 0:
+			ShellExecuteW(NULL, L"open", L"https://www.google.com", NULL, NULL, SW_SHOWNORMAL);
+			break;
+		case 1:
+			ShellExecuteW(NULL, L"open", L"https://soniccd.vercel.app", NULL, NULL, SW_SHOWNORMAL); 
+			break;
+	}
 #endif
+
 }
 
 void SendEntity(int *entityID, int *verify)
