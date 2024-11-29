@@ -5551,23 +5551,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 break;
             }
             case FUNC_LOADWEBSITE: {
-            	opcodeSize = 0;
-				if (scriptText == "https://www.google.com") {
-				}
-				else if (scriptText == "https://soniccd.vercel.app") {
-				}
-				else if (scriptText == "https://youtube.com/watch?v=dQw4w9WgXcQ") {
-				}
-				else {
-					PrintLog("Loading unknown website: ", scriptText);
-				}
-#if RETRO_PLATFORM == RETRO_LINUX
-				system("xdg-open " + scriptText);
-#elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
-				system("open " + scriptText);
-#elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
-				ShellExecute(NULL, "open", scriptText, NULL, NULL, SW_SHOWNORMAL); 
-#endif
+                PrintLog("nah");
                 break;
             }
         }
