@@ -4725,9 +4725,10 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 opcodeSize  = 0;
                 spriteFrame = &scriptFrames[scriptInfo->frameListOffset + scriptEng.operands[0]];
 				if (entity->inkEffect == 7) {
-					DrawScaledTintMask(entity->direction, scriptEng.operands[2], scriptEng.operands[3], -spriteFrame->pivotX,
-									   -spriteFrame->pivotY, entity->scale, entity->scale, spriteFrame->width, spriteFrame->height,
-									   spriteFrame->sprX, spriteFrame->sprY, scriptInfo->spriteSheetID);
+					DrawScaledTintMask(entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
+									   (scriptEng.operands[3] >> 16) - yScrollOffset, -spriteFrame->pivotX, -spriteFrame->pivotY,
+									   entity->scale, entity->scale, spriteFrame->width, spriteFrame->height, spriteFrame->sprX,
+									   spriteFrame->sprY, scriptInfo->spriteSheetID);
 				}
 				else {
 					DrawSpriteAllEffect(entity, entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
@@ -4848,10 +4849,9 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 opcodeSize  = 0;
                 spriteFrame = &scriptFrames[scriptInfo->frameListOffset + scriptEng.operands[0]];		   
 				if (entity->inkEffect == 7) {
-					DrawScaledTintMask(entity->direction, (scriptEng.operands[2] >> 16) - xScrollOffset,
-									   (scriptEng.operands[3] >> 16) - yScrollOffset, -spriteFrame->pivotX, -spriteFrame->pivotY,
-									   entity->scale, entity->scale, spriteFrame->width, spriteFrame->height, spriteFrame->sprX,
-									   spriteFrame->sprY, scriptInfo->spriteSheetID);
+					DrawScaledTintMask(entity->direction, scriptEng.operands[2], scriptEng.operands[3], -spriteFrame->pivotX,
+									   -spriteFrame->pivotY, entity->scale, entity->scale, spriteFrame->width, spriteFrame->height,
+									   spriteFrame->sprX, spriteFrame->sprY, scriptInfo->spriteSheetID);
 				}
 				else {
 					DrawSpriteAllEffect(entity, entity->direction, scriptEng.operands[2], scriptEng.operands[3], -spriteFrame->pivotX,
