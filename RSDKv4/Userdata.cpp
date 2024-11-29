@@ -992,8 +992,6 @@ void GetUnixTimestamp()
     time_t currentTime = time(NULL);
 	
     scriptEng.checkResult = (int)currentTime;
-    
-    PrintLog("Current Unix Timestamp: %d", scriptEng.checkResult);
 }
 
 void GetLocalUnixTimestamp() 
