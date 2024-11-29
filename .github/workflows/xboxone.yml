@@ -25,8 +25,6 @@ jobs:
             .\vs_community.exe modify --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
-        with:
-          vs-version: '[14.0,17.8.4)'
       - name: Install Visual Studio 2015 Build Tools
         run: |
           choco install microsoft-build-tools --force --yes
@@ -60,7 +58,7 @@ jobs:
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
-          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
+          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props" /p:PlatformToolset=v143
       - name: Move artifacts
         run: |
           mkdir artifacts
