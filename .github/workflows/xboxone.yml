@@ -23,6 +23,7 @@ jobs:
             nuget restore RSDKv4.UWP.sln
             cd RSDKv4
             .\vs_community.exe modify --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
+            choco install hg
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
       - name: Install Visual Studio 2015 Build Tools
@@ -47,6 +48,7 @@ jobs:
           Invoke-WebRequest -Uri "https://github.com/cedricp/sdl2/archive/refs/heads/master.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
+          hg revert SDL2/include/SDL_config.h
       - name: Download Theora
         run: |
          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
