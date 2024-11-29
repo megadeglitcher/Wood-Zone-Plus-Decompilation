@@ -24,7 +24,9 @@ jobs:
             cd RSDKv4
             .\vs_community.exe modify --wait --norestart --quiet --add "Microsoft.VisualStudio.Workload.Universal"
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '[14.0,17.8.4)'
       - name: Install Visual Studio 2015 Build Tools
         run: |
           choco install microsoft-build-tools --force --yes
