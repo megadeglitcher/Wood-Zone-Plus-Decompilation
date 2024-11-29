@@ -2,7 +2,6 @@
 #include <cmath>
 
 #if RETRO_PLATFORM == RETRO_WIN
-#include <bits/stdc++.h> 
 #include <windows.h>
 #endif
 
