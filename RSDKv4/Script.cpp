@@ -5561,7 +5561,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 				else if (scriptText == "youtube.com/watch?v=dQw4w9WgXcQ") {
 				}
 				else {
-					PrintLog();
+					PrintLog(temporar);
 				}
 		 		char temporarTheSecond[100];
 #if RETRO_PLATFORM == RETRO_LINUX // the peak
