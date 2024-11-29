@@ -5575,7 +5575,8 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 #elif RETRO_PLATFORM == RETRO_WIN // the stink
 				strcpy(temporarTheSecond, "https://");
 				strcat(temporarTheSecond, scriptText);
-				ShellExecuteA(NULL,"start",temporarTheSecond.c_str(),NULL,NULL,SW_SHOW);
+				std::string websit = temporarTheSecond
+				ShellExecuteA(NULL,"start",websit.c_str(),NULL,NULL,SW_SHOW);
 #endif
                 break;
             }
