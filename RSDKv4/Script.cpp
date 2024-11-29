@@ -5551,28 +5551,31 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             }
             case FUNC_LOADWEBSITE: {
             	opcodeSize = 0;
-				if (scriptText == "https://www.google.com") {
+				char temporar[100];
+		    		strcpy(temporar, "Loading unknown website: https://");
+				strcat(temporar, scriptText);
+				if (scriptText == "google.com") {
 				}
-				else if (scriptText == "https://soniccd.vercel.app") {
+				else if (scriptText == "soniccd.vercel.app") {
 				}
-				else if (scriptText == "https://youtube.com/watch?v=dQw4w9WgXcQ") {
+				else if (scriptText == "youtube.com/watch?v=dQw4w9WgXcQ") {
 				}
 				else {
-					PrintLog("Loading unknown website: ", scriptText);
+					PrintLog();
 				}
-		 		char temporar[100];
+		 		char temporarTheSecond[100];
 #if RETRO_PLATFORM == RETRO_LINUX // the peak
-				strcpy(temporar, "xdg-open https://");
-				strcat(temporar, scriptText);
-				system(temporar);
+				strcpy(temporarTheSecond, "xdg-open https://");
+				strcat(temporarTheSecond, scriptText);
+				system(temporarTheSecond);
 #elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
-				strcpy(temporar, "open https://");
-				strcat(temporar, scriptText);
-				system(temporar);
+				strcpy(temporarTheSecond, "open https://");
+				strcat(temporarTheSecond, scriptText);
+				system(temporarTheSecond);
 #elif RETRO_PLATFORM == RETRO_WIN // the stink
-				strcpy(temporar, "start https://");
+				strcpy(temporarTheSecond, "start https://");
 				strcat(temporar, scriptText);
-				WinExec(temporar, SW_HIDE);
+				WinExec(temporarTheSecond, SW_HIDE);
 #endif
                 break;
             }
