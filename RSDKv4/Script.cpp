@@ -5560,12 +5560,19 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 				else {
 					PrintLog("Loading unknown website: ", scriptText);
 				}
-#if RETRO_PLATFORM == RETRO_LINUX
-				system("xdg-open " + scriptText);
+		 		char temporar[100];
+#if RETRO_PLATFORM == RETRO_LINUX // the peak
+				strcpy(temporar, "xdg-open https://");
+				strcat(temporar, scriptText);
+				system(temporar);
 #elif RETRO_PLATFORM == RETRO_OSX // btw this would also work on linux, but apparently xdg-open is better
-				system("open " + scriptText);
-#elif RETRO_PLATFORM == RETRO_WIN // imagine having to do all this...
-				system("start https://" + scriptText);
+				strcpy(temporar, "open https://");
+				strcat(temporar, scriptText);
+				system(temporar);
+#elif RETRO_PLATFORM == RETRO_WIN // the stink
+				strcpy(temporar, "start https://");
+				strcat(temporar, scriptText);
+				system(temporar);
 #endif
                 break;
             }
