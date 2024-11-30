@@ -1,10 +1,10 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
-#define SURFACE_COUNT (48)
-#define GFXDATA_SIZE (0x4000 * 0x4000)
+#define SURFACE_COUNT (96)
+#define GFXDATA_SIZE (0x8000 * 0x8000)
 
-#define DRAWLAYER_COUNT (7)
+#define DRAWLAYER_COUNT (10)
 
 //changing DrawFXFlags so they can be merged with binary
 #define FX_FLIP (1)
@@ -26,7 +26,7 @@ struct DrawListEntry {
 };
 
 struct GFXSurface {
-    char fileName[0x40];
+    char fileName[0x80];
     int height;
     int width;
 #if RETRO_SOFTWARE_RENDER
