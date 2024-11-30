@@ -533,10 +533,14 @@ const FunctionInfo functions[] = {
     FunctionInfo("ReadSaveRAM", 0),
     FunctionInfo("WriteSaveRAM", 0),
 
+#if RETRO_REV00 || RETRO_REV01
     FunctionInfo("LoadFontFile", 1),
+#endif
     FunctionInfo("LoadTextFile", RETRO_REV02 ? 2 : 3),
     FunctionInfo("GetTextInfo", 5),
+#if RETRO_REV00 || RETRO_REV01
     FunctionInfo("DrawText", 7),
+#endif
     FunctionInfo("GetVersionNumber", 2),
 
     FunctionInfo("GetTableValue", 3),
@@ -1130,10 +1134,14 @@ enum ScrFunc {
     FUNC_GETANIMATIONBYNAME,
     FUNC_READSAVERAM,
     FUNC_WRITESAVERAM,
+#if RETRO_REV00 || RETRO_REV01
     FUNC_LOADTEXTFONT,
+#endif
     FUNC_LOADTEXTFILE,
     FUNC_GETTEXTINFO,
+#if RETRO_REV00 || RETRO_REV01
     FUNC_DRAWTEXT,
+#endif
     FUNC_GETVERSIONNUMBER,
     FUNC_GETTABLEVALUE,
     FUNC_SETTABLEVALUE,
@@ -1143,9 +1151,11 @@ enum ScrFunc {
     FUNC_CALLNATIVEFUNCTION2,
     FUNC_CALLNATIVEFUNCTION4,
     FUNC_SETOBJECTRANGE,
+#if !RETRO_REV00 && !RETRO_REV01
     FUNC_GETOBJECTVALUE,
     FUNC_SETOBJECTVALUE,
     FUNC_COPYOBJECT,
+#endif
     FUNC_PRINT,
     FUNC_CALCULATEOBJECTROTATION,
     FUNC_LOADWEBSITE,
@@ -5383,11 +5393,13 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 opcodeSize            = 0;
                 scriptEng.checkResult = WriteSaveRAMData();
                 break;
+#if RETRO_REV00 || RETRO_REV01
             case FUNC_LOADTEXTFONT: {
                 opcodeSize = 0;
                 LoadFontFile(scriptText);
                 break;
             }
+#endif
             case FUNC_LOADTEXTFILE: {
                 opcodeSize     = 0;
                 TextMenu *menu = &gameMenu[scriptEng.operands[0]];
@@ -5409,6 +5421,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                 }
                 break;
             }
+#if RETRO_REV00 || RETRO_REV01
             case FUNC_DRAWTEXT: {
                 opcodeSize        = 0;
                 textMenuSurfaceNo = scriptInfo->spriteSheetID;
@@ -5417,6 +5430,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                                scriptEng.operands[5], scriptEng.operands[6]);
                 break;
             }
+#endif
             case FUNC_GETVERSIONNUMBER: {
                 opcodeSize                           = 0;
                 TextMenu *menu                       = &gameMenu[scriptEng.operands[0]];

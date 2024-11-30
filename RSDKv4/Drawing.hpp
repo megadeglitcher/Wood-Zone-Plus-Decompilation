@@ -1,10 +1,10 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
-#define SURFACE_COUNT (96)
-#define GFXDATA_SIZE (0x8000 * 0x8000)
+#define SURFACE_COUNT (48)
+#define GFXDATA_SIZE (0x4000 * 0x4000)
 
-#define DRAWLAYER_COUNT (10)
+#define DRAWLAYER_COUNT (7)
 
 //changing DrawFXFlags so they can be merged with binary
 #define FX_FLIP (1)
@@ -26,7 +26,7 @@ struct DrawListEntry {
 };
 
 struct GFXSurface {
-    char fileName[0x80];
+    char fileName[0x40];
     int height;
     int width;
 #if RETRO_SOFTWARE_RENDER
@@ -155,7 +155,11 @@ void DrawFace(void *v, uint color);
 void DrawFadedFace(void *v, uint color, uint fogColor, int alpha);
 void DrawTexturedFace(void *v, byte sheetID);
 void DrawTexturedFaceBlended(void *v, byte sheetID);
+
+#if RETRO_REV00 || RETRO_REV01
 void DrawBitmapText(void *menu, int XPos, int YPos, int scale, int spacing, int rowStart, int rowCount);
+#endif
+
 void DrawTextMenu(void *menu, int XPos, int YPos);
 void DrawTextMenuEntry(void *menu, int rowID, int XPos, int YPos, int textHighlight);
 void DrawStageTextEntry(void *menu, int rowID, int XPos, int YPos, int textHighlight);
