@@ -39,7 +39,7 @@ jobs:
           Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora glew
+          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora
           vcpkg integrate install
       - name: Build Would Zon Ploos
         run: |
@@ -88,7 +88,7 @@ jobs:
           Rename-Item ./dependencies/windows/libtheora-1.1.1 libtheora
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static libtheora:x86-windows-static glew:x86-windows-static
+          vcpkg install libogg:x86-windows-static-md libvorbis:x86-windows-static libtheora:x86-windows-static 
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
@@ -103,62 +103,4 @@ jobs:
         with:
           name: v4-windows
           path: artifacts
-  WZ_XboxOne:
-      runs-on: windows-latest
-      steps:
-      - uses: nuget/setup-nuget@v2
-      - uses: Cyberboss/install-winget@v1
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-      - name: Setup Chocolatey & Windows Stuff
-        run : |
-            Set-ExecutionPolicy Bypass -Scope Process -Force;
-            iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-            choco install windows-sdk-10.0 -y
-            winget install --id=Microsoft.BuildTools2015 --accept-source-agreements --accept-package-agreements -e 
-            nuget install Microsoft.Windows.CppWinRT -Version 2.0.240405.15
-            nuget restore RSDKv4.UWP.sln
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
-      - name: Download libogg and libvorbis for easier includes
-        run: |
-          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/ogg/libogg-1.3.5.zip" -OutFile "libogg.zip"
-          Expand-Archive -Path libogg.zip -DestinationPath ./dependencies/windows-uwp/
-          Rename-Item ./dependencies/windows-uwp/libogg-1.3.5 libogg
-          Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/vorbis/libvorbis-1.3.7.zip" -OutFile "libvorbis.zip"
-          Expand-Archive -Path libvorbis.zip -DestinationPath ./dependencies/windows-uwp/
-          Rename-Item ./dependencies/windows-uwp/libvorbis-1.3.7 libvorbis
-      - name: Download GLEW
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0-win32.zip" -OutFile "GLEW.zip"
-          Expand-Archive -Path GLEW.zip -DestinationPath ./dependencies/windows-uwp/
-          Rename-Item ./dependencies/windows-uwp/glew-2.2.0 glew
-      - name: Download SDL2
-        run: |
-          Invoke-WebRequest -Uri "https://github.com/cedricp/sdl2/archive/refs/heads/master.zip" -OutFile "SDL2.zip"
-          Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
-          Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
-      - name: Download Theora
-        run: |
-         Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
-          Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/windows-uwp
-          Rename-Item ./dependencies/windows-uwp/libtheora-1.1.1 libtheora
-      - name: Run vcpkg
-        run: |
-          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp glew:arm64-uwp --allow-unsupported
-          vcpkg integrate install
-      - name: Build RSDKv4
-        run: |
-          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props"
-      - name: Move artifacts
-        run: |
-          mkdir artifacts
-          move ./build/ARM/Release/* ./artifacts 
-          move ./build/ARM/Release/* ./artifacts
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: v4-xboxone
-          path: artifacts
+  
