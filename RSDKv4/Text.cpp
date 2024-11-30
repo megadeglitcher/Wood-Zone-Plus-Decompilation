@@ -7,7 +7,6 @@ char playerListText[0x80][0x20];
 
 BitmapFont fontList[FONTLIST_COUNT];
 
-#if RETRO_REV00 || RETRO_REV01
 FontCharacter fontCharacterList[FONTCHAR_COUNT];
 
 void LoadFontFile(const char *filePath)
@@ -87,7 +86,6 @@ void LoadFontFile(const char *filePath)
         CloseFile();
     }
 }
-#endif
 
 void LoadTextFile(TextMenu *menu, const char *filePath, byte mapCode)
 {
