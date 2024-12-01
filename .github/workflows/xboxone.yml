@@ -53,7 +53,7 @@ jobs:
           Rename-Item ./dependencies/windows/glew-2.2.0 glew
       - name: Download SDL2
         run: |
-          Invoke-WebRequest -Uri "https://github.com/cedricp/sdl2/archive/refs/heads/master.zip" -OutFile "SDL2.zip"
+          Invoke-WebRequest -Uri "https://github.com/aerisarn/SDL-uwp-gl/archive/refs/heads/release-2.28.5-uwp-gl.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
           Copy-Item -Path ./dependencies/windows-uwp/SDL_config.h -Destination ./dependencies/windows-uwp/SDL2/include
