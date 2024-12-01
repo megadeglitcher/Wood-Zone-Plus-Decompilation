@@ -67,7 +67,7 @@ jobs:
           Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
           Expand-Archive -Path libtheora.zip -DestinationPath ./dependencies/all
           Rename-Item ./dependencies/all/libtheora-1.1.1 libtheora
-          Copy-Item -Path ./dependencies/all/tinyxml2 -Destination ./dependencies/windows-uwp/tinyxml2
+          Copy-Item -Path ./dependencies/all/tinyxml2 -Destination ./dependencies/windows/tinyxml2
       - name: Run vcpkg
         run: |
           vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp sdl2:arm64-uwp sdl2 libtheora libogg:x64-windows-static-md libvorbis:x64-windows-static-md --allow-unsupported
