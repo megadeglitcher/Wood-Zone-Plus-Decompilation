@@ -48,6 +48,9 @@ jobs:
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
           Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
           Copy-Item -Path ./dependencies/windows-uwp/SDL_config.h -Destination ./dependencies/windows-uwp/SDL2/include
+          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-2.0.14-VC.zip" -OutFile "SDL2.zip"
+          Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows/
+          Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
       - name: Download Theora
         run: |
           Invoke-WebRequest -Uri "https://ftp.osuosl.org/pub/xiph/releases/theora/libtheora-1.1.1.zip" -OutFile "libtheora.zip"
