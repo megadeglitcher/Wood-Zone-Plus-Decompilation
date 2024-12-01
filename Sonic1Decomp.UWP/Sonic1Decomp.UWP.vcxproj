@@ -159,6 +159,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\dependencies\all\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\RSDKv4\Animation.cpp" />
     <ClCompile Include="..\RSDKv4\Audio.cpp" />
     <ClCompile Include="..\RSDKv4\Collision.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="..\RSDKv4\Userdata.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\dependencies\all\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\dependencies\windows-uwp\WinRTIncludes.hpp" />
     <ClInclude Include="..\RSDKv4\Animation.hpp" />
     <ClInclude Include="..\RSDKv4\Audio.hpp" />
