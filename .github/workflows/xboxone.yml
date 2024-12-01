@@ -55,8 +55,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri "https://github.com/aerisarn/SDL-uwp-gl/archive/refs/heads/release-2.28.5-uwp-gl.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows-uwp/
-          Rename-Item ./dependencies/windows-uwp/sdl2-master SDL2
-          Copy-Item -Path ./dependencies/windows-uwp/SDL_config.h -Destination ./dependencies/windows-uwp/SDL2/include
+          Rename-Item ./dependencies/windows-uwp/SDL-uwp-gl-release-2.28.5-uwp-gl SDL2
           Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-devel-2.0.14-VC.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/windows/
           Rename-Item ./dependencies/windows/SDL2-2.0.14 SDL2
