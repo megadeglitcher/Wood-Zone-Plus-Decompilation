@@ -54,7 +54,7 @@ typedef unsigned int uint;
 #include <WInRTIncludes.hpp>
 
 #define RETRO_PLATFORM   (RETRO_UWP)
-#define RETRO_DEVICETYPE (UAP_GetRetroGamePlatform())
+#define RETRO_DEVICETYPE (RETRO_STANDARD())
 #endif
 #else
 #define RETRO_PLATFORM   (RETRO_WIN)
@@ -199,7 +199,7 @@ typedef unsigned int uint;
 #if RETRO_PLATFORM == RETRO_LINUX
 #define RETRO_GAMEPLATFORMID (RETRO_WIN)
 #elif RETRO_PLATFORM == RETRO_UWP
-#define RETRO_GAMEPLATFORMID (UAP_GetRetroGamePlatformId())
+#define RETRO_GAMEPLATFORMID (RETRO_UWP)
 #elif RETRO_PLATFORM == RETRO_SWITCH
 #define RETRO_GAMEPLATFORMID (RETRO_SWITCH)
 #else
