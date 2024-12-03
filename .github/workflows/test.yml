@@ -1,4 +1,4 @@
-name: Build RSDKv4
+name: WZ+ (Windows)
 on:
   workflow_dispatch:
     branches:
