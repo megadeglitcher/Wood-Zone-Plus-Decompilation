@@ -336,8 +336,8 @@ extern bool engineDebugMode;
 
 // Native Entities
 #if RETRO_PLATFORM == RETRO_UWP
-	#include "PauseMenu.hpp"
-	#include "RetroGameLoop.hpp"
+	#include "../RSDKv4/NativeObjects/PauseMenu.hpp"
+	#include "../RSDKv4/NativeObjects/RetroGameLoop.hpp"
 #else
 	#include "NativeObjects.hpp"
 #endif
