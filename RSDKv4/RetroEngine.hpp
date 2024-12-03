@@ -335,7 +335,11 @@ extern bool engineDebugMode;
 #include "Video.hpp"
 
 // Native Entities
-#include "NativeObjects.hpp"
+#if RETRO_PLATFORM == RETRO_UWP
+    #include "../Sonic1Decomp.UWP/NativeObjects/NativeObjects.hpp"
+#else
+    #include "NativeObjects.hpp"
+#endif
 
 class RetroEngine
 {
