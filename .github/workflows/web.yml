@@ -41,14 +41,10 @@ jobs:
         run: |
           Set-ExecutionPolicy Bypass -Scope Process -Force;
           iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-          choco install make -y
-          choco install emscripten -y
-          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
-      - name: Activate Emscripten
-        run: |
-          run Set-ExecutionPolicy RemoteSigned
-          .\emsdk install latest
-          .\emsdk activate latest
+          choco install make -y                  
+      - name: Setup Emscripten toolchain
+        uses: mymindstorm/setup-emsdk@v14
+    
       - name: Run vcpkg
         run: |
           vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora
