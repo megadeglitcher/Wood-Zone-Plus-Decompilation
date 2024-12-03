@@ -43,7 +43,7 @@ jobs:
           iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
           choco install make -y
           choco install emscripten -y
-          refreshenv
+          Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
       - name: Activate Emscripten
         run: |
           run Set-ExecutionPolicy RemoteSigned
