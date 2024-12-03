@@ -59,9 +59,9 @@ jobs:
       - name: Move artifacts
         run: |
           mkdir artifacts
-          move ./build/x64/Release/* ./artifacts
+          move ./wasm/* ./artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: v4-windows-x64
+          name: v4-web
           path: artifacts
