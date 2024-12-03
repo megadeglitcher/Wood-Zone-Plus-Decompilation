@@ -205,10 +205,3 @@ endif
 
 clean:
 	rm -rf $(OBJDIR) && rm -rf $(BINPATH)
-
-wasm: $(SOURCES)
-	mkdir wasm; em++ -std=c++17 $^ -o wasm/index.html -g -lm --bind  -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s USE_OGG=1 -s USE_VORBIS=1 -s TOTAL_MEMORY=60MB -s ALLOW_MEMORY_GROWTH=1 --preload-file Data.rsdk
-
-wasm-windows: $(SOURCES)
-	mkdir wasm & em++ -std=c++17 $^ -o wasm/index.html -g -lm --bind  -s USE_SDL=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s USE_OGG=1 -s USE_VORBIS=1 -s TOTAL_MEMORY=60MB -s ALLOW_MEMORY_GROWTH=1 --preload-file Data.rsdk
-
