@@ -335,7 +335,12 @@ extern bool engineDebugMode;
 #include "Video.hpp"
 
 // Native Entities
-#include "NativeObjects.hpp"
+#if RETRO_PLATFORM == RETRO_UWP
+	#include "PauseMenu.hpp"
+	#include "RetroGameLoop.hpp"
+#else
+	#include "NativeObjects.hpp"
+#endif
 
 class RetroEngine
 {
