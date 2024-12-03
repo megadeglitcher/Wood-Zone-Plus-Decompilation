@@ -337,6 +337,7 @@ extern bool engineDebugMode;
 // Native Entities
 #if RETRO_PLATFORM == RETRO_UWP
     #include "../Sonic1Decomp.UWP/NativeObjects/NativeObjects.hpp"
+    #include "../Sonic1Decomp.UWP/NativeObjects/MenuBG.hpp"
 #else
     #include "NativeObjects.hpp"
 #endif
