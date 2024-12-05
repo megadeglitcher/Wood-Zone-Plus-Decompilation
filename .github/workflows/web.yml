@@ -47,7 +47,7 @@ jobs:
     
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora
+          vcpkg install libogg:x64-windows-static-md libvorbis:x64-windows-static-md libtheora sdl2
           vcpkg integrate install
       - name: Build Would Zon Ploos
         run: |
