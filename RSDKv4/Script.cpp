@@ -4154,9 +4154,9 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     }
                     case VAR_PCUSERNAME: { //SHOULD work on MacOS
 #if RETRO_PLATFORM == RETRO_WIN //Does work on Windows but does PCName/Username so
-                        scriptEng.operands[i] = system("echo %USERNAME%");
+                        scriptEng.operands[i] = system("echo %USERNAME%")
 #else
-                        scriptEng.operands[i] = system("whoami");
+                        scriptEng.operands[i] = system("whoami")
 #endif
                         break;
                     }
