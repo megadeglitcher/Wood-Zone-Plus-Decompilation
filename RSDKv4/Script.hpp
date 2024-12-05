@@ -28,10 +28,9 @@ struct ObjectScript {
 
 struct ScriptEngine {
     int operands[0x10];
-    int temp[10];
+    int temp[8];
     int arrayPosition[9];
     int checkResult;
-    int PCUsername;
 };
 
 #if RETRO_USE_COMPILER
