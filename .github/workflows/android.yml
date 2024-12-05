@@ -107,8 +107,8 @@ jobs:
       - name: Download SDL2
         run: |
           Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.28.3.zip" -OutFile "SDL2.zip"
-          Expand-Archive -Path SDL2.zip -DestinationPath ./android/app/jni/
-          Rename-Item ./android/app/jni/SDL2-2.28.3 SDL
+          Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/android
+          Rename-Item ./dependencies/android/SDL2-2.28.3 SDL
       - name: Setup Symbolic Links
         working-directory: ./android/app/jni
         run: |
