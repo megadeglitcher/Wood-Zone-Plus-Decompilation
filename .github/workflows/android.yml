@@ -1,4 +1,4 @@
-name: WZ+ (Android)
+name: WZ+ Android
 on:
   workflow_dispatch:
     branches:
