@@ -368,7 +368,7 @@ const char variableNames[][0x20] = {
     "object.inkred",
     "object.inkgreen",
     "object.inkblue",
-    "engine.PCUsername",
+    "PCUsername",
 };
 #endif
 
@@ -4152,14 +4152,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = objectEntityList[arrayVal].inkblue;
                         break;
                     }
-                    case VAR_PCUSERNAME: { //SHOULD work on MacOS
-#if RETRO_PLATFORM == RETRO_WIN //Does work on Windows but does PCName/Username so
-                        scriptEng.operands[i] = system("echo %USERNAME%");
-#else
-                        scriptEng.operands[i] = system("whoami");
-#endif
-                        break;
-                    }
+                    case VAR_PCUSERNAME: scriptEng.operands[i] = scriptEng.PCUsername; break;
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
@@ -6255,6 +6248,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         objectEntityList[arrayVal].inkblue = scriptEng.operands[i];
                         break;
                     }
+                    case VAR_PCUSERNAME: PCUsername = scriptEng.operands[i]; break;
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
