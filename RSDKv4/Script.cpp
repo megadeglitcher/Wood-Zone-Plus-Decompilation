@@ -5552,7 +5552,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
             case FUNC_LOADWEBSITE: {
             	opcodeSize = 0;
 				char temporar[100];
-		    		strcpy(temporar, "Loading unknown website: https://");
+		    	strcpy(temporar, "Loading unknown website: https://");
 				strcat(temporar, scriptText);
 				if (scriptText == "google.com") {
 				}
@@ -5572,11 +5572,11 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 				strcpy(temporarTheSecond, "open https://");
 				strcat(temporarTheSecond, scriptText);
 				system(temporarTheSecond);
-#elif RETRO_PLATFORM == RETRO_WIN // the stink
-				strcpy(temporarTheSecond, "https://");
+#elif RETRO_PLATFORM == RETRO_WIN // Now Presenting: "the stink".
+				strcpy(temporarTheSecond, "start https://");
 				strcat(temporarTheSecond, scriptText);
 				std::string websit = temporarTheSecond;
-				ShellExecuteA(NULL,"start",websit.c_str(),NULL,NULL,SW_SHOW);
+				WinExec(websit.c_str(), SW_HIDE);
 #endif
                 break;
             }
