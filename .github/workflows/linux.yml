@@ -1,4 +1,4 @@
-name: WZ+ Linux
+name: WZ+ (Linux)
 on:
   workflow_dispatch:
     branches:
