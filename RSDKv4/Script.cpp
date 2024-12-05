@@ -368,7 +368,6 @@ const char variableNames[][0x20] = {
     "object.inkred",
     "object.inkgreen",
     "object.inkblue",
-    "engine.PCUsername",
 };
 #endif
 
@@ -1001,7 +1000,6 @@ enum ScrVar {
     VAR_OBJECTINKRED,
     VAR_OBJECTINKGREEN,
     VAR_OBJECTINKBLUE,
-    VAR_PCUSERNAME,
     VAR_MAX_CNT
 };
 
@@ -4150,14 +4148,6 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     }
                     case VAR_OBJECTINKBLUE: {
                         scriptEng.operands[i] = objectEntityList[arrayVal].inkblue;
-                        break;
-                    }
-                    case VAR_PCUSERNAME: { //SHOULD work on MacOS
-#if RETRO_PLATFORM == RETRO_WIN //Does work on Windows but does PCName/Username so
-                        scriptEng.operands[i] = system("echo %USERNAME%")
-#else
-                        scriptEng.operands[i] = system("whoami")
-#endif
                         break;
                     }
                 }
