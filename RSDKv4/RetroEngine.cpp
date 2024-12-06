@@ -314,7 +314,7 @@ void RetroEngine::Init()
 
     strcpy(dest, resourcePath);
     strcat(dest, "\\");
-    strcat(dest, Engine.dataFile);
+    strcat(dest, Engine.dataFile[0);
 #elif RETRO_PLATFORM == RETRO_ANDROID
     StrCopy(dest, gamePath);
     StrAdd(dest, Engine.dataFile[0]);
