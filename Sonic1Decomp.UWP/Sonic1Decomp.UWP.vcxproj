@@ -183,7 +183,7 @@
     <ClCompile Include="..\RSDKv4\String.cpp" />
     <ClCompile Include="..\RSDKv4\Text.cpp" />
     <ClCompile Include="..\RSDKv4\Userdata.cpp" />
-    <ClCompile Include="..\RSDKv4\NativeObjects\MenuBG.cpp" />
+    <ClCompile Include=".\NativeObjects\MenuBG.cpp" />
     <ClCompile Include=".\NativeObjects\AboutScreen.cpp" />
     <ClCompile Include=".\NativeObjects\AchievementDisplay.cpp" />
     <ClCompile Include=".\NativeObjects\AchievementsButton.cpp" />
