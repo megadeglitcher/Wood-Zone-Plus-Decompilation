@@ -83,23 +83,6 @@ int InitRenderDevice()
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 #endif
 #endif
-#if RETRO_DEVICETYPE (RETRO_MOBILE)
-    Engine.startFullScreen = true;
-
-    SDL_DisplayMode dm;
-    SDL_GetDesktopDisplayMode(0, &dm);
-
-    bool landscape = dm.h < dm.w;
-    int h          = landscape ? dm.w : dm.h;
-    int w          = landscape ? dm.h : dm.w;
-
-    SCREEN_XSIZE = ((float)SCREEN_YSIZE * h / w);
-    if (SCREEN_XSIZE % 2)
-        ++SCREEN_XSIZE;
-
-    if (SCREEN_XSIZE >= 500)
-        SCREEN_XSIZE = 500;
-#endif
 
     SCREEN_CENTERX = SCREEN_XSIZE / 2;
     Engine.window  = SDL_CreateWindow(gameTitle, SDL_WINDOWPOS_CENTERED_DISPLAY(CURRENT_DISP_SCREEN), SDL_WINDOWPOS_CENTERED_DISPLAY(CURRENT_DISP_SCREEN), SCREEN_XSIZE * Engine.windowScale,
