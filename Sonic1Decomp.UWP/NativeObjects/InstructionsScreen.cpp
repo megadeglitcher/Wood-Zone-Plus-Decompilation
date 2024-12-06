@@ -1,4 +1,4 @@
-#include "../RSDKv4/RetroEngine.hpp"
+#include "../../RSDKv4/RetroEngine.hpp"
 
 ushort helpText[0x1000];
 

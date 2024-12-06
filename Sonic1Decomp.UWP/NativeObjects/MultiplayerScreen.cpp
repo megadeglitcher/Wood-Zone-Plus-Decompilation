@@ -1,4 +1,4 @@
-#include "../RSDKv4/RetroEngine.hpp"
+#include "../../RSDKv4/RetroEngine.hpp"
 
 #if !RETRO_USE_ORIGINAL_CODE && RETRO_USE_NETWORKING
 
