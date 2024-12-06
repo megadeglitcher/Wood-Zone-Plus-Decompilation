@@ -41,7 +41,7 @@ jobs:
         run: |
           Set-ExecutionPolicy Bypass -Scope Process -Force;
           iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-          choco install make -y                  
+          choco install cmake -y                  
       - name: Setup Emscripten toolchain
         uses: mymindstorm/setup-emsdk@v14
     
@@ -51,7 +51,8 @@ jobs:
           vcpkg integrate install
       - name: Build Would Zon Ploos
         run: |
-          make wasm-windows
+          emcmake cmake -B build
+          cmake --build build      
       - name: Move artifacts
         run: |
           mkdir artifacts
