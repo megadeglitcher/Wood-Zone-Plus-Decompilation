@@ -83,7 +83,7 @@ int InitRenderDevice()
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 #endif
 #endif
-#if RETRO_DEVICETYPE == RETRO_MOBILE
+#if RETRO_DEVICETYPE (RETRO_MOBILE)
     Engine.startFullScreen = true;
 
     SDL_DisplayMode dm;
