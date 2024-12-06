@@ -302,6 +302,10 @@ enum RetroGameType {
 
 #endif
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
 #if !RETRO_USE_ORIGINAL_CODE
 extern bool usingCWD;
 extern bool engineDebugMode;
