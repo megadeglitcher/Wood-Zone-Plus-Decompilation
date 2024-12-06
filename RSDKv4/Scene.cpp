@@ -1760,12 +1760,21 @@ void SetPlayerScreenPositionCDStyle(Entity *target)
             cameraLagStyle = (cameraStyle == CAMERASTYLE_EXTENDED_OFFSET_L || target->speed > 0x5F5C2) != 0;
         }
     }
-	if (cameraLag > -64) {
-		cameraLag -= 2;
-	}
-    if (cameraLag < 64) {
-        cameraLag += 2;
-	}
+	
+    if (cameraLagStyle) {
+        if (cameraLagStyle == 1) {
+            if (cameraLag > -64)
+                cameraLag -= 2;
+        }
+        else if (cameraLagStyle == 2 && cameraLag < 64) {
+            cameraLag += 2;
+        }
+    }
+    else {
+        cameraLag += cameraLag < 0 ? 2 : 0;
+        if (cameraLag > 0)
+            cameraLag -= 2;
+    }
     cameraXPos = targetX - cameraLag;
 
     if (!target->scrollTracking) {
