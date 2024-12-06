@@ -445,17 +445,11 @@ void RetroEngine::Init()
     InitNativeObjectSystem();
 #endif
 
-
 #if !RETRO_USE_ORIGINAL_CODE
     // Calculate Skip frame
     int lower        = getLowerRate(targetRefreshRate, refreshRate);
     renderFrameIndex = targetRefreshRate / lower;
     skipFrameIndex   = refreshRate / lower;
-
-	#ifdef __EMSCRIPTEN__
-    	// shouldn't SDL_INIT_EVERYTHING cover this?
-    	SDL_Init(SDL_INIT_GAMECONTROLLER);
-	#endif
 
     ReadSaveRAMData();
 
@@ -505,19 +499,12 @@ void RetroEngine::Run()
     unsigned long long prevTicks  = 0;
 	int lastFPS = Engine.refreshRate;
 
-#ifdef __EMSCRIPTEN__
-    if (running) {
-#else
     while (running) {
 #if !RETRO_USE_ORIGINAL_CODE
         //if (!vsync) {
             curTicks = SDL_GetPerformanceCounter();
             if (curTicks < prevTicks + targetFreq)
-#ifdef __EMSCRIPTEN__
-                return;
-#else
                 continue;
-#endif
             prevTicks = curTicks;
         //}
 
@@ -628,29 +615,25 @@ void RetroEngine::Run()
         }
     }
 
-#ifdef __EMSCRIPTEN__
-    else {
+    ReleaseAudioDevice();
+    StopVideoPlayback();
+    ReleaseRenderDevice();
+#if !RETRO_USE_ORIGINAL_CODE
+    ReleaseInputDevices();
+#if RETRO_USE_NETWORKING
+    DisconnectNetwork(true);
 #endif
-        ReleaseAudioDevice();
-        ReleaseRenderDevice();
-    #if !RETRO_USE_ORIGINAL_CODE
-        ReleaseInputDevices();
-    #if RETRO_USE_NETWORKING
-        DisconnectNetwork(true);
-    #endif
-        WriteSettings();
-    #if RETRO_USE_MOD_LOADER
-        SaveMods();
-    #endif
-    #endif
+    WriteSettings();
+#if RETRO_USE_MOD_LOADER
+    SaveMods();
+#endif
+#endif
 
-    #if RETRO_USING_SDL1 || RETRO_USING_SDL2
-        SDL_Quit();
-    #endif
-#ifdef __EMSCRIPTEN__
-    }
+#if RETRO_USING_SDL1 || RETRO_USING_SDL2
+    SDL_Quit();
 #endif
 }
+
 #if RETRO_USE_MOD_LOADER
 const tinyxml2::XMLElement *firstXMLChildElement(tinyxml2::XMLDocument *doc, const tinyxml2::XMLElement *elementPtr, const char *name)
 {
