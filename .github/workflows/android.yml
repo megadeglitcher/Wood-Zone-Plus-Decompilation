@@ -36,9 +36,9 @@ jobs:
           Rename-Item ./dependencies/android/libtheora-1.1.1 libtheora
       - name: Download SDL2
         run: |
-          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.28.3.zip" -OutFile "SDL2.zip"
+          Invoke-WebRequest -Uri "https://libsdl.org/release/SDL2-2.0.14.zip" -OutFile "SDL2.zip"
           Expand-Archive -Path SDL2.zip -DestinationPath ./dependencies/android
-          Rename-Item ./dependencies/android/SDL2-2.28.3 SDL
+          Rename-Item ./dependencies/android/SDL2-2.0.14 SDL
       - name: Setup Symbolic Links
         working-directory: ./android/app/jni
         run: |
