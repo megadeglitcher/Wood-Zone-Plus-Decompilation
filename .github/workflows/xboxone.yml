@@ -74,7 +74,7 @@ jobs:
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
-          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props" /p:PlatformToolset=v143
+          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props" /p:PlatformToolset=v143 /D _CRT_SECURE_NO_WARNINGS
       - name: Move artifacts
         run: |
           mkdir artifacts
