@@ -95,7 +95,7 @@
       <WarningLevel>Level4</WarningLevel>
       <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
       <DisableSpecificWarnings></DisableSpecificWarnings>
-      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WINRT_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;$(SolutionDir)dependencies/all/tinyxml2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)dependencies\windows-uwp\SDL2\include;$(SolutionDir)dependencies/all/tinyxml2/;$(SolutionDir)dependencies/all/theoraplay/;$(SolutionDir)dependencies/windows/libogg/include/;$(SolutionDir)dependencies/windows/libvorbis/include/;$(SolutionDir)dependencies/windows/libtheora/include/;$(SolutionDir)dependencies/all/asio/asio/include;$(SolutionDir)dependencies\windows-uwp;$(SolutionDir)dependencies/all/tinyxml2/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
