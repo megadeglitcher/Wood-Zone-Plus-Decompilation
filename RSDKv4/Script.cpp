@@ -368,6 +368,7 @@ const char variableNames[][0x20] = {
     "object.inkred",
     "object.inkgreen",
     "object.inkblue",
+    "stage.player2ListPos",
 };
 #endif
 
@@ -1000,6 +1001,7 @@ enum ScrVar {
     VAR_OBJECTINKRED,
     VAR_OBJECTINKGREEN,
     VAR_OBJECTINKBLUE,
+    VAR_STAGEPLAYER2LISTPOS,
     VAR_MAX_CNT
 };
 
@@ -4150,6 +4152,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = objectEntityList[arrayVal].inkblue;
                         break;
                     }
+                    case VAR_STAGEPLAYER2LISTPOS: scriptEng.operands[i] = player2ListPos; break;
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
@@ -6245,6 +6248,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         objectEntityList[arrayVal].inkblue = scriptEng.operands[i];
                         break;
                     }
+                    case VAR_STAGEPLAYER2LISTPOS: player2ListPos = scriptEng.operands[i]; break;
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
