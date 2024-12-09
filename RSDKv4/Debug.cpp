@@ -236,7 +236,7 @@ void ProcessStageSelect()
                 gameMenu[1].alignment      = 0;
                 gameMenu[1].selectionCount = 1;
                 gameMenu[1].selection1     = 0;
-                stageMode                  = DEVMENU_PLAYERSEL;
+                stageMode                  = DEVMENU_PLAYER2SEL;
             }
             else if (inputPress.B) {
                 SetTextMenu(DEVMENU_MAIN);
