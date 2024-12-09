@@ -1364,7 +1364,7 @@ void ApplyWindowChanges()
         SCREEN_XSIZE = SCREEN_XSIZE_CONFIG;
     changedScreenWidth = false;
     ReleaseRenderDevice(true);
-    InitRenderDevice();
+    FlipScreen();
 
     for (int i = 1; i < TEXTURE_COUNT; ++i) {
         if (StrLength(textureList[i].fileName)) {
