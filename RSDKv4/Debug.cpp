@@ -229,8 +229,14 @@ void ProcessStageSelect()
             DrawTextMenu(&gameMenu[0], SCREEN_CENTERX - 4, 72);
             DrawTextMenu(&gameMenu[1], SCREEN_CENTERX - 40, 96);
             if (inputPress.start || inputPress.A) {
-                playerListPos = gameMenu[1].selection1;
-                SetTextMenu(DEVMENU_PLAYER2SEL);
+                SetupTextMenu(&gameMenu[0], 0);
+                AddTextMenuEntry(&gameMenu[0], "SELECT A PARTNER");
+                SetupTextMenu(&gameMenu[1], 0);
+                LoadConfigListText(&gameMenu[1], 0);
+                gameMenu[1].alignment      = 0;
+                gameMenu[1].selectionCount = 1;
+                gameMenu[1].selection1     = 0;
+                stageMode                  = DEVMENU_PLAYERSEL;
             }
             else if (inputPress.B) {
                 SetTextMenu(DEVMENU_MAIN);
