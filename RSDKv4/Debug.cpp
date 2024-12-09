@@ -252,7 +252,7 @@ void ProcessStageSelect()
             DrawTextMenu(&gameMenu[1], SCREEN_CENTERX - 4, 72);
             DrawTextMenu(&gameMenu[2], SCREEN_CENTERX - 40, 96);
             if (inputPress.start || inputPress.A) {
-                playerListPos = gameMenu[2].selection1;
+                player2ListPos = gameMenu[2].selection1;
                 SetTextMenu(DEVMENU_STAGELISTSEL);
             }
             else if (inputPress.B) {
