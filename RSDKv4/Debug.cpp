@@ -237,23 +237,24 @@ void ProcessStageSelect()
             }
             else if (inputPress.C) {
                 player2ListPos = gameMenu[1].selection1;
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], "PLAYER 2 SELECTED.");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
-                AddTextMenuEntry(&gameMenu[0], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], "PLAYER 2 SELECTED.");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
+                AddTextMenuEntry(&gameMenu[1], " ");
             }
             break;
         }
