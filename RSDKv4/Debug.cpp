@@ -356,7 +356,7 @@ void ProcessStageSelect()
                 gameMenu[2].visibleRowCount  = 0;
                 gameMenu[2].visibleRowOffset = 0;
                 gameMenu[2].selection1       = player2ListPos;
-                stageMode                    = DEVMENU_PLAYER2SEL;
+                stageMode                    = DEVMENU_PLAYERSEL;
             }
             break;
         }
