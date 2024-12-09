@@ -18,6 +18,7 @@ void InitDevMenu()
     ReleaseStageSfx();
     fadeMode        = 0;
     playerListPos   = 0;
+    player2ListPos   = 1;
     Engine.gameMode = ENGINE_DEVMENU;
     ClearGraphicsData();
     ClearAnimationData();

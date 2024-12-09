@@ -36,6 +36,7 @@ const int OBJECT_BORDER_Y3 = 0x80;
 const int OBJECT_BORDER_Y4 = SCREEN_YSIZE + 0x80;
 
 int playerListPos = 0;
+int player2ListPos = 1;
 
 void ProcessStartupObjects()
 {
