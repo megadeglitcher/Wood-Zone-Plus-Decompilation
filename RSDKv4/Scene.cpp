@@ -139,6 +139,8 @@ void ProcessStage(void)
             gameMenu[0].visibleRowOffset = 0;
             gameMenu[1].alignment        = 0;
             gameMenu[1].selectionCount   = 0;
+            gameMenu[2].alignment        = 0;
+            gameMenu[2].selectionCount   = 0;
             fadeMode                     = 0;
             cameraEnabled                = true;
             cameraTarget                 = -1;

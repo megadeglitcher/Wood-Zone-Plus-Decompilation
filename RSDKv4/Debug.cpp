@@ -18,7 +18,7 @@ void InitDevMenu()
     ReleaseStageSfx();
     fadeMode        = 0;
     playerListPos   = 0;
-    player2ListPos   = 1;
+    player2ListPos  = 1;
     Engine.gameMode = ENGINE_DEVMENU;
     ClearGraphicsData();
     ClearAnimationData();
@@ -335,7 +335,7 @@ void ProcessStageSelect()
                 gameMenu[2].selectionCount   = 1;
                 gameMenu[2].visibleRowCount  = 0;
                 gameMenu[2].visibleRowOffset = 0;
-                gameMenu[2].selection1       = playerListPos;
+                gameMenu[2].selection1       = player2ListPos;
                 stageMode                    = DEVMENU_PLAYER2SEL;
             }
             break;
