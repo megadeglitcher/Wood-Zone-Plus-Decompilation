@@ -62,6 +62,8 @@ void InitErrorMessage()
     gameMenu[0].selection1       = 0;
     gameMenu[1].visibleRowCount  = 0;
     gameMenu[1].visibleRowOffset = 0;
+    gameMenu[2].visibleRowCount  = 0;
+    gameMenu[2].visibleRowOffset = 0;
     stageMode                    = DEVMENU_SCRIPTERROR;
     drawStageGFXHQ               = false;
 #if !RETRO_USE_ORIGINAL_CODE
@@ -228,10 +230,33 @@ void ProcessStageSelect()
             DrawTextMenu(&gameMenu[1], SCREEN_CENTERX - 40, 96);
             if (inputPress.start || inputPress.A) {
                 playerListPos = gameMenu[1].selection1;
-                SetTextMenu(DEVMENU_STAGELISTSEL);
+                SetTextMenu(DEVMENU_PLAYER2SEL);
             }
             else if (inputPress.B) {
                 SetTextMenu(DEVMENU_MAIN);
+            }
+            break;
+        }
+        case DEVMENU_PLAYER2SEL: // Selecting Player 2
+        {
+            if (inputPress.down)
+                ++gameMenu[2].selection1;
+            if (inputPress.up)
+                --gameMenu[2].selection1;
+            if (gameMenu[2].selection1 == gameMenu[2].rowCount)
+                gameMenu[2].selection1 = 0;
+
+            if (gameMenu[2].selection1 < 0)
+                gameMenu[2].selection1 = gameMenu[2].rowCount - 1;
+
+            DrawTextMenu(&gameMenu[1], SCREEN_CENTERX - 4, 72);
+            DrawTextMenu(&gameMenu[2], SCREEN_CENTERX - 40, 96);
+            if (inputPress.start || inputPress.A) {
+                playerListPos = gameMenu[2].selection1;
+                SetTextMenu(DEVMENU_STAGELISTSEL);
+            }
+            else if (inputPress.B) {
+                SetTextMenu(DEVMENU_PLAYERSEL);
             }
             break;
         }
@@ -302,16 +327,16 @@ void ProcessStageSelect()
             }
             else if (inputPress.B) {
                 SetupTextMenu(&gameMenu[0], 0);
-                AddTextMenuEntry(&gameMenu[0], "SELECT A PLAYER");
-                SetupTextMenu(&gameMenu[1], 0);
-                LoadConfigListText(&gameMenu[1], 0);
+                AddTextMenuEntry(&gameMenu[0], "SELECT A PARTNER");
+                SetupTextMenu(&gameMenu[2], 0);
+                LoadConfigListText(&gameMenu[2], 0);
                 gameMenu[0].alignment        = 2;
-                gameMenu[1].alignment        = 0;
-                gameMenu[1].selectionCount   = 1;
-                gameMenu[1].visibleRowCount  = 0;
-                gameMenu[1].visibleRowOffset = 0;
-                gameMenu[1].selection1       = playerListPos;
-                stageMode                    = DEVMENU_PLAYERSEL;
+                gameMenu[2].alignment        = 0;
+                gameMenu[2].selectionCount   = 1;
+                gameMenu[2].visibleRowCount  = 0;
+                gameMenu[2].visibleRowOffset = 0;
+                gameMenu[2].selection1       = playerListPos;
+                stageMode                    = DEVMENU_PLAYER2SEL;
             }
             break;
         }

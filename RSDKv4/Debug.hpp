@@ -90,6 +90,7 @@ inline void PrintLog(const ushort *msg)
 enum DevMenuMenus {
     DEVMENU_MAIN,
     DEVMENU_PLAYERSEL,
+    DEVMENU_PLAYER2SEL,
     DEVMENU_STAGELISTSEL,
     DEVMENU_STAGESEL,
     DEVMENU_SCRIPTERROR,
