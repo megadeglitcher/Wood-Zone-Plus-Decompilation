@@ -155,6 +155,7 @@ void Process2PObjects();
 
 void SetObjectTypeName(const char *objectName, int objectID);
 
+extern int playerListPos;
 extern int player2ListPos;
 
 void ProcessObjectControl(Entity *player);
