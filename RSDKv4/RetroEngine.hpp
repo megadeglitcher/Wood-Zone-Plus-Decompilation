@@ -357,6 +357,7 @@ public:
         }
     }
 
+    int flipflag         = 0;
 #if !RETRO_USE_ORIGINAL_CODE
     bool usingDataFile_Config = false;
 #endif
@@ -405,7 +406,6 @@ public:
     bool frameStep       = false;
     int dimTimer         = 0;
     int dimLimit         = 0;
-    int flipflag         = 0;
     float dimPercent     = 1.0;
     float dimMax         = 1.0;
 
