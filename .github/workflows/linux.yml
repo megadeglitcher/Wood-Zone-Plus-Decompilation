@@ -46,7 +46,7 @@ jobs:
       - name: Move artifacts
         run: |
           mkdir artifacts
-          mv ./build* ./artifacts
+          mv "./build/WZ+ (CMake)" ./artifacts
           tar -czvf linux.tar.gz -C ./artifacts .
       # tar the executables so that they don't lose exec permissions
       # see: https://github.com/actions/upload-artifact?tab=readme-ov-file#permission-loss
