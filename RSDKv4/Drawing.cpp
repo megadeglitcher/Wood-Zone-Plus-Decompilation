@@ -408,6 +408,10 @@ void FlipScreen()
 			} else if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			} 
+			Uint8 opacity = 100;
+			SDL_Rect dstrect = { 5, 5, 640, 480 };
+			SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, &dstrect, 0, NULL, SDL_FLIP_NONE);
+			SDL_SetTextureAlphaMod(Engine.screenBuffer, 255);
         }
         else {
             int w = 0, h = 0;
@@ -457,6 +461,10 @@ void FlipScreen()
 			} else if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			}
+			Uint8 opacity = 100;
+			SDL_Rect dstrect = { 5, 5, 640, 480 };
+			SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, &dstrect, 0, NULL, SDL_FLIP_NONE);
+			SDL_SetTextureAlphaMod(Engine.screenBuffer, 255);
         }
     } else {
 		if (Engine.flipflag == 0) {
@@ -471,6 +479,10 @@ void FlipScreen()
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
         SDL_RenderFillRect(Engine.renderer, NULL);
+		Uint8 opacity = 100;
+		SDL_Rect dstrect = { 5, 5, 640, 480 };
+		SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, &dstrect, 0, NULL, SDL_FLIP_NONE);
+		SDL_SetTextureAlphaMod(Engine.screenBuffer, 255);
     }
 
     if (Engine.scalingMode != 0 && !disableEnhancedScaling) {
@@ -488,6 +500,10 @@ void FlipScreen()
 		} else if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 		}
+		Uint8 opacity = 100;
+		SDL_Rect dstrect = { 5, 5, 640, 480 };
+		SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &dstrect, 0, NULL, SDL_FLIP_NONE);
+		SDL_SetTextureAlphaMod(Engine.screenBuffer, 255);
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
         if (dimAmount < 1.0)
