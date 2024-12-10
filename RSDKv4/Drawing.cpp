@@ -382,6 +382,7 @@ void FlipScreen()
     }
 
     int pitch = 0;
+	int SCREEN_FLIPPED = 0;
     SDL_SetRenderTarget(Engine.renderer, texTarget);
 
     // Clear the screen. This is needed to keep the
