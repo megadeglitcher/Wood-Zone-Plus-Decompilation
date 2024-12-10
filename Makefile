@@ -205,3 +205,6 @@ endif
 
 clean:
 	rm -rf $(OBJDIR) && rm -rf $(BINPATH)
+
+strip Linux/WZ+
+mv WZ+ "WZ+ (Make)"
