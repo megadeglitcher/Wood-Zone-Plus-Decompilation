@@ -47,6 +47,7 @@ jobs:
         run: |
           mkdir artifacts
           mv "./build/WZ+ (CMake)" ./artifacts
+          strip "./artifacts/WZ+ (CMake)"
           tar -czvf linux.tar.gz -C ./artifacts .
       # tar the executables so that they don't lose exec permissions
       # see: https://github.com/actions/upload-artifact?tab=readme-ov-file#permission-loss
