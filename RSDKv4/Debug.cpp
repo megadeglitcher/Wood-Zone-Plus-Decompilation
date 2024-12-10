@@ -352,14 +352,17 @@ void ProcessStageSelect()
                 stageMode                  = DEVMENU_STAGESEL;
             }
             else if (inputPress.B) {
-				SetupTextMenu(&gameMenu[0], 0);
-				AddTextMenuEntry(&gameMenu[0], "SELECT A PLAYER");
-				SetupTextMenu(&gameMenu[1], 0);
-				LoadConfigListText(&gameMenu[1], 0);
-				gameMenu[1].alignment      = 0;
-				gameMenu[1].selectionCount = 1;
-				gameMenu[1].selection1     = 0;
-				stageMode                  = DEVMENU_PLAYERSEL;
+                SetupTextMenu(&gameMenu[0], 0);
+                AddTextMenuEntry(&gameMenu[0], "SELECT A PLAYER");
+                SetupTextMenu(&gameMenu[1], 0);
+                LoadConfigListText(&gameMenu[1], 0);
+                gameMenu[0].alignment        = 2;
+                gameMenu[1].alignment        = 0;
+                gameMenu[1].selectionCount   = 1;
+                gameMenu[1].visibleRowCount  = 0;
+                gameMenu[1].visibleRowOffset = 0;
+                gameMenu[1].selection1       = playerListPos;
+                stageMode                    = DEVMENU_PLAYERSEL;
             }
             break;
         }
