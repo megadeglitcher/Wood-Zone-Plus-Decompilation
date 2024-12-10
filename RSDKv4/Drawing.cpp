@@ -307,6 +307,12 @@ void FlipScreen()
 #if RETRO_USING_SDL2
     SDL_Rect destScreenPos_scaled;
     SDL_Texture *texTarget = NULL;
+	SDL_Rect dstrect = {
+    destScreenPos_scaled.x + Engine.windowScale,
+    destScreenPos_scaled.y + Engine.windowScale,
+    destScreenPos_scaled.w,
+    destScreenPos_scaled.h
+};
 
     switch (Engine.scalingMode) {
         // reset to default if value is invalid.
