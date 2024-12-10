@@ -1213,6 +1213,7 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("GetAchievementDescription", GetAchievementDescription);
 	AddNativeFunction("GetScreenWidth", GetScreenWidth);
     AddNativeFunction("SetScreenWidth", SetScreenWidth);
+    AddNativeFunction("SetScreenDirection", SetScreenDirection);
 	AddNativeFunction("GetWindowScale", GetWindowScale);
     AddNativeFunction("SetWindowScale", SetWindowScale);
     AddNativeFunction("GetWindowScaleMode", GetWindowScaleMode);

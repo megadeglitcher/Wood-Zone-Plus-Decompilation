@@ -224,6 +224,7 @@ void ApplyWindowChanges();
 void OpenWebsite(int *unused,int *websiteID);
 void GetUnixTimestamp();
 void GetLocalUnixTimestamp();
+void SetScreenDirection(int *type, int *unused);
 #endif
 
 #endif //! USERDATA_H

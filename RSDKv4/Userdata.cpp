@@ -303,6 +303,7 @@ void InitUserdata()
         SCREEN_XSIZE = SCREEN_XSIZE_CONFIG;
         ini.SetInteger("Window", "RefreshRate", Engine.refreshRate = 60);
         ini.SetInteger("Window", "DimLimit", Engine.dimLimit = 300);
+        ini.SetInteger("Window", "ScreenFlip", SCREEN_FLIPPED = 0);
         Engine.dimLimit *= Engine.refreshRate;
 
         ini.SetFloat("Audio", "BGMVolume", bgmVolume / (float)MAX_VOLUME);
@@ -747,6 +748,8 @@ void WriteSettings()
     ini.SetInteger("Window", "RefreshRate", Engine.refreshRate);
     ini.SetComment("Window", "DLComment", "Determines the dim timer in seconds, set to -1 to disable dimming");
     ini.SetInteger("Window", "DimLimit", Engine.dimLimit >= 0 ? Engine.dimLimit / Engine.refreshRate : -1);
+    ini.SetComment("Window", "ScreenFlipComment", "Do you want the screen flipped or not stupid fucking cunt");
+    ini.SetInteger("Window", "ScreenFlip", SCREEN_FLIPPED);
 
     ini.SetFloat("Audio", "BGMVolume", bgmVolume / (float)MAX_VOLUME);
     ini.SetFloat("Audio", "SFXVolume", sfxVolume / (float)MAX_VOLUME);
@@ -1277,6 +1280,11 @@ void SetScreenWidth(int *width, int *unused)
 
     SCREEN_XSIZE_CONFIG = *width;
     changedScreenWidth  = SCREEN_XSIZE_CONFIG != SCREEN_XSIZE;
+}
+
+void SetScreenDirection(int *type, int *unused)
+{
+    SCREEN_FLIPPED = *type;
 }
 
 void SetWindowScale(int *scale, int *unused)
