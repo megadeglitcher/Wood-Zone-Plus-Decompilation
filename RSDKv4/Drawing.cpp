@@ -408,6 +408,20 @@ void FlipScreen()
 			} else if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			}
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, NULL);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 0, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &redOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 255, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &greenOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 0, 255);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &blueOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 255, 255);
+
+			SDL_RenderPresent(Engine.renderer);
         }
         else {
             int w = 0, h = 0;
@@ -457,6 +471,20 @@ void FlipScreen()
 			} else if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			}
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, NULL);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 0, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &redOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 255, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &greenOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 0, 255);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &blueOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 255, 255);
+
+			SDL_RenderPresent(Engine.renderer);
         }
     } else {
 		if (Engine.flipflag == 0) {
@@ -468,6 +496,20 @@ void FlipScreen()
 		} else if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 		}
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, NULL);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 0, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &redOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 255, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &greenOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 0, 255);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &blueOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 255, 255);
+
+			SDL_RenderPresent(Engine.renderer);
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
         SDL_RenderFillRect(Engine.renderer, NULL);
@@ -488,6 +530,20 @@ void FlipScreen()
 		} else if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 		}
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, NULL);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 0, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &redOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 255, 0);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &greenOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 0, 0, 255);
+			SDL_RenderCopy(Engine.renderer, mainTexture, NULL, &blueOffsetRect);
+
+			SDL_SetTextureColorMod(mainTexture, 255, 255, 255);
+
+			SDL_RenderPresent(Engine.renderer);
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
         if (dimAmount < 1.0)
