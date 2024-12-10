@@ -693,7 +693,11 @@ AliasInfo publicAliases[ALIAS_COUNT] = {
     AliasInfo("RETRO_WP7", "6"),
     AliasInfo("RETRO_UWP", "7"),
     AliasInfo("RETRO_LINUX", "8"),
-    AliasInfo("RETRO_SWITCH", "9")
+    AliasInfo("RETRO_SWITCH", "9"),
+    AliasInfo("SCREENFLIP_NONE", "0"),
+    AliasInfo("SCREENFLIP_X", "1"),
+    AliasInfo("SCREENFLIP_Y", "2"),
+    AliasInfo("SCREENFLIP_XY", "3")
 
     // custom
 };

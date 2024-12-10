@@ -1271,6 +1271,7 @@ void GetWindowFullScreen() { scriptEng.checkResult = Engine.isFullScreen; }
 void GetWindowBorderless() { scriptEng.checkResult = Engine.borderless; }
 void GetWindowVSync() { scriptEng.checkResult = Engine.vsync; }
 void GetFrameRate() { scriptEng.checkResult = Engine.refreshRate; }
+void GetScreenDirection() { scriptEng.checkResult = Engine.flipflag; }
 bool changedScreenWidth = false;
 
 void SetScreenWidth(int *width, int *unused)

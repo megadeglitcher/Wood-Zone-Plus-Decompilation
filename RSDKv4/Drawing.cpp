@@ -405,6 +405,8 @@ void FlipScreen()
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
 			} else if (Engine.flipflag == 2) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
+			} else if (Engine.flipflag == 3) {
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 			}
         }
         else {
@@ -452,6 +454,8 @@ void FlipScreen()
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
 			} else if (Engine.flipflag == 2) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
+			} else if (Engine.flipflag == 3) {
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 			}
         }
     } else {
@@ -461,6 +465,8 @@ void FlipScreen()
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
 		} else if (Engine.flipflag == 2) {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
+		} else if (Engine.flipflag == 3) {
+			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 		}
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
@@ -479,6 +485,8 @@ void FlipScreen()
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_HORIZONTAL);
 		} else if (Engine.flipflag == 2) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_VERTICAL);
+		} else if (Engine.flipflag == 3) {
+			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL);
 		}
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
