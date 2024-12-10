@@ -305,14 +305,13 @@ void FlipScreen()
 #endif //! RETRO_PLATFORM != RETRO_SWITCH
 #if RETRO_SOFTWARE_RENDER && !RETRO_USING_OPENGL
 #if RETRO_USING_SDL2
-    SDL_Rect destScreenPos_scaled;
     SDL_Texture *texTarget = NULL;
 	
 	SDL_Rect destScreenPos_scaled = { 0, 0, SCREEN_XSIZE * Engine.windowScale, SCREEN_YSIZE * Engine.windowScale };
 	
 	SDL_Rect dstrect = {
     destScreenPos_scaled.x + Engine.windowScale,
-    destScreenPos_scaled.y + Engine.windowScale,
+    destScreenPos_scaled.y,
     destScreenPos_scaled.w,
     destScreenPos_scaled.h
 };
