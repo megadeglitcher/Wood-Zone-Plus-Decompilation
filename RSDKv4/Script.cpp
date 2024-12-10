@@ -370,7 +370,7 @@ const char variableNames[][0x20] = {
     "object.inkblue",
     "stage.player2ListPos",
     "menu3.selection",
-    "Current.Unix",
+    "current.unix",
 };
 #endif
 
@@ -4160,7 +4160,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_STAGEPLAYER2LISTPOS: scriptEng.operands[i] = player2ListPos; break;
                     case VAR_CURRENTUNIX: { 
 						time_t currentTime = time(NULL);
-						scriptEng.operands[i] = Current.Unix;
+                        scriptEng.operands[i] = (int)currentTime;
 						break;
                     }
                 }
@@ -6262,7 +6262,7 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_STAGEPLAYER2LISTPOS: player2ListPos = scriptEng.operands[i]; break;
                     case VAR_CURRENTUNIX: { 
 						time_t currentTime = time(NULL);
-						Current.Unix = (int)currentTime;
+                        scriptEng.operands[i] = (int)currentTime;
 						break;
                     }
                 }
