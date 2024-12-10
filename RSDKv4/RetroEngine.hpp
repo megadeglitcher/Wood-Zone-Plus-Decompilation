@@ -405,6 +405,7 @@ public:
     bool frameStep       = false;
     int dimTimer         = 0;
     int dimLimit         = 0;
+    int flipflag         = 0;
     float dimPercent     = 1.0;
     float dimMax         = 1.0;
 

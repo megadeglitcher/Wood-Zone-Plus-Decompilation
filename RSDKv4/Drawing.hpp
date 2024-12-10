@@ -50,7 +50,6 @@ extern ushort subtractLookupTable[0x20 * 0x100];
 extern ushort tintLookupTable[0x10000];
 
 extern int SCREEN_XSIZE_CONFIG;
-extern int SCREEN_FLIPPED;
 extern int SCREEN_XSIZE;
 extern int SCREEN_CENTERX;
 
