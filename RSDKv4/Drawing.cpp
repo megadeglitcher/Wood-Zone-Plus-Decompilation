@@ -400,7 +400,7 @@ void FlipScreen()
             // memcpy(pixels, Engine.frameBuffer, pitch * SCREEN_YSIZE); //faster but produces issues with odd numbered screen sizes
             SDL_UnlockTexture(Engine.screenBuffer);
 
-            SDL_RenderCopy(Engine.renderer, Engine.screenBuffer, NULL, NULL);
+            SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
         }
         else {
             int w = 0, h = 0;
@@ -441,10 +441,10 @@ void FlipScreen()
             }
 
             SDL_UnlockTexture(Engine.screenBuffer2x);
-            SDL_RenderCopy(Engine.renderer, Engine.screenBuffer2x, NULL, NULL);
+            SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
         }
     } else {
-        SDL_RenderCopy(Engine.renderer, Engine.videoBuffer, NULL, NULL);
+        SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
         SDL_RenderFillRect(Engine.renderer, NULL);
@@ -456,7 +456,7 @@ void FlipScreen()
         // clear the screen itself now, for same reason as above
         SDL_RenderClear(Engine.renderer);
         // copy texture to screen with lerp
-        SDL_RenderCopy(Engine.renderer, texTarget, NULL, &destScreenPos_scaled);
+        SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_HORIZONTAL);
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
         if (dimAmount < 1.0)
