@@ -988,6 +988,14 @@ void ShowAchievementsScreen()
 #endif
 }
 
+void GetUnixTimestamp() 
+{
+}
+
+void GetLocalUnixTimestamp() 
+{
+}
+
 int SetLeaderboard(int *leaderboardID, int *score)
 {
     if (!Engine.trialMode && !debugMode) {
