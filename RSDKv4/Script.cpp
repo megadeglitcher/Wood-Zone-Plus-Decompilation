@@ -371,6 +371,7 @@ const char variableNames[][0x20] = {
     "stage.player2ListPos",
     "menu3.selection",
     "current.unix",
+    "local.unix",
 };
 #endif
 
@@ -1011,6 +1012,7 @@ enum ScrVar {
     VAR_STAGEPLAYER2LISTPOS,
     VAR_MENU3SELECTION,
     VAR_CURRENTUNIX,
+    VAR_CURRENTLOCALUNIX,
     VAR_MAX_CNT
 };
 
@@ -4169,6 +4171,13 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                         scriptEng.operands[i] = (int)currentTime;
 						break;
                     }
+                    case VAR_CURRENTLOCALUNIX: { 
+						time_t currentTime = time(NULL);
+						struct tm *localTime = localtime(&currentTime);
+						time_t localEpoch = mktime(localTime);
+						scriptEng.operands[i] = (int)localEpoch;
+						break;
+                    }
                 }
             }
             else if (opcodeType == SCRIPTVAR_INTCONST) { // int constant
@@ -6273,6 +6282,13 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_CURRENTUNIX: { 
 						time_t currentTime = time(NULL);
                         scriptEng.operands[i] = (int)currentTime;
+						break;
+                    }
+                    case VAR_CURRENTLOCALUNIX: { 
+						time_t currentTime = time(NULL);
+						struct tm *localTime = localtime(&currentTime);
+						time_t localEpoch = mktime(localTime);
+						scriptEng.operands[i] = (int)localEpoch;
 						break;
                     }
                 }
