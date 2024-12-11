@@ -366,6 +366,24 @@ void ProcessObjectControl(Entity *player)
     }
 }
 
+void ProcessFlippedObjectControl(Entity *player)
+{
+    if (!player->controlMode) {
+        player->up   = inputDown.up;
+        player->down = inputDown.down;
+        if (!inputDown.left || !inputDown.right) {
+            player->left  = inputDown.right;
+            player->right = inputDown.left;
+        }
+        else {
+            player->left  = false;
+            player->right = false;
+        }
+        player->jumpHold  = inputDown.C || inputDown.B || inputDown.A;
+        player->jumpPress = inputPress.C || inputPress.B || inputPress.A;
+    }
+}
+
 void InitNativeObjectSystem()
 {
     InitLocalizedStrings();

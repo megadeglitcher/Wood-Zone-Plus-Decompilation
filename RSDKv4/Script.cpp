@@ -564,7 +564,8 @@ const FunctionInfo functions[] = {
 #endif
     FunctionInfo("Print", 3),
     FunctionInfo("CalculateObjectRotation", 0),
-    FunctionInfo("LoadWebsite", 1)
+    FunctionInfo("LoadWebsite", 1),
+    FunctionInfo("ProcessFlippedObjectControl", 0)
 };
 
 #if RETRO_USE_COMPILER
@@ -1169,6 +1170,7 @@ enum ScrFunc {
     FUNC_PRINT,
     FUNC_CALCULATEOBJECTROTATION,
     FUNC_LOADWEBSITE,
+    FUNC_PROCESSFLIPPEDOBJECTCONTROL,
     FUNC_MAX_CNT
 };
 
@@ -5597,6 +5599,10 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
 #endif
                 break;
             }
+            case FUNC_PROCESSFLIPPEDOBJECTCONTROL:
+                opcodeSize = 0;
+                ProcessFlippedObjectControl(entity);
+                break;
         }
 
         // Set Values

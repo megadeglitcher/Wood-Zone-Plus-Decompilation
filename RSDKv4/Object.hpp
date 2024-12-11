@@ -159,6 +159,7 @@ extern int playerListPos;
 extern int player2ListPos;
 
 void ProcessObjectControl(Entity *player);
+void ProcessFlippedObjectControl(Entity *player);
 
 void InitNativeObjectSystem();
 NativeEntity *CreateNativeObject(void (*objCreate)(void *objPtr), void (*objMain)(void *objPtr));
