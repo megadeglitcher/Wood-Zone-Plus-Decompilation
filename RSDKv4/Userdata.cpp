@@ -988,27 +988,6 @@ void ShowAchievementsScreen()
 #endif
 }
 
-void GetUnixTimestamp() 
-{
-    time_t currentTime = time(NULL);
-	
-    scriptEng.checkResult = (int)currentTime;
-}
-
-void GetLocalUnixTimestamp() 
-{
-    time_t currentTime = time(NULL);
-    struct tm *localTime = localtime(&currentTime);
-
-    if (localTime != NULL) {
-        scriptEng.checkResult = (int)mktime(localTime);
-        PrintLog("Local Unix Timestamp: %d", scriptEng.checkResult);
-    } else {
-        PrintLog("Failed to convert to local time");
-        scriptEng.checkResult = 80012;
-    }
-}
-
 int SetLeaderboard(int *leaderboardID, int *score)
 {
     if (!Engine.trialMode && !debugMode) {
