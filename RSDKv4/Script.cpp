@@ -4174,8 +4174,12 @@ void ProcessScript(int scriptCodePtr, int jumpTablePtr, byte scriptEvent)
                     case VAR_CURRENTLOCALUNIX: { 
 						time_t currentTime = time(NULL);
 						struct tm *localTime = localtime(&currentTime);
-						time_t localEpoch = currentTime + localTime->tm_gmtoff;
-						scriptEng.operands[i] = (int)localEpoch;
+						struct tm *utcTime = gmtime(&currentTime);
+						time_t localEpoch = mktime(localTime);
+						time_t utcEpoch = mktime(utcTime);
+						time_t localOffset = localEpoch - utcEpoch;
+						time_t localUnixTime = currentTime + localOffset;
+						scriptEng.operands[i] = (int)localUnixTime; 
 						break;
                     }
                 }
