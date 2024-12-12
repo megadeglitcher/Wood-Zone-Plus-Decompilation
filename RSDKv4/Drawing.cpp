@@ -64,7 +64,7 @@ int InitRenderDevice()
 
     SDL_DisableScreenSaver();
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, Engine.scalingMode);
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
     SDL_SetHint(SDL_HINT_RENDER_VSYNC, Engine.vsync ? "1" : "0");
 
     byte flags = 0;
@@ -371,7 +371,7 @@ void FlipScreen()
             scale =
                 std::fminf(std::floor((float)Engine.windowXSize / (float)SCREEN_XSIZE), std::floor((float)Engine.windowYSize / (float)SCREEN_YSIZE));
         }
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, Engine.scalingMode); // set interpolation to linear
+       SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
         // create texture that's integer scaled.
         texTarget = SDL_CreateTexture(Engine.renderer, SDL_PIXELFORMAT_RGB565, SDL_TEXTUREACCESS_TARGET, SCREEN_XSIZE * scale, SCREEN_YSIZE * scale);
 
@@ -494,7 +494,7 @@ void FlipScreen()
 	SDL_RenderPresent(Engine.renderer);
 	// reset everything just in case
 	SDL_RenderSetLogicalSize(Engine.renderer, SCREEN_XSIZE, SCREEN_YSIZE);
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, Engine.scalingMode);
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
 	// putting some FLEX TAPE  on that memory leak
 	SDL_DestroyTexture(texTarget);
 	
