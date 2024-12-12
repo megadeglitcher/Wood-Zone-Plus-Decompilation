@@ -402,7 +402,7 @@ void FlipScreen()
 			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			} else {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(Engine.flipflag));
 			}
         }
         else {
@@ -447,14 +447,14 @@ void FlipScreen()
 			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 			} else {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, Engine.flipflag);
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(Engine.flipflag));
 			}
         }
     } else {
 		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 		} else {
-			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
+			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(Engine.flipflag));
 		}
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
@@ -470,7 +470,7 @@ void FlipScreen()
 		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
 		} else {
-			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, Engine.flipflag);
+			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(Engine.flipflag));
 		}
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
