@@ -1273,7 +1273,7 @@ void SetScreenDirection(int *type, int *unused)
     Engine.flipflag = *type;
 }
 
-void GetScreenRotation(int *type, int *unused)
+void SetScreenRotation(int *type, int *unused)
 {
     Engine.rotationflag = *type;
 }
