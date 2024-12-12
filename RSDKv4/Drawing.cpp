@@ -307,7 +307,8 @@ void FlipScreen()
 #if RETRO_USING_SDL2
     SDL_Rect destScreenPos_scaled;
     SDL_Texture *texTarget = NULL;
-	SDL_Point pivot = { (SCREEN_XSIZE * Engine.windowScale) / 2, (SCREEN_YSIZE * Engine.windowScale) / 2 };
+	SDL_Point pivot = { SCREEN_XSIZE / 2 * Engine.windowScale, SCREEN_YSIZE / 2 * Engine.windowScale };
+
 
     switch (Engine.scalingMode) {
         // reset to default if value is invalid.
