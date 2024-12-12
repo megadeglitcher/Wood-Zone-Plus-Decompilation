@@ -1257,6 +1257,7 @@ void GetWindowVSync() { scriptEng.checkResult = Engine.vsync; }
 void GetFrameRate() { scriptEng.checkResult = Engine.refreshRate; }
 void GetScreenDirection() { scriptEng.checkResult = Engine.flipflag; }
 void GetScreenRotation() { scriptEng.checkResult = Engine.rotationflag; }
+void GetScreenZoom() { scriptEng.checkResult = Engine.zoomflag; }
 bool changedScreenWidth = false;
 
 void SetScreenWidth(int *width, int *unused)
@@ -1276,6 +1277,11 @@ void SetScreenDirection(int *type, int *unused)
 void SetScreenRotation(int *type, int *unused)
 {
     Engine.rotationflag = *type;
+}
+
+void SetScreenZoom(int *type, int *unused)
+{
+    Engine.zoomflag = *type;
 }
 
 void SetWindowScale(int *scale, int *unused)

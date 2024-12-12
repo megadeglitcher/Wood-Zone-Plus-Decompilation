@@ -359,6 +359,7 @@ public:
 
     int flipflag         = 0;
     int rotationflag         = 0;
+    int zoomflag         = 0;
 #if !RETRO_USE_ORIGINAL_CODE
     bool usingDataFile_Config = false;
 #endif

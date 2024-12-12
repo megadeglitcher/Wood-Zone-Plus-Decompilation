@@ -1242,6 +1242,8 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("GetScreenDirection", GetScreenDirection);
     AddNativeFunction("SetScreenRotation", SetScreenRotation);
     AddNativeFunction("GetScreenRotation", GetScreenRotation);
+    AddNativeFunction("SetScreenZoom", SetScreenZoom);
+    AddNativeFunction("GetScreenZoom", GetScreenZoom);
 #endif
 
 #if !RETRO_USE_ORIGINAL_CODE
