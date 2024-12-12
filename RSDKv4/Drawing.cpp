@@ -311,10 +311,10 @@ void FlipScreen()
 	SDL_Point pivot = { SCREEN_XSIZE / 2, SCREEN_YSIZE / 2 };
 	
 	SDL_Rect dstrect = {
-		SCREEN_XSIZE / 2 - (SCREEN_XSIZE / 2 + Engine.zoomflag),
-		SCREEN_YSIZE / 2 - (SCREEN_YSIZE / 2 + Engine.zoomflag),
-		SCREEN_XSIZE + Engine.zoomflag,
-		SCREEN_YSIZE + Engine.zoomflag
+		destScreenPos_scaled.x - (SCREEN_XSIZE * Engine.zoomflag / 200),
+		destScreenPos_scaled.y - (SCREEN_YSIZE * Engine.zoomflag / 200),
+		SCREEN_XSIZE * Engine.zoomflag / 100,
+		SCREEN_YSIZE * Engine.zoomflag / 100
 	};
 
 
@@ -391,10 +391,10 @@ void FlipScreen()
     }
 	
 	SDL_Rect dstrect2 = {
-		SCREEN_XSIZE / 2 - (SCREEN_XSIZE + Engine.zoomflag / 2),
-		SCREEN_YSIZE / 2 - (SCREEN_YSIZE + Engine.zoomflag / 2),
-		SCREEN_XSIZE + Engine.zoomflag,
-		SCREEN_YSIZE + Engine.zoomflag
+		destScreenPos_scaled.x - (SCREEN_XSIZE * Engine.zoomflag / 200),
+		destScreenPos_scaled.y - (SCREEN_YSIZE * Engine.zoomflag / 200),
+		SCREEN_XSIZE * Engine.zoomflag / 100,
+		SCREEN_YSIZE * Engine.zoomflag / 100
 	};
 
     int pitch = 0;
