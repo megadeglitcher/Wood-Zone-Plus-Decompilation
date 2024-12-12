@@ -399,14 +399,10 @@ void FlipScreen()
             }
             // memcpy(pixels, Engine.frameBuffer, pitch * SCREEN_YSIZE); //faster but produces issues with odd numbered screen sizes
             SDL_UnlockTexture(Engine.screenBuffer);
-			if (Engine.flipflag == 0) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_NONE);
-			} else if (Engine.flipflag == 1) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
-			} else if (Engine.flipflag == 2) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
-			} else if (Engine.flipflag == 3) {
+			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+			} else if {
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
 			}
         }
         else {
@@ -448,25 +444,17 @@ void FlipScreen()
             }
 
             SDL_UnlockTexture(Engine.screenBuffer2x);
-			if (Engine.flipflag == 0) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_NONE);
-			} else if (Engine.flipflag == 1) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
-			} else if (Engine.flipflag == 2) {
-				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
-			} else if (Engine.flipflag == 3) {
+			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+			} else if {
+				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, Engine.flipflag);
 			}
         }
     } else {
-		if (Engine.flipflag == 0) {
-			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_NONE);
-		} else if (Engine.flipflag == 1) {
-			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_HORIZONTAL);
-		} else if (Engine.flipflag == 2) {
-			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, SDL_FLIP_VERTICAL);
-		} else if (Engine.flipflag == 3) {
+		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+		} else if {
+			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
 		}
         // this is hacky but whatever, it's the easiest way to handle the fadeout
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
@@ -479,14 +467,10 @@ void FlipScreen()
         // clear the screen itself now, for same reason as above
         SDL_RenderClear(Engine.renderer);
         // copy texture to screen with lerp
-		if (Engine.flipflag == 0) {
-			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_NONE);
-		} else if (Engine.flipflag == 1) {
-			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_HORIZONTAL);
-		} else if (Engine.flipflag == 2) {
-			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, SDL_FLIP_VERTICAL);
-		} else if (Engine.flipflag == 3) {
+		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+		} else if {
+			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, Engine.flipflag);
 		}
         // Apply dimming
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
