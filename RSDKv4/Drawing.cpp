@@ -64,7 +64,7 @@ int InitRenderDevice()
 
     SDL_DisableScreenSaver();
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
     SDL_SetHint(SDL_HINT_RENDER_VSYNC, Engine.vsync ? "1" : "0");
 
     byte flags = 0;
@@ -496,7 +496,7 @@ void FlipScreen()
         SDL_RenderPresent(Engine.renderer);
         // reset everything just in case
         SDL_RenderSetLogicalSize(Engine.renderer, SCREEN_XSIZE, SCREEN_YSIZE);
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
         // putting some FLEX TAPE  on that memory leak
         SDL_DestroyTexture(texTarget);
     }
