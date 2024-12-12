@@ -391,8 +391,8 @@ void FlipScreen()
     }
 	
 	SDL_Rect dstrect2 = {
-		SCREEN_XSIZE / 2 - (SCREEN_XSIZE * Engine.zoomflag / 2),
-		SCREEN_YSIZE / 2 - (SCREEN_YSIZE * Engine.zoomflag / 2),
+		SCREEN_XSIZE / 2 - (SCREEN_XSIZE + Engine.zoomflag / 2),
+		SCREEN_YSIZE / 2 - (SCREEN_YSIZE + Engine.zoomflag / 2),
 		SCREEN_XSIZE + Engine.zoomflag,
 		SCREEN_YSIZE + Engine.zoomflag
 	};
