@@ -401,7 +401,7 @@ void FlipScreen()
             SDL_UnlockTexture(Engine.screenBuffer);
 			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
-			} else if {
+			} else {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
 			}
         }
@@ -446,14 +446,14 @@ void FlipScreen()
             SDL_UnlockTexture(Engine.screenBuffer2x);
 			if (Engine.flipflag == 3) {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
-			} else if {
+			} else {
 				SDL_RenderCopyEx(Engine.renderer, Engine.screenBuffer2x, NULL, NULL, 0, NULL, Engine.flipflag);
 			}
         }
     } else {
 		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
-		} else if {
+		} else {
 			SDL_RenderCopyEx(Engine.renderer, Engine.videoBuffer, NULL, NULL, 0, NULL, Engine.flipflag);
 		}
         // this is hacky but whatever, it's the easiest way to handle the fadeout
@@ -469,7 +469,7 @@ void FlipScreen()
         // copy texture to screen with lerp
 		if (Engine.flipflag == 3) {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
-		} else if {
+		} else {
 			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &destScreenPos_scaled, 0, NULL, Engine.flipflag);
 		}
         // Apply dimming
