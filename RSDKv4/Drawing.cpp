@@ -371,7 +371,7 @@ void FlipScreen()
             scale =
                 std::fminf(std::floor((float)Engine.windowXSize / (float)SCREEN_XSIZE), std::floor((float)Engine.windowYSize / (float)SCREEN_YSIZE));
         }
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear"); // set interpolation to linear
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"); // set interpolation to linear
         // create texture that's integer scaled.
         texTarget = SDL_CreateTexture(Engine.renderer, SDL_PIXELFORMAT_RGB565, SDL_TEXTUREACCESS_TARGET, SCREEN_XSIZE * scale, SCREEN_YSIZE * scale);
 
