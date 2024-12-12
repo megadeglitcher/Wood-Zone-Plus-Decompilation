@@ -311,10 +311,10 @@ void FlipScreen()
 	SDL_Point pivot = { SCREEN_XSIZE / 2, SCREEN_YSIZE / 2 };
 	
 	SDL_Rect dstrect = {
-		SCREEN_XSIZE / 2 - (SCREEN_XSIZE / 2 * Engine.zoomflag),  // X position (center adjusted for zoom)
-		SCREEN_YSIZE / 2 - (SCREEN_YSIZE / 2 * Engine.zoomflag),  // Y position (center adjusted for zoom)
-		SCREEN_XSIZE * Engine.zoomflag,  // Width of the texture (scaled)
-		SCREEN_YSIZE * Engine.zoomflag   // Height of the texture (scaled)
+		SCREEN_XSIZE / 2 - (SCREEN_XSIZE / 2 + Engine.zoomflag),
+		SCREEN_YSIZE / 2 - (SCREEN_YSIZE / 2 + Engine.zoomflag),
+		SCREEN_XSIZE + Engine.zoomflag,
+		SCREEN_YSIZE + Engine.zoomflag
 	};
 
 
@@ -393,8 +393,8 @@ void FlipScreen()
 	SDL_Rect dstrect2 = {
 		SCREEN_XSIZE / 2 - (SCREEN_XSIZE * Engine.zoomflag / 2),
 		SCREEN_YSIZE / 2 - (SCREEN_YSIZE * Engine.zoomflag / 2),
-		SCREEN_XSIZE * Engine.zoomflag,
-		SCREEN_YSIZE * Engine.zoomflag
+		SCREEN_XSIZE + Engine.zoomflag,
+		SCREEN_YSIZE + Engine.zoomflag
 	};
 
     int pitch = 0;
