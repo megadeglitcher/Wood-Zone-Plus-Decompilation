@@ -306,13 +306,11 @@ void FlipScreen()
 #if RETRO_SOFTWARE_RENDER && !RETRO_USING_OPENGL
 #if RETRO_USING_SDL2
     SDL_Rect destScreenPos_scaled;
-    SDL_Texture *texTarget = NULL;
-	SDL_Point pivot = { SCREEN_XSIZE / 2, SCREEN_YSIZE / 2 };
 	SDL_Rect dstrect = {
-	destScreenPos_scaled.x - (SCREEN_XSIZE * Engine.zoomflag / 2),
-	destScreenPos_scaled.y - (SCREEN_YSIZE * Engine.zoomflag / 2),
-	SCREEN_XSIZE * Engine.zoomflag,
-	SCREEN_YSIZE * Engine.zoomflag
+		SCREEN_XSIZE / 2 - (SCREEN_XSIZE / 2 * Engine.zoomflag),  // X position (center adjusted for zoom)
+		SCREEN_YSIZE / 2 - (SCREEN_YSIZE / 2 * Engine.zoomflag),  // Y position (center adjusted for zoom)
+		SCREEN_XSIZE * Engine.zoomflag,  // Width of the texture (scaled)
+		SCREEN_YSIZE * Engine.zoomflag   // Height of the texture (scaled)
 	};
 
 
