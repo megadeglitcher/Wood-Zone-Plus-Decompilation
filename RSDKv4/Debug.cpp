@@ -4,7 +4,7 @@ bool endLine   = true;
 int touchFlags = 0;
 
 int taListStore = 0;
-int scalingMode2       = saveRAM[347];
+int scalingMode2       = 0;
 
 void InitDevMenu()
 {
