@@ -226,6 +226,8 @@ void SetScreenRotation(int *type, int *unused);
 void GetScreenRotation();
 void SetScreenZoom(int *type, int *unused);
 void GetScreenZoom();
+void GetWindowScaleFilter();
+void SetWindowScaleFilter(int *mode, int *unused);
 #endif
 
 #endif //! USERDATA_H

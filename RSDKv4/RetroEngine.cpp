@@ -1218,6 +1218,8 @@ bool RetroEngine::LoadGameConfig(const char *filePath)
     AddNativeFunction("SetWindowScale", SetWindowScale);
     AddNativeFunction("GetWindowScaleMode", GetWindowScaleMode);
     AddNativeFunction("SetWindowScaleMode", SetWindowScaleMode);
+    AddNativeFunction("GetWindowScaleFilter", GetWindowScaleFilter);
+    AddNativeFunction("SetWindowScaleFilter", SetWindowScaleFilter);
 	AddNativeFunction("GetWindowFullScreen", GetWindowFullScreen);
     AddNativeFunction("SetWindowFullScreen", SetWindowFullScreen);
 	AddNativeFunction("GetWindowBorderless", GetWindowBorderless);

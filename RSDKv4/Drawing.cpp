@@ -64,7 +64,7 @@ int InitRenderDevice()
 
     SDL_DisableScreenSaver();
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode2).c_str());
     SDL_SetHint(SDL_HINT_RENDER_VSYNC, Engine.vsync ? "1" : "0");
 
     byte flags = 0;
@@ -371,7 +371,7 @@ void FlipScreen()
             scale =
                 std::fminf(std::floor((float)Engine.windowXSize / (float)SCREEN_XSIZE), std::floor((float)Engine.windowYSize / (float)SCREEN_YSIZE));
         }
-       SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode2).c_str());
         // create texture that's integer scaled.
         texTarget = SDL_CreateTexture(Engine.renderer, SDL_PIXELFORMAT_RGB565, SDL_TEXTUREACCESS_TARGET, SCREEN_XSIZE * scale, SCREEN_YSIZE * scale);
 
@@ -476,28 +476,38 @@ void FlipScreen()
         SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, fadeMode);
         SDL_RenderFillRect(Engine.renderer, NULL);
     }
-	// set render target back to the screen.
-	SDL_SetRenderTarget(Engine.renderer, NULL);
-	// clear the screen itself now, for same reason as above
-	SDL_RenderClear(Engine.renderer);
-	// copy texture to screen with lerp
-	if (Engine.flipflag == 3) {
-		SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &dstrect2, Engine.rotationflag, &pivot, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
-	} else {
-		SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &dstrect2, Engine.rotationflag, &pivot, static_cast<SDL_RendererFlip>(Engine.flipflag));
-	}
-	// Apply dimming
-	SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
-	if (dimAmount < 1.0)
-		SDL_RenderFillRect(Engine.renderer, NULL);
-	// finally present it
-	SDL_RenderPresent(Engine.renderer);
-	// reset everything just in case
-	SDL_RenderSetLogicalSize(Engine.renderer, SCREEN_XSIZE, SCREEN_YSIZE);
-	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode).c_str());
-	// putting some FLEX TAPE  on that memory leak
-	SDL_DestroyTexture(texTarget);
-	
+
+    if (Engine.scalingMode != 0 && !disableEnhancedScaling) {
+        // set render target back to the screen.
+        SDL_SetRenderTarget(Engine.renderer, NULL);
+        // clear the screen itself now, for same reason as above
+        SDL_RenderClear(Engine.renderer);
+        // copy texture to screen with lerp
+		if (Engine.flipflag == 3) {
+			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &dstrect2, Engine.rotationflag, &pivot, static_cast<SDL_RendererFlip>(SDL_FLIP_HORIZONTAL | SDL_FLIP_VERTICAL));
+		} else {
+			SDL_RenderCopyEx(Engine.renderer, texTarget, NULL, &dstrect2, Engine.rotationflag, &pivot, static_cast<SDL_RendererFlip>(Engine.flipflag));
+		}
+        // Apply dimming
+        SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
+        if (dimAmount < 1.0)
+            SDL_RenderFillRect(Engine.renderer, NULL);
+        // finally present it
+        SDL_RenderPresent(Engine.renderer);
+        // reset everything just in case
+        SDL_RenderSetLogicalSize(Engine.renderer, SCREEN_XSIZE, SCREEN_YSIZE);
+        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, std::to_string(Engine.scalingMode2).c_str());
+        // putting some FLEX TAPE  on that memory leak
+        SDL_DestroyTexture(texTarget);
+    }
+    else {
+        // Apply dimming
+        SDL_SetRenderDrawColor(Engine.renderer, 0, 0, 0, 0xFF - (dimAmount * 0xFF));
+        if (dimAmount < 1.0)
+            SDL_RenderFillRect(Engine.renderer, NULL);
+        // no change here
+        SDL_RenderPresent(Engine.renderer);
+    }
     SDL_ShowWindow(Engine.window);
 #endif
 

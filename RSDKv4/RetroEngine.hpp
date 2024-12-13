@@ -472,6 +472,7 @@ public:
     bool borderless       = false;
     bool vsync            = true;
     int scalingMode       = 0;
+    int scalingMode2       = 0;
     int windowScale       = 2;
     int refreshRate       = 60; // user-picked screen update rate
     int screenRefreshRate = 60; // hardware screen update rate
