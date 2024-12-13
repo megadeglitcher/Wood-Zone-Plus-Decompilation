@@ -32,9 +32,17 @@ inline int getLowerRate(int intendRate, int targetRate)
 #if RETRO_PLATFORM == RETRO_SWITCH
 int devDownTimer = 0;
 #endif
+int scalingMode2       = 0;
 
 bool processEvents()
 {
+	if (scalingMode2 != saveRAM[347]){
+		
+		scalingMode2 = saveRAM[347];
+		ReleaseRenderDevice(true);
+		InitRenderDevice();
+		
+	}
 #if !RETRO_USE_ORIGINAL_CODE
 #if RETRO_USING_SDL1 || RETRO_USING_SDL2
     while (SDL_PollEvent(&Engine.sdlEvents)) {

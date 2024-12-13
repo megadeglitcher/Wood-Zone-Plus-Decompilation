@@ -4,17 +4,9 @@ bool endLine   = true;
 int touchFlags = 0;
 
 int taListStore = 0;
-int scalingMode2       = 0;
 
 void InitDevMenu()
 {
-	if (scalingMode2 != saveRAM[347]){
-		
-		scalingMode2 = saveRAM[347];
-		ReleaseRenderDevice(true);
-		InitRenderDevice();
-		
-	}
 #if RETRO_USE_MOD_LOADER
     for (int m = 0; m < modList.size(); ++m) ScanModFolder(&modList[m]);
 #endif
