@@ -19,8 +19,15 @@ android {
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
+            ndkBuild {
+                arguments "APP_PLATFORM=android-23"
+                abiFilters = []
+                abiFilters.addAll(ABIFILTERS.split(';').collect{it as String})
+            }
             cmake {
-                arguments "-DANDROID_APP_PLATFORM=android-16", "-DPLATFORM=Android", "-DANDROID_STL=c++_static"
+                arguments "-DANDROID_APP_PLATFORM=android-16", "-DANDROID_STL=c++_static"
+                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+                abiFilters 'arm64-v8a'
             }
         }
     }
@@ -36,9 +43,12 @@ android {
             jniLibs.srcDir 'libs'
         }
         externalNativeBuild {
-            cmake {
-                path 'jni/CMakeLists.txt'
+            ndkBuild {
+                path 'jni/Android.mk'
             }
+            //cmake {
+            //    path 'jni/CMakeLists.txt'
+            //}
         }
        
     }
