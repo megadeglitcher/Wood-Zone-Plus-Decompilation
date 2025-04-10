@@ -70,7 +70,7 @@ jobs:
           Copy-Item -Path ./dependencies/all/tinyxml2 -Destination ./dependencies/windows/tinyxml2
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp glew:arm64-uwp sdl2:arm64-uwp sdl2 libtheora libogg:x64-windows-static-md libvorbis:x64-windows-static-md --allow-unsupported
+          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp glew:arm64-uwp sdl2:arm64-uwp sdl2 libtheora glew libogg:x64-windows-static-md libvorbis:x64-windows-static-md --allow-unsupported
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
