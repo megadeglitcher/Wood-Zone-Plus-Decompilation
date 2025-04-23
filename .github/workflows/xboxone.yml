@@ -70,11 +70,11 @@ jobs:
           Copy-Item -Path ./dependencies/all/tinyxml2 -Destination ./dependencies/windows/tinyxml2
       - name: Run vcpkg
         run: |
-          vcpkg install libogg:arm64-uwp libvorbis:arm64-uwp libtheora:arm64-uwp glew:arm64-uwp sdl2:arm64-uwp sdl2 libtheora glew libogg:x64-windows-static-md libvorbis:x64-windows-static-md --allow-unsupported
+          vcpkg install sdl2 libtheora glew libogg:x64-windows-static-md libvorbis:x64-windows-static-md 
           vcpkg integrate install
       - name: Build RSDKv4
         run: |
-          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=ARM64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props" /p:PlatformToolset=v143 /p:DefineConstants=_CRT_SECURE_NO_WARNINGS
+          msbuild RSDKv4.UWP.sln /p:Configuration=Release /p:Platform=x64 /p:ForceImportBeforeCppTargets="$env:GITHUB_WORKSPACE/props/winactions.props" /p:PlatformToolset=v143 /p:DefineConstants=_CRT_SECURE_NO_WARNINGS
       - name: Move artifacts
         run: |
           mkdir artifacts
