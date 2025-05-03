@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.7)
 
-project(Forever)
+project(RetroEngine)
 
 set(curdir ${CMAKE_CURRENT_LIST_DIR})
 set(android 1)
