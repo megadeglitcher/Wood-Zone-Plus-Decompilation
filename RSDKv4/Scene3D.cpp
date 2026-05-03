@@ -4,7 +4,9 @@ int vertexCount = 0;
 int faceCount   = 0;
 
 // haha get hardcoded
-int skyward = 1500;
+int skyward    = 1499;
+int sdg        = 1500;
+char kotas[20] = "rsdk when kotas";
 
 Matrix matFinal = Matrix();
 Matrix matWorld = Matrix();
