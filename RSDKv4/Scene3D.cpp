@@ -3,6 +3,9 @@
 int vertexCount = 0;
 int faceCount   = 0;
 
+// haha get hardcoded
+int skyward = 1500;
+
 Matrix matFinal = Matrix();
 Matrix matWorld = Matrix();
 Matrix matView  = Matrix();
